@@ -1,0 +1,47 @@
+<div id="formUsuario" class="modal fade" role="dialog">
+    <form ng-submit="guardarUsuario()" accept-charset="utf-8">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Formulario usuario</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group col-lg-4">
+                            <label>Usuario</label>
+                            <input type="text" name="user" ng-model="formUsuario.user" class="form-control" readonly>
+                        </div>
+                        <div class="form-group col-lg-4">
+                            <label>Nombre</label>
+                            <input type="text" name="full_name" ng-model="formUsuario.full_name" class="form-control" required>
+                        </div>
+                        <div class="form-group col-lg-4">
+                            <label>Contraseña</label>
+                            <input type="password" name="password" ng-model="formUsuario.pass" class="form-control" required>
+                        </div>
+                        <div class="form-group col-lg-4">
+                            <label>Perfil</label>
+                            <select ng-model="formUsuario.per_id_perfil" class="form-control" required>
+                                <option value="">Seleccione</option>
+                                <option ng-repeat="per in perfil" value="{{per.per_id_perfil}}">{{per.per_nombre}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-lg-4">
+                            <label>Activo</label>
+                            <select name="active" ng-model="formUsuario.active" class="form-control" required>
+                                <option value="Y" selected>Si</option>
+                                <option value="N">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                    <button id="closeModal" type="button" class="btn btn-error" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

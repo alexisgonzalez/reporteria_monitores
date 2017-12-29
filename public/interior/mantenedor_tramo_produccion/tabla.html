@@ -1,0 +1,16 @@
+<table id='tabla' class="table row-border order-column table-bordered table-responsive" cellspacing="0" width="100%">
+	<thead>
+		<tr class="colorOptimiza">
+			<th class="text-center">Cliente/servicio</th>
+			<th class="text-center">Tramo</th>
+			<th class="text-center">Color</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="data in list">
+			<td class=>{{data.cliente}}</td>
+			<td class="text-center">{{data.bre_brecha}}</td>
+			<td class="text-center"><span style="background: {{data.bre_color}};width: 100%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+		</tr>
+	</tbody>
+</table>

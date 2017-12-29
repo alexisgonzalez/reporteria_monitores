@@ -1,0 +1,19 @@
+<div class="row">
+	<div class="col-lg-12 row-superior">
+		<h3>Campana: <span style="font-size: 32px;">{{dataProduccion.campana_nombre}}</span> - <b class="lead">{{dataProduccion.campana}}</b></h3>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-12" >
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<br style="clear:both;">
+
+				<div ng-include src="gestionesUrl"></div>
+			</div>
+		</div>
+	</div>
+</div> 
+<div ng-include="'interior/bitacoras/modal_bitacora.html'"></div>
+<div ng-include="'interior/bitacoras/formulario_bitacora.html'"></div>
+<div ng-include="'interior/modal_detalle_gestion.html'"></div>

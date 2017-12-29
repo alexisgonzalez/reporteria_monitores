@@ -1,0 +1,14 @@
+<table class="table table-striped table-bordered" id="tablaCambio" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th class="colorOptimiza">Fecha cambio horario</th>
+            <th class="colorOptimiza">¿Quien lo cambio?</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="log in cambios">
+            <td>{{log.fecha_cambio}}</td>
+            <td>{{log.user}}</td>
+        </tr>
+    </tbody>
+</table>

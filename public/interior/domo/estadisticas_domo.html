@@ -1,0 +1,45 @@
+<!-- revisar vista -->
+
+<div class="modal fade charts-modal" tabindex="-1" id="estadisticas" role="dialog" aria-labelledby="Estadisticas">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">Estadisticas Domo</h4>
+            </div>
+            <div class="row">
+            <!--- colors='["#05B4FB","#00CC00","#DAA520","#FF0000"]' -->
+                <div class="col-lg-5 text-center" style="margin-top: 4%;">
+                    <div ng-include src="urlGrafico" ng-if="mostarGrafico"></div>
+                </div>
+                <div class="col-md-6 text-center">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><h3 class="panel-title">Brechas</h3></div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <i class="fa fa-arrow-circle-o-up fa-5x"  style="color:#05B4FB"></i> <strong class="lead">{{dataDomo.prom_cuart1 | number:2}}</strong><br>
+                                    <div>Promedio tramo 1</div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <i class="fa fa-arrow-circle-o-down fa-5x" style="color:#FF0000"></i> <strong class="lead">{{dataDomo.prom_cuart4 | number:2}}</strong><br>
+                                    <div>Promedio tramo 4</div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="panel-yellow">
+                                        <i class="fa fa-arrows-h fa-5x"></i> <strong class="lead">{{dataDomo.brecha | number:2}}</strong><br>
+                                        <div> Brecha</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

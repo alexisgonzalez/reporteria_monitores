@@ -1,0 +1,23 @@
+<table id='tablaPais' class="table row-border order-column table-bordered table-responsive" cellspacing="0" width="100%">
+	<thead>
+		<tr class="colorOptimiza">
+			<th class="text-center">País</th>
+			<th class="text-center">Código País</th>
+			<th class="text-center">Código Moneda</th>
+			<th class="text-center">Simbolo</th>
+			<th class="text-center">Acciones</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="data in paises">
+			<td class="text-center">{{data.nombre_pais}}</td>
+			<td class="text-center">{{data.codigo_pais}}</td>
+			<td class="text-center">{{data.codigo_moneda}}</td>
+			<td class="text-center">{{data.simbolo_moneda}}</td>
+			<td class="text-center">
+				<button class="btn btn-default btn-circle" type="button" title="Editar País" data-toggle="modal" data-target="#formPais" ng-click="showFormPais('editar',data)"><i class="fa fa-edit"></i></button> 
+                <button class="btn btn-default btn-circle" type="button" title="Desactivar País" ng-click="showConfirm(data,'eliminar')"><i class="fa fa-close"></i></button>
+			</td>
+		</tr>
+	</tbody>
+</table>

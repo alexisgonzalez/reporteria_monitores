@@ -1,0 +1,27 @@
+<form name="filtrarHorario" ng-submit="traerHorario()">
+	<div class="col-lg-12">
+		<div class="col-lg-12" style="padding-top:5px;">
+			<label>Periodo</label>
+		</div>
+		<div class="col-lg-12">
+			<div class="input-daterange input-group datepicker">
+				<input type="text" class="input-sm form-control" ng-model="frmFiltroHorario.date_begin" name="start" required>
+				<span class="input-group-addon panel"><li class="fa fa-calendar"></li></span>
+				<input type="text" class="input-sm form-control" ng-model="frmFiltroHorario.date_end" name="end" required>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-4">
+		<label><input type="checkbox" name="is_tiempo_minimo" ng-model="frmFiltroHorario.userActive"> Filtrar solo por operadoras activas al día de hoy.</label>
+	</div>
+	<div class="col-lg-8">
+		<button class="btn btn-danger" type="submit" style="float:right;background:#DE2A46;">Filtrar</button>
+	</div>
+	<script type="text/javascript">
+		$('.datepicker').datepicker({
+			language:"es",
+			daysOfWeekHighlighted: "0,6",
+			todayHighlight: true
+		});
+	</script>
+</form>

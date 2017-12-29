@@ -1,0 +1,58 @@
+<div class="row">
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<form name="agregar_agenda" ng-submit="agregarAgendamiento()">
+				<div class="col-lg-3">
+					<div class="form-group">
+						<label>Rut</label>
+						<input type="text" class="form-control" name="rut" ng-model="frmAgregarAgenda.rut" required>
+					</div>
+				</div>
+				<div class="col-lg-9">
+					<div class="form-group">
+						<label>Nombre</label>
+						<input type="text" class="form-control" name="nombre" ng-model="frmAgregarAgenda.nombre" required>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="form-group">
+						<label>Direccion</label>
+						<input type="text" class="form-control" name="direccion" ng-model="frmAgregarAgenda.direccion" required>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="form-group">
+						<label>Comuna</label>
+						<input type="text" class="form-control" name="comuna" ng-model="frmAgregarAgenda.comuna" required>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="form-group">
+						<label>Telefono</label>
+						<input type="text" class="form-control" name="telefono" ng-model="frmAgregarAgenda.telefono" required>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="form-group">
+						<label>Ejecutiv@</label>
+						<select id="operador" name="operador" ng-model="frmAgregarAgenda.operador" class="form-control" required>
+							<option value="">Seleccione</option>
+							<option ng-repeat ="op in operadores" value="op.us_sup_user">{{op.us_sup_user}} </option>
+						</select>
+					</div>
+				</div><br style="clear:both;" />
+
+				<div class="col-lg-12">
+				<button class="btn btn-success" type="submit" style="float:right;background:#DE2A46;">Guardar</button>
+				</div>
+				<script type="text/javascript">
+					$('.datepicker').datepicker({
+						language:"es",
+						daysOfWeekHighlighted: "0,6",
+						todayHighlight: true
+					});
+				</script>
+			</form>
+		</div>
+	</div>
+</div>

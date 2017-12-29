@@ -1,0 +1,9 @@
+<div class="row">
+	<div ng-if="!elegir_metas" class="row-superior" ng-include src="metas"></div>
+	<div ng-if="elegir_metas" class="row-superior" ng-include src="formulario"></div>
+	<div ng-if="loading" class="row loadingGif">
+		<div class="col-lg-12" style="text-align:center; margin-top: 100px">
+			<img src="/images/loading.gif">
+		</div>
+	</div>
+</div> 

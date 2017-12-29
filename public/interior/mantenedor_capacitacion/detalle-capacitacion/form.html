@@ -1,0 +1,96 @@
+<div id="formEval" class="modal fade" role="dialog">
+    <form name="formulario" ng-submit="guardarEvaluacionGrupal()">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-capitalize">Evaluacion grupo {{formEvaluar.gr_descripcion}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <label>Etapa</label>
+                            <div class="form-group">
+                                <select name="et_id_etapa" ng-model="formEval.et_id_etapa" class="form-control" required>
+                                    <option value="" disabled>Seleccione</option>
+                                    <option ng-repeat="lis in listaEtapa" value="{{lis.et_id_etapa}}">{{lis.et_descripcion}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <label>Tipo</label>
+                            <div class="form-group">
+                                <select name="tiev_id_tipo_evaluacion" class="form-control" ng-model="formEval.tiev_id_tipo_evaluacion" required>
+                                    <option value="" disabled>Seleccione</option>
+                                    <option ng-repeat="lis in listaTipoEvaluacion" value="{{lis.tiev_id_tipo_evaluacion}}">{{lis.tiev_descripcion}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                           <label>Estándar</label>
+                           <select name="ties_id_tipo_estandar" ng-model="formEval.ties_id_tipo_estandar" class="form-control" required ng-click="validarBuscarEstandar(formEval,formEvaluar)">
+                                <option value="" disabled>Seleccione</option>
+                                <option ng-repeat="lis in listaTipoEstandar" value="{{lis.ties_id_tipo_estandar}}">{{lis.ties_descripcion}}</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-2">
+                            <label>Valor ideal</label>
+                            <div ng-if="!habilitarEstandar" class="form-group">
+                                <b>{{formVal.estandar.es_valor_estandar}}</b>
+                            </div>
+                            <div ng-if="habilitarEstandar" class="form-group">
+                                <b><input type="number" class="form-control" min="0" max="100" ng-model="formVal.estandar.es_valor_estandar" step="any" required></b>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="evaluar" class="row div-overflow">
+                        <div class="col-lg-12">
+                            <table class="table row-border order-column table-condensed compact table-bordered table-responsive" cellspacing="0" width="100%" style="table-layout: fixed;">
+                                <thead>
+                                    <tr>
+                                        <th class="colorOptimiza">Postulante</th>
+                                        <th class="colorOptimiza">Resultado</th>
+                                        <th class="colorOptimiza">Nota Final</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="list in listaPostulantes">
+                                        <td class="text-capitalize">{{list.pos_nombre_completo}}</td>
+                                        <td>
+                                            <input ng-if="formEval.ties_id_tipo_estandar == 2 || formEval.ties_id_tipo_estandar == 5" type="number" class="form-control" min="0" max="100" ng-model="formEval.resultados[list.pos_id_postulante].evpo_valor" ng-change="verCumplimiento('agregar',formEval.ties_id_tipo_estandar,formEval.resultados[list.pos_id_postulante].evpo_valor,formVal.estandar.es_valor_estandar,list.pos_id_postulante)" step="any">
+                                            <div ng-if="formEval.ties_id_tipo_estandar == 1" class="input-group bootstrap-timepicker timepicker">
+                                                <input type="text" class="form-control timepick" ng-model="formEval.resultados[list.pos_id_postulante].evpo_valor" ng-change="verCumplimiento('agregar',formEval.ties_id_tipo_estandar,formEval.resultados[list.pos_id_postulante].evpo_valor,formVal.estandar.es_valor_estandar,list.pos_id_postulante)">
+                                                <span class="input-group-addon panel"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+                                            <script type="text/javascript">
+                                             $('.timepick').timepicker({
+                                                minuteStep: 1,
+                                                showInputs: false,
+                                                disableFocus: true,
+                                                showMeridian: false,
+                                                defaultTime: '01:00'
+                                            });
+                                            </script>
+                                            </div>
+                                            <select ng-if="formEval.ties_id_tipo_estandar == 3" ng-model="formEval.resultados[list.pos_id_postulante].evpo_valor" class="form-control" ng-change="verCumplimiento('agregar',formEval.ties_id_tipo_estandar,formEval.resultados[list.pos_id_postulante].evpo_valor,'Sí',list.pos_id_postulante)">
+                                                <option value="" disabled>Seleccione</option>
+                                                <option value="Sí">Sí</option>
+                                                <option value="No">No</option>
+                                            </select>
+                                            <input ng-if="formEval.ties_id_tipo_estandar == 4" type="number" class="form-control" min="0.00" max="5" step="any" ng-model="formEval.resultados[list.pos_id_postulante].evpo_valor" ng-change="verCumplimiento('agregar',formEval.ties_id_tipo_estandar,formEval.resultados[list.pos_id_postulante].evpo_valor,5,list.pos_id_postulante)">
+                                        </td>
+                                        <td><input type="text" class="form-control" min="0" max="100" ng-model="formEval.resultados[list.pos_id_postulante].evpo_valor_estandarizado" disabled></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button ng-if="evaluar" type="submit" class="btn btn-danger">Guardar</button>
+                    <button type="button" class="btn btn-error cerrarModal" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

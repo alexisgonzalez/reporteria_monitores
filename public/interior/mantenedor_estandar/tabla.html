@@ -1,0 +1,40 @@
+<table id='tabla' class="table row-border order-column table-condensed compact table-bordered table-responsive" cellspacing="0" width="100%">
+	<thead>
+		<tr class="colorOptimiza">
+			<th class="text-center">Id</th>
+			<th class="text-center">Tipo</th>
+			<th class="text-center">Estándar</th>
+			<th class="text-center">Valor</th>
+			<th class="text-center">Etapa</th>
+			<th class="text-center">Fecha de inicio</th>
+			<th class="text-center">Fecha de fin</th>
+			<th class="text-center">Actualizado por</th>
+			<th class="text-center">Fecha de actualización</th>
+			<th class="text-center">Estado</th>
+			<th class="text-center">Acciones</th>
+
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="list in listaEstandar">
+			<td class="text-center">{{list.es_id_estandar}}</td>
+			<td class="text-center">{{list.tiev_descripcion}}</td>
+			<td class="text-center">{{list.ties_descripcion}}</td>
+			<td class="text-center">{{(list.ties_id_tipo_estandar==1)?list.es_valor_estandar:list.es_valor_estandar}}</td>
+			<td class="text-center">{{list.et_descripcion}}</td>
+			<td class="text-center">{{list.es_fecha_inicio}}</td>
+			<td class="text-center">{{list.es_fecha_fin}}</td>
+			<td class="text-center">{{list.full_name}}</td>
+			<td class="text-center">{{list.es_fecha_actualizacion}}</td>
+			<td class="text-center">{{(list.es_estado==1)?'Habilitado':'Deshabilitado'}}</td>
+			<td class="text-center">
+				<button data-toggle="modal" data-target="#form-editar" ng-click="levantarModal('editar',list)" class="btn btn-default btn-circle" type="button" title="Editar grupo">
+					<i class="fa fa-edit"></i>
+				</button>
+				<button class="btn btn-default btn-circle" type="button" title="Eliminar grupo" ng-click="confirmDesactivarEstandar(list)">
+					<i class="fa fa fa-times"></i>
+				</button>
+			</td>
+		</tr>
+	</tbody>
+</table>

@@ -1,0 +1,97 @@
+<div class="col-lg-12" ng-repeat="datos in datosMedias" ng-if="elegidos" ng-init="campana_id=(datos.tabla[0].campaign| limitTo:4)">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title"><b class="lead">Medias campaña {{datos.tabla[0].campaign}} {{datos.tabla[0].campaign_name}} </b></h2>
+        </div>
+        <div class="panel-body">
+            <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6">
+                <canvas id="bar" class="chart chart-bar" data="[datos.graficoMedia.media]" labels='datos.graficoMedia.user' series="['Media']" height="80"></canvas>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6" style="font-size: 18px;">
+                <!-- Adherencia-->
+                <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+                    <div class="col-lg-12 padding-15 fondo-azul margin-top margin-abajo"> 
+                        <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                            <i class="glyphicon glyphicon-user" title="Usuarios Conectados"></i>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8">
+                            <!--<h3 class="hx">{{datos.totales.conectados }} de {{datos.totales.conectados_maximos}}</h3> -->
+                            <h3 class="hx">{{datos.totales.conectados }} de {{adherencia[campana_id].cantidad_usuario_ideal-adherencia[campana_id].cantidad_licencias-adherencia[campana_id].cantidad_vacaciones}}</h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 padding-15 fondo-azul margin-abajo">
+                        <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                            <i title="Porcentaje adherencia" class="glyphicon glyphicon-time"> </i>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8">
+                            <!-- <h3 class="hx">{{datos.totales.porcentaje_adherencia}} %</h3> -->
+                            <h3 class="hx">{{adherencia[campana_id].porcentaje_calculado | number:2}}%</h3>
+                        </div> 
+                    </div>
+                    <div class="col-lg-12 padding-15 fondo-azul marginbajo"> 
+                        <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                            <i class="glyphicon glyphicon-stats" title="Media Total"></i>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8">
+                            <h3 class="hx">{{datos.totales.media | number:2}}</h3>
+                        </div>
+                    </div>
+                </div>
+                <!-- Campaña -->
+                <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+                    <div class="col-lg-12 padding-15 fondo-verde margin-top margin-abajo"> 
+                        <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                            <i title="Efectivos" class="glyphicon glyphicon-check"> </i>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8">
+                            <h3 class="hx">{{datos.totales.efectivos}}</h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 padding-15 fondo-verde margin-abajo">
+                        <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                            <i title="Meta" class="fa fa-flag-checkered"> </i>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8">
+                            <h3 class="hx">{{datos.totales.metas_efectivas}}</h3>
+                        </div> 
+                    </div>
+                    <div class="col-lg-12 padding-15 fondo-verde margin-abajo"> 
+                        <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                            <i class="fa fa-thumbs-up" title="Porcentaje de metas"></i>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8">
+                            <h3 class="hx">{{datos.totales.meta}}%</h3>
+                        </div>
+                    </div>
+                </div>
+                <!-- Calidad -->
+                <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+                    <div class="col-lg-12 padding-15 fondo-calidad margin-top margin-abajo"> 
+                        <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                            <i title="Cantidad Evaluaciones" class="fa fa-headphones"> </i>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8">
+                            <h3 class="hx">{{datos.totales.cantidad_evaluaciones}}</h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 padding-15 fondo-calidad margin-abajo">
+                        <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                            <i title="Porcentaje Calidad" class="fa fa-smile-o"> </i>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8">
+                            <h3 class="hx">{{datos.totales.porcentaje_calidad}}%</h3>
+                        </div> 
+                    </div>
+                    <div class="col-lg-12 padding-15 fondo-calidad margin-abajo">
+                        <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                            <i title="Porcentaje Contactabilidad" class="fa fa-phone"> </i>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8">
+                            <h3 class="hx">{{datos.totales.promedio_recorridos}}%</h3>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

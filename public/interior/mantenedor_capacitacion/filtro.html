@@ -1,0 +1,33 @@
+<div class="panel panel-default">
+	<div class="panel-body">
+		<form name="filtrar" ng-submit="listarCapacitaciones()">
+			<div class="row">
+				<div class="col-lg-6">
+					<label>Rango de inicio</label>
+					<div class="input-daterange input-group datepicker">
+						<input type="text" class="form-control" ng-model="form.date_begin" name="start" required>
+						<span class="input-group-addon panel"><li class="fa fa-calendar"></li></span>
+						<input type="text" class="form-control" ng-model="form.date_end" name="end" required>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<label>Grupo</label>
+					<div class="form-group">
+						<select name="grupos" id="grupos" ng-model="form.grupos" class=" form-control input-md" required multiple size="3" style="width: 100%" ng-options="gr.gr_id_grupo as gr.gr_id_grupo for gr in listaGrupos | orderBy:'gr_id_grupo'">
+						</select>
+					</div>
+				</div>
+				<div class="col-lg-2">
+					<button type="submit" class="btn btn-danger col-lg-12" style="margin-top: 18%">Filtrar</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<script type="text/javascript">
+	$('.datepicker').datepicker({
+		language:"es",
+		daysOfWeekHighlighted: "0,6",
+		todayHighlight: true
+	});
+</script>

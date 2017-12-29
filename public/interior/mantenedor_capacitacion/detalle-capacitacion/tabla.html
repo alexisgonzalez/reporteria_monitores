@@ -1,0 +1,28 @@
+<div class="row row-superior " ng-repeat="list in listaDetalleCapacitacion">
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<h5>Grupo {{list.gr_id_grupo}}<button data-toggle="modal" data-target="#formEval" class="btn btn-default float-right" type="button" ng-click="levantarEvaluacion(list)"><i class="fa fa-plus"></i> Agregar evaluación</button></h5>
+			<table class="table row-border order-column table-condensed compact table-bordered table-responsive tablaDetalle" cellspacing="0" width="100%">
+				<thead>
+					<tr class="colorOptimiza">
+						<th rowspan="2" class="text-center">Código</th>
+						<th rowspan="2" class="text-center">Nombre</th>
+						<th colspan="{{et.cant}}" class="text-center" ng-repeat="(key,et) in list.evaluaciones.etapas">{{key}}</th>
+					</tr>
+					<tr class="colorOptimiza">
+						<th class="text-center" ng-repeat="(key,et) in list.evaluaciones.tipos">{{et.ettiev_valor}}%<br>{{et.tiev_descripcion}}</th>
+						<th class="text-center" ng-repeat="(key,et) in list.evaluaciones.etapasF">{{et.et_descripcion}}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="pos in list.postulantes">
+						<td class="text-center">{{pos.grpo_codigo}}</td>
+						<td class="text-center text-capitalize">{{pos.pos_nombre_completo}}</td>
+						<td ng-repeat="(key,et) in list.evaluaciones.tipos" class="text-center"><a  data-toggle="modal" data-target="#detalle" ng-click="detallePostulante(pos,et)">{{pos.evaluaciones[et.ettip] | number:2}}</a></td>
+						<th class="text-center" ng-repeat="(key,et) in list.evaluaciones.etapasF">{{pos.estado[et.key]}}</th>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

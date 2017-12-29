@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-lg-12 row-superior">
+		<div ng-include src="filtroURL"></div>
+    </div>
+	<div class="col-lg-12 loadingGif" style="text-align:center; margin-top: 100px">
+		<img src="/images/loading.gif">
+	</div>
+	<div id="contenido" class="col-lg-12">
+		<div ng-include src="tablaURL"></div>
+	</div>
+</div>
+<div ng-include="'interior/bitacoras/modal_bitacora.html'"></div>
+<div ng-include="'interior/bitacoras/formulario_bitacora.html'"></div>
+

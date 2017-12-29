@@ -1,0 +1,101 @@
+<div class="panel panel-default">
+	<div class="panel-body">
+		<div class="col-lg-4">
+			<b class="text-uppercase">Efectivos total periodo: {{totalFinal.efectivos}}</b>
+		</div>
+		<div class="col-lg-4">
+			<b class="text-uppercase">Produccion total periodo: ${{totalFinal.produccion | number:0}}</b>
+		</div>
+		<div class="col-lg-4">
+			<button type="button" style="float: right;" id="btnExport" ng-click="exportData()" class="btn btn-default"><i class="fa fa-cloud-download" aria-hidden="true"></i> Exportar Excel</button>
+		</div>
+	</div>
+</div>
+
+<table id="tabla" class="table row-border order-column table-condensed compact table-bordered table-responsive" cellspacing="0" width="100%">
+	<thead>
+		<tr class="colorOptimiza">
+			<th class="text-center" rowspan="2">Cliente Servicio</th>
+			<th class="text-center" colspan="2" ng-repeat="fecha in fechas">{{fecha | date: "dd-MM-yyyy"}}</th>	
+			<th rowspan="2" class="text-center">Cantidad</th>
+			<th rowspan="2" class="text-center">Producción</th>
+		</tr>
+		<tr class="colorOptimiza2">
+			<th ng-repeat-start="fecha in fechas" class="text-center">Cantidad</th>
+			<th ng-repeat-end class="text-center">Producción</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="(id,list) in vibox">
+			<td class="text-uppercase">{{id}}</td>
+			<td class="text-center" ng-repeat-start="fecha in fechas" ng-init="fecha_filtro=fecha">{{list['data'][fecha_filtro].efectivos}}</td>
+			<td ng-repeat-end class="text-center"><p ng-if="list['data'][fecha_filtro].flag">${{list['data'][fecha_filtro].produccion | number:0}}</p></td>
+			<td class="text-uppercase text-center">{{list['totales'].efectivos}}</td>
+			<td ng-if="pais==1" class="text-uppercase text-center">${{list['totales'].produccion | number:0}}</td>
+			<td ng-if="pais==2" class="text-uppercase text-center">S/{{list['totales'].produccion | number:2}}</td>
+		</tr>
+		<tr ng-repeat="(id,list) in vicidial">
+			<td class="text-uppercase">{{id}}</td>
+			<td class="text-center" ng-repeat-start="fecha in fechas" ng-init="fecha_filtro=fecha">{{list['data'][fecha_filtro].efectivos}}</td>
+			<td ng-repeat-end class="text-center"><p ng-if="list['data'][fecha_filtro].flag"><b ng-if="pais==1">${{list['data'][fecha_filtro].produccion | number:0}}</b><b ng-if="pais==2">S/{{list['data'][fecha_filtro].produccion | number:2}}</b></p></td>
+			<td class="text-uppercase text-center">{{list['totales'].efectivos}}</td>
+			<td ng-if="pais==1" class="text-uppercase text-center">${{list['totales'].produccion | number:0}}</td>
+			<th ng-if="pais==2" class="text-center">S/{{list['totales'].produccion | number:2}}</th>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr class="colorOptimiza2">
+			<th class="text-center">Total</th>
+			<th ng-repeat-start="fecha in fechas" class="text-center" ng-init="fecha_filtro=fecha">{{totalDia[fecha_filtro].efectivos}}</th>
+			<th ng-repeat-end class="text-center"><b ng-if="pais==1">${{totalDia[fecha_filtro].produccion | number:0}}</b><b ng-if="pais==2">S/{{totalDia[fecha_filtro].produccion | number:2}}</b></th>
+			<th class="text-center">{{totalFinal.efectivos}}</th>
+			<th ng-if="pais==1" class="text-center">${{totalFinal.produccion | number:0}}</th>
+			<th ng-if="pais==2" class="text-center">S/{{totalFinal.produccion | number:2}}</th>
+		</tr>
+	</tfoot>
+</table>
+
+<div id="divTabla">
+	<table id="tabla" class="table row-border order-column table-condensed compact table-bordered table-responsive" cellspacing="0" width="100%" ng-show="false">
+		<thead>
+			<tr class="colorOptimiza">
+				<th class="text-center" rowspan="2">Cliente Servicio</th>
+				<th class="text-center" colspan="2" ng-repeat="fecha in fechas">{{fecha}}</th>	
+				<th rowspan="2" class="text-center">Cantidad</th>
+				<th rowspan="2" class="text-center">Produccion</th>
+			</tr>
+			<tr class="colorOptimiza2">
+				<th ng-repeat-start="fecha in fechas" class="text-center">Cantidad</th>
+				<th ng-repeat-end class="text-center">ProducciOn</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="(id,list) in vibox">
+				<td class="text-uppercase">{{id}}</td>
+				<td class="text-center" ng-repeat-start="fecha in fechas" ng-init="fecha_filtro=fecha">{{list['data'][fecha_filtro].efectivos}}</td>
+				<td ng-repeat-end class="text-center"><p ng-if="list['data'][fecha_filtro].flag">${{list['data'][fecha_filtro].produccion | number:0}}</p></td>
+				<td class="text-uppercase text-center">{{list['totales'].efectivos}}</td>
+				<td ng-if="pais==1" class="text-uppercase text-center">${{list['totales'].produccion | number:0}}</td>
+				<td ng-if="pais==2" class="text-uppercase text-center">S/{{list['totales'].produccion | number:2}}</td>
+			</tr>
+			<tr ng-repeat="(id,list) in vicidial">
+				<td class="text-uppercase">{{id}}</td>
+				<td class="text-center" ng-repeat-start="fecha in fechas" ng-init="fecha_filtro=fecha">{{list['data'][fecha_filtro].efectivos}}</td>
+				<td ng-if="pais==1" ng-repeat-end class="text-center"><p ng-if="list['data'][fecha_filtro].flag">${{list['data'][fecha_filtro].produccion | number:0}}</p></td>
+				<td ng-if="pais==2" ng-repeat-end class="text-center"><p ng-if="list['data'][fecha_filtro].flag">S/{{list['data'][fecha_filtro].produccion | number:2}}</p></td>
+				<td class="text-uppercase text-center">{{list['totales'].efectivos}}</td>
+				<td class="text-uppercase text-center">${{list['totales'].produccion | number:0}}</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr class="colorOptimiza2">
+				<th class="text-center">Total</th>
+				<th ng-repeat-start="fecha in fechas" class="text-center" ng-init="fecha_filtro=fecha">{{totalDia[fecha_filtro].efectivos}}</th>
+				<th ng-repeat-end class="text-center">${{totalDia[fecha_filtro].produccion | number:0}}</th>
+				<th class="text-center">{{totalFinal.efectivos}}</th>
+				<th ng-if="pais==1" class="text-center">${{totalFinal.produccion | number:0}}</th>
+				<th ng-if="pais==2" class="text-center">S/{{totalFinal.produccion | number:2}}</th>
+			</tr>
+		</tfoot>
+	</table>
+</div>

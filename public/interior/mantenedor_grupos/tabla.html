@@ -1,0 +1,28 @@
+<table id='tabla' class="table row-border order-column table-condensed compact table-bordered table-responsive" cellspacing="0" width="100%">
+	<thead>
+		<tr class="colorOptimiza">
+			<th class="text-center">Grupo</th>
+			<th class="text-center">Fecha de inicio</th>
+			<th class="text-center">Estado</th>
+			<th class="text-center">Acciones</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="data in listaGrupos">
+			<td class="text-center">{{data.gr_id_grupo}}</td>
+			<td class="text-center">{{data.gr_fecha_inicio}}</td>
+			<td class="text-center"><toggle-switch ng-model="data.gr_estado" class="switch-success" ng-click="estadoGrupo(data)"></toggle-switch></td>
+			<td class="text-center">
+				<button data-toggle="modal" data-target="#formEditar" ng-click="levantarModal('editar',data)" class="btn btn-default btn-circle" type="button" title="Editar grupo">
+					<i class="fa fa-edit"></i>
+				</button>
+				<button class="btn btn-default btn-circle" type="button" title="Eliminar grupo" ng-click="confirmEliminarGrupo(data)">
+					<i class="fa fa-trash"></i>
+				</button>
+				<button data-toggle="modal" data-target="#detalle" class="btn btn-default btn-circle" type="button" title="Ver postulantes" ng-click="verPortulantes(data)">
+					<i class="fa fa-eye"></i>
+				</button>
+			</td>
+		</tr>
+	</tbody>
+</table>

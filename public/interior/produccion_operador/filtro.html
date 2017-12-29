@@ -1,0 +1,27 @@
+<div class="panel panel-default">
+	<div class="panel-body">
+		<form name="filtrar" ng-submit="verProduccion()">
+			<div class="col-lg-8">
+				<div class="form-group">
+					<label>Periodo</label>
+					<div class="input-daterange input-group datepicker">
+						<input type="text" class="form-control" ng-model="formProduccion.date_begin" name="start" required>
+						<span class="input-group-addon panel"><li class="fa fa-calendar"></li></span>
+						<input type="text" class="form-control" ng-model="formProduccion.date_end" name="end" required>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<button type="submit" class="btn btn-danger col-lg-4" style="margin-top: 28px; float: right;">Filtrar</button>
+			</div>
+		</form>
+	</div>
+</div>
+<script type="text/javascript">
+	$('.datepicker').datepicker({
+		language:"es",
+		daysOfWeekHighlighted: "0,6",
+		todayHighlight: true,
+		startDate: new Date(2017, 1, 24) //febrero
+	});
+</script>

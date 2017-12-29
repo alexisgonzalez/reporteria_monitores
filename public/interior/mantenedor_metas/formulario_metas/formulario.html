@@ -1,0 +1,43 @@
+<div id="formMetas" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Formulario Metas</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-lg-4">
+                        <label>Cliente</label>
+                        <select name="idCliente" ng-model="frmMetas.id_cliente" class="form-control" ng-options="cli.id_cliente as cli.cliente for cli in listaClientes" ng-change="getServiciosVibox()">
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label>Servicio</label>
+                        <select name="idServicio" ng-model="frmMetas.id_servicio" class="form-control" ng-options="ser.id_servicio as ser.servicio for ser in listaServicio">
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label>Mes</label>
+                        <select name="mesMeta" ng-model="frmMetas.met_mes" class="form-control" ng-options="me.id as me.mes for me in meses" >
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label>Año</label>
+                        <select name="anoMeta" ng-model="frmMetas.met_ano" class="form-control" ng-options="an.ano as an.ano for an in anosPeriodo | orderBy : '-ano'">
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label>Meta</label>
+                        <input type="text" class="form-control" name="meta" ng-model="frmMetas.met_meta">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" ng-click="guardarMeta()">Guardar</button>
+                <button type="button" class="btn btn-error" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

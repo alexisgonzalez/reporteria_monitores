@@ -1,0 +1,63 @@
+<div id="formEditar" class="modal fade" role="dialog">
+    <form name="formulario" ng-submit="guardarGrupo()">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-capitalize">{{form.modo}} grupo {{form.gr_id_grupo}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <label>País</label>
+                            <div class="form-group">
+                                <select name="id_pais" ng-model="form.id_pais" class="form-control" required disabled>
+                                    <option value="" disabled>Seleccione</option>
+                                    <option ng-repeat="lis in listaPaises" value="{{lis.id_pais}}">{{lis.nombre_pais}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label>Fecha inicio</label>
+                                <div class="form-inline input-group">
+                                    <input type="text" id="gr_fecha_inicio" class="form-control datepicker" ng-model="form.gr_fecha_inicio" name="gr_fecha_inicio" required>
+                                    <span class="input-group-addon"><li class="fa fa-calendar"></li></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <label>Fecha fin</label>
+                            <div class="form-inline input-group">
+                                <input type="text" id="gr_fecha_fin" class="form-control datepicker" ng-model="form.gr_fecha_fin" name="gr_fecha_fin">
+                                <span class="input-group-addon"><li class="fa fa-calendar"></li></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <label>Estado</label>
+                            <div class="form-group">
+                                <select name="gr_estado" ng-model="form.gr_estado" class="form-control" required>
+                                    <option value="">Seleccione</option>
+                                    <option value="1">Habilitado</option>
+                                    <option value="0">Deshabilitado</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger">Guardar</button>
+                        <button type="button" class="btn btn-error cerrarModal" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    $('.datepicker').datepicker({
+        language:"es",
+        daysOfWeekHighlighted: "0,6",
+        todayHighlight: true
+    });
+</script>

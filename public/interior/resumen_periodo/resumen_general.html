@@ -1,0 +1,8 @@
+        <!--- TODO TODO TODO probar el boton de excel -->
+<div class="col-lg-12 loadingGif" style="text-align:center;" ng-show="showLoading">
+    <strong><i>Cargando datos de la tabla espere un momento ...</i></strong><br style="clear:both;" />
+    <img src="/images/loading.gif">
+    <p class="small"><i>Si los datos no se muestran correctamente, filtre nuevamente.</i></p>
+</div>
+<!-- <div ng-include="'interior/resumen_periodo/resumen_tiempo.html'"></div> -->
+<div ng-show="busquedaResumen" ng-include="'interior/resumen_periodo/resumen_tabla.html'"></div>

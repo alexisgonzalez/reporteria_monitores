@@ -1,0 +1,268 @@
+        <!--- TODO TODO TODO probar el boton de excel -->
+
+<div ng-include="'interior/domo/estadisticas_domo.html'"></div>
+<!-- mostrar brecha y delta promedio -->
+<button type="button" id="btnExport" ng-click="exportData()" ng-show="busquedaHorario" class="btn btn-default"><i class="glyphicon glyphicon-floppy-save"></i> Exportar Excel</button>
+<button type="button" id="btnEstadisticas" data-toggle="modal" data-target="#estadisticas" ng-show="busquedaHorario" class="btn btn-default" ng-click="resizeGrafico()"><i class="fa fa-bar-chart-o fa-fw"></i>Estadisticas Domo</button>
+<button type="button" id="btnExport" ng-click="reFiltrarDomo()" ng-show="busquedaHorario" class="btn btn-default danger"><i class="glyphicon glyphicon-remove"></i> Omitir Selección </button>
+        <table class="table table-striped table-bordered" id="tablaDomo" cellspacing="0" width="100%" ng-show="busquedaHorario">
+            <thead>
+                <tr>
+                    <th class="colorOptimiza" rowspan="2"></th>
+                    <th class="colorOptimiza" rowspan="2" ng-if="!filtrarCampos || listaCamposDomo[1]">Periodo</th>
+                    <th class="colorOptimiza" rowspan="2" ng-if="!filtrarCampos || listaCamposDomo[2]">Ejecutiv@</th>
+                    <th class="colorOptimiza" rowspan="2" ng-if="!filtrarCampos || listaCamposDomo[3]">Fecha ingreso</th>
+                    <th class="colorOptimiza" rowspan="2" title="Tramo medias" ng-if="!filtrarCampos || listaCamposDomo[4]">T.M.</th>
+                    <th class="colorOptimiza" rowspan="2" title="Tramo adherencia" ng-if="!filtrarCampos || listaCamposDomo[5]">T.A.</th>
+                    <th class="colorOptimiza" rowspan="2" title="Tramo calidad" ng-if="!filtrarCampos || listaCamposDomo[6]">T.CA.</th>
+                    <th class="colorOptimiza" rowspan="2" title="Tramo efectivos" ng-if="!filtrarCampos || listaCamposDomo[7]">T.E.</th>
+                    <th class="colorOptimiza" rowspan="2" title="Tramo contactabilidad" ng-if="!filtrarCampos || listaCamposDomo[8]">T.CO.</th>
+                    <th class="colorOptimiza" rowspan="2" ng-if="!filtrarCampos || listaCamposDomo[9]">Nota</th>
+                    <th class="colorOptimiza" rowspan="2" ng-if="!filtrarCampos || listaCamposDomo[10]">Rut</th>
+                    <th class="colorOptimiza" rowspan="2" ng-if="!filtrarCampos || listaCamposDomo[11]">Supervisor</th>
+                    <th class="colorOptimiza" rowspan="2" ng-if="mostrarHorarioEntrada || !filtrarCampos || listaCamposDomo[12]">Hora Ingreso</th>
+                    <th class="colorOptimiza" rowspan="2" ng-if="!filtrarCampos || listaCamposDomo[13]">Efectivos</th>
+                    <th class="colorOptimiza" rowspan="2" ng-if="!filtrarCampos || listaCamposDomo[14]">Llamados</th>
+                    <th class="colorOptimiza" rowspan="2" ng-if="!filtrarCampos || listaCamposDomo[15]">Contactados</th>
+                    <th class="colorOptimiza" rowspan="2" ng-if="!filtrarCampos || listaCamposDomo[16]">H.H. campaña</th>
+                    <th class="colorOptimiza" rowspan="2" ng-if="!filtrarCampos || listaCamposDomo[17]">H.H.</th>
+                    <th class="colorOptimiza" rowspan="2" ng-if="!filtrarCampos || listaCamposDomo[18]">% Adherencia</th>
+                    <th class="colorOptimiza" rowspan="2" ng-if="!filtrarCampos || listaCamposDomo[19]">% efectividad</th>
+                    <th class="colorOptimiza" rowspan="2" ng-if="!filtrarCampos || listaCamposDomo[20]">% contact.</th>
+                    <th class="colorOptimiza" rowspan="2" ng-if="!filtrarCampos || listaCamposDomo[21]">Media</th>
+                    <th class="colorOptimiza" rowspan="2" ng-if="!filtrarCampos || listaCamposDomo[22]">Servicio</th>
+                    <th class="colorOptimiza" rowspan="2" ng-if="!filtrarCampos || listaCamposDomo[23]">Calidad efectivos</th>
+                    <th class="colorOptimiza" rowspan="2" ng-if="!filtrarCampos || listaCamposDomo[24]">Brecha</th>
+                    <th class="colorOptimiza" colspan="4" style="text-align:center;" ng-if="!filtrarCampos || listaCamposDomo[25]">Actitudes Criticas</th>
+                    <th class="colorOptimiza" ng-repeat-start="estado in dataDomo.estado_tmo" colspan="2" ng-if="!filtrarCampos || listaCamposDomo[26]">Cant. ({{estado.es_codigo_estado}})</th>
+                    <th class="colorOptimiza" ng-repeat-end colspan="2" ng-if="!filtrarCampos || listaCamposDomo[26]">{{estado.es_descripcion}}</th>
+                </tr>
+                <tr>
+                    <th class="colorOptimiza" ng-if="!filtrarCampos || listaCamposDomo[25]">Actitud</th>
+                    <th class="colorOptimiza" ng-if="!filtrarCampos || listaCamposDomo[25]">Falsificacion</th>
+                    <th class="colorOptimiza" ng-if="!filtrarCampos || listaCamposDomo[25]">Error critico</th>
+                    <th class="colorOptimiza" ng-if="!filtrarCampos || listaCamposDomo[25]">Evaluación</th>
+                    <th class="colorOptimiza" ng-repeat-start="estado in dataDomo.estado_tmo" ng-if="!filtrarCampos || listaCamposDomo[26]">Vibox</th>
+                    <th class="colorOptimiza" ng-if="!filtrarCampos || listaCamposDomo[26]">Vicidial</th>
+                    <th class="colorOptimiza" ng-if="!filtrarCampos || listaCamposDomo[26]">Vibox</th>
+                    <th class="colorOptimiza" ng-repeat-end ng-if="!filtrarCampos || listaCamposDomo[26]">Vicidial</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="domo in dataDomo.medias.tabla | orderBy: '-media*1'" ng-init="puntaje_nota=(4-(domo.tramo*0.15+domo.tramo_adhe*0.2+domo.tramo_calidad*0.25+domo.tramo_efectividad*0.25+domo.tramo_contactabilidad*0.15)).toFixed(2)">
+                    <td><input type="checkbox" name="check-{{domo.user}}" value="{{domo.user}}" class="checkFiltro"></td>
+                    <td ng-if="!filtrarCampos || listaCamposDomo[1]">{{dataDomo.fecha_inicio| date:'dd/MM/yyyy'}} - {{dataDomo.fecha_fin| date:'dd/MM/yyyy'}}</td>
+                    <td ng-class="{'domoCuartil1':domo.tramo=='1','domoCuartil2':domo.tramo=='2','domoCuartil3':domo.tramo=='3','domoCuartil4':domo.tramo=='4'}" ng-if="!filtrarCampos || listaCamposDomo[2]"><a ng-click="cargarBitacoraOperador(domo.user)" data-toggle="modal" data-target="#modalBitacora" style="cursor:pointer;">{{domo.user}}</a></td>
+                    <td ng-if="!filtrarCampos || listaCamposDomo[3]">{{dataDomo.fecha_ingreso[domo.user].opc_fec_contrato| date:'yyyy/MM/dd'}}</td>
+                    <td ng-class="{'domoCuartil1':domo.tramo=='1','domoCuartil2':domo.tramo=='2','domoCuartil3':domo.tramo=='3','domoCuartil4':domo.tramo=='4'}" ng-if="!filtrarCampos || listaCamposDomo[4]">{{domo.tramo}}</td>
+                    <td ng-class="{'domoCuartil1':domo.tramo_adhe=='1','domoCuartil2':domo.tramo_adhe=='2','domoCuartil3':domo.tramo_adhe=='3','domoCuartil4':domo.tramo_adhe=='4'}" ng-if="!filtrarCampos || listaCamposDomo[5]">{{domo.tramo_adhe}}</td>
+                    <td ng-class="{'domoCuartil1':domo.tramo_calidad=='1','domoCuartil2':domo.tramo_calidad=='2','domoCuartil3':domo.tramo_calidad=='3','domoCuartil4':domo.tramo_calidad=='4'}" ng-if="!filtrarCampos || listaCamposDomo[6]">{{domo.tramo_calidad}}</td>
+                    <td ng-class="{'domoCuartil1':domo.tramo_efectividad=='1','domoCuartil2':domo.tramo_efectividad=='2','domoCuartil3':domo.tramo_efectividad=='3','domoCuartil4':domo.tramo_efectividad=='4'}" ng-if="!filtrarCampos || listaCamposDomo[7]">{{domo.tramo_efectividad}}</td> <!-- cuartil efectivos-->
+                    <td ng-class="{'domoCuartil1':domo.tramo_contactabilidad=='1','domoCuartil2':domo.tramo_contactabilidad=='2','domoCuartil3':domo.tramo_contactabilidad=='3','domoCuartil4':domo.tramo_contactabilidad=='4'}" ng-if="!filtrarCampos || listaCamposDomo[8]">{{domo.tramo_contactabilidad}}</td> <!-- cuartil contactabilidad-->
+                    <td ng-if="!filtrarCampos || listaCamposDomo[9]"><span ng-if="!(domo.tramo_adhe == 0 || domo.tramo == 0 || domo.tramo_calidad == 0 || domo.tramo_efectividad == 0 || domo.tramo_contactabilidad == 0)" ng-class="{'domoCuartil4':dataDomo.puntajes[puntaje_nota]<4,'domoCuartil1':dataDomo.puntajes[puntaje_nota]>= 4}">{{dataDomo.puntajes[puntaje_nota] |number:2}}</span><span ng-if="(domo.tramo_adhe == 0 || domo.tramo == 0 || domo.tramo_calidad == 0 || domo.tramo_efectividad == 0 || domo.tramo_contactabilidad == 0)">No aplica</span></td> <!-- nota-->
+                    <td ng-if="!filtrarCampos || listaCamposDomo[10]">{{dataDomo.fecha_ingreso[domo.user].opc_des_rut}}</td>
+                    <td ng-if="!filtrarCampos || listaCamposDomo[11]">{{domo.supervisor}}</td>
+                    <td ng-if="mostrarHorarioEntrada || !filtrarCampos || listaCamposDomo[12]">{{dataDomo.hora_ingreso[domo.user].horario_entrada}}</td>
+                    <td ng-if="!filtrarCampos || listaCamposDomo[13]">{{domo.efectivos}}</td>
+                    <td ng-if="!filtrarCampos || listaCamposDomo[14]">{{domo.llamados}}</td>
+                    <td ng-if="!filtrarCampos || listaCamposDomo[15]">{{domo.contactos}}</td>
+                    <td ng-if="!filtrarCampos || listaCamposDomo[16]">{{domo.tiempo}}</td>
+                    <td ng-if="!filtrarCampos || listaCamposDomo[17]">{{dataDomo.horario_real[domo.user].horario_real}}</td>
+                    <td ng-if="!filtrarCampos || listaCamposDomo[18]">{{domo.porc_adherencia | number:2}}%</td>
+                    <td ng-if="!filtrarCampos || listaCamposDomo[19]">{{domo.porc_efectividad | number:2}}%</td>
+                    <td ng-if="!filtrarCampos || listaCamposDomo[20]">{{domo.porc_contactabilidad | number:2}}%</td>
+                    <td ng-if="!filtrarCampos || listaCamposDomo[21]">{{domo.media|number:2}}</td>
+                    <td ng-if="!filtrarCampos || listaCamposDomo[22]">{{domo.servicio}}</td>
+                    <td ng-if="!filtrarCampos || listaCamposDomo[23]"><span ng-if="dataDomo.calidad[domo.user] > 0">{{dataDomo.calidad[domo.user]}}%</span><span ng-if="!dataDomo.calidad[domo.user] > 0">No aplica</span></td>
+                    <td ng-class="{'domoCuartil4':(domo.media*1)-dataDomo.prom_cuart1 < 0}" ng-if="!filtrarCampos || listaCamposDomo[24]">{{(domo.media*1)-dataDomo.prom_cuart1 | number:2}}</td>
+
+                    <td class="" ng-if="!filtrarCampos || listaCamposDomo[25]">{{dataDomo.actitudes[domo.user].q_actitud}}</td>
+                    <td class="" ng-if="!filtrarCampos || listaCamposDomo[25]">{{dataDomo.actitudes[domo.user].q_falsificacion}}</td>
+                    <td class="" ng-if="!filtrarCampos || listaCamposDomo[25]">{{dataDomo.actitudes[domo.user].q_error_critico}}</td>
+                    <td class="" ng-if="!filtrarCampos || listaCamposDomo[25]">{{dataDomo.actitudes[domo.user].q_evaluaciones}}</td>
+
+                    <td class="" ng-repeat-start="estado in dataDomo.estado_tmo" ng-if="!filtrarCampos || listaCamposDomo[26]">{{dataDomo.tmo.tmoVibox[domo.user][estado.es_codigo_estado].cantidad}}</td>
+                    <td class="" ng-if="!filtrarCampos || listaCamposDomo[26]">{{dataDomo.tmo.tmoVicidial[domo.user][estado.es_codigo_estado].cantidad}}</td>
+                    <td class="" ng-if="!filtrarCampos || listaCamposDomo[26]">{{dataDomo.tmo.tmoVibox[domo.user][estado.es_codigo_estado].segundos_format}}</td>
+                    <td class="" ng-repeat-end ng-if="!filtrarCampos || listaCamposDomo[26]">{{dataDomo.tmo.tmoVicidial[domo.user][estado.es_codigo_estado].segundos_format}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th ></th>
+                    <th ng-if="!filtrarCampos || listaCamposDomo[1]">&nbsp;</th>
+                    <th ng-if="!filtrarCampos || listaCamposDomo[2]">&nbsp;</th>
+                    <th ng-if="!filtrarCampos || listaCamposDomo[3]">&nbsp;</th>
+                    <th ng-if="!filtrarCampos || listaCamposDomo[4]">&nbsp;</th>
+                    <th ng-if="!filtrarCampos || listaCamposDomo[5]">&nbsp;</th>
+                    <th ng-if="!filtrarCampos || listaCamposDomo[6]">&nbsp;</th>
+                    <th ng-if="!filtrarCampos || listaCamposDomo[7]">&nbsp;</th>
+                    <th ng-if="!filtrarCampos || listaCamposDomo[8]">&nbsp;</th>
+                    <th ng-if="!filtrarCampos || listaCamposDomo[9]">&nbsp;</th>
+                    <th ng-if="!filtrarCampos || listaCamposDomo[10]">&nbsp;</th>
+                    <th ng-if="mostrarHorarioEntrada || !filtrarCampos || listaCamposDomo[11]">&nbsp;</th>
+                    <th ng-if="!filtrarCampos || listaCamposDomo[12]">&nbsp;</th>
+                    <th ng-if="!filtrarCampos || listaCamposDomo[13]">{{dataDomo.medias.totales.efectivos | number}}</th>
+                    <th ng-if="!filtrarCampos || listaCamposDomo[14]">&nbsp;</th>
+                    <th ng-if="!filtrarCampos || listaCamposDomo[15]">&nbsp;</th>
+                    <th ng-if="!filtrarCampos || listaCamposDomo[16]">{{dataDomo.medias.totales.tiempo}}</th>
+                    <th ng-if="!filtrarCampos || listaCamposDomo[17]">&nbsp;</th>
+                    <th ng-if="!filtrarCampos || listaCamposDomo[18]">&nbsp;</th>
+                    <th ng-if="!filtrarCampos || listaCamposDomo[19]">&nbsp;</th>
+                    <th ng-if="!filtrarCampos || listaCamposDomo[20]">&nbsp;</th>
+                    <th ng-if="!filtrarCampos || listaCamposDomo[21]">Prom: {{dataDomo.medias.totales.media| number:2}}</th>
+                    <th ng-if="!filtrarCampos || listaCamposDomo[22]">Mediana: {{dataDomo.tot_mediana | number:2}}</th>
+                    <!--<th colspan="2" ng-if="!filtrarCampos || listaCamposDomo[22]">&nbsp;</th> -->
+                    <th ng-if="!filtrarCampos || listaCamposDomo[23]">&nbsp;</th>
+                    <th ng-if="!filtrarCampos || listaCamposDomo[24]">&nbsp;</th>
+                    <th ng-if="!filtrarCampos || listaCamposDomo[25]">&nbsp;</th>
+                    <th ng-if="!filtrarCampos || listaCamposDomo[25]">&nbsp;</th>
+                    <th ng-if="!filtrarCampos || listaCamposDomo[25]">&nbsp;</th>
+                    <th ng-if="!filtrarCampos || listaCamposDomo[25]">&nbsp;</th>
+                    <th class="" ng-repeat-start="estado in dataDomo.estado_tmo" ng-if="!filtrarCampos || listaCamposDomo[26]">&nbsp;</th>
+                    <th class="" ng-if="!filtrarCampos || listaCamposDomo[26]">&nbsp;</th>
+                    <th class="" ng-if="!filtrarCampos || listaCamposDomo[26]">&nbsp;</th>
+                    <th class="" ng-repeat-end ng-if="!filtrarCampos || listaCamposDomo[26]">&nbsp;</th>
+                </tr>
+            </tfoot>
+        </table>
+    <div id="divTabla">
+        <table class="table table-striped table-bordered" id="tablaDomo2" cellspacing="0" width="100%" ng-show="false">
+            <thead>
+                <tr>
+                    <th style="background-color: #520917 !important;color: white;" rowspan="2">Periodo</th>
+                    <th style="background-color: #520917 !important;color: white;" rowspan="2">Ejevutiv@</th>
+                    <th style="background-color: #520917 !important;color: white;" rowspan="2">Fecha ingreso</th>
+                    <th style="background-color: #520917 !important;color: white;" rowspan="2">C. media</th>
+                    <th style="background-color: #520917 !important;color: white;" rowspan="2">C. adherencia</th>
+                    <th style="background-color: #520917 !important;color: white;" rowspan="2">C. calidad</th>
+                    <th style="background-color: #520917 !important;color: white;" rowspan="2">C. efectivos</th>
+                    <th style="background-color: #520917 !important;color: white;" rowspan="2">C. contact.</th>
+                    <th style="background-color: #520917 !important;color: white;" rowspan="2">Nota</th>
+                    <th style="background-color: #520917 !important;color: white;" rowspan="2">Rut</th>
+                    <th style="background-color: #520917 !important;color: white;" rowspan="2">Supervisor</th>
+                    <th style="background-color: #520917 !important;color: white;" rowspan="2" ng-if="mostrarHorarioEntrada">Hora entrada</th>
+                    <th style="background-color: #520917 !important;color: white;" rowspan="2">Efectivos</th>
+                    <th style="background-color: #520917 !important;color: white;" rowspan="2">Llamados</th>
+                    <th style="background-color: #520917 !important;color: white;" rowspan="2">Contactados</th>
+                    <th style="background-color: #520917 !important;color: white;" rowspan="2">H.H. campaña</th>
+                    <th style="background-color: #520917 !important;color: white;" rowspan="2">H.H.</th>
+                    <th style="background-color: #520917 !important;color: white;" rowspan="2">% Adherencia</th>
+                    <th style="background-color: #520917 !important;color: white;" rowspan="2">% efectividad</th>
+                    <th style="background-color: #520917 !important;color: white;" rowspan="2">% contact.</th>
+                    <th style="background-color: #520917 !important;color: white;" rowspan="2">Media</th>
+                    <th style="background-color: #520917 !important;color: white;" rowspan="2">Servicio</th>
+                    <th style="background-color: #520917 !important;color: white;" rowspan="2">Calidad efectivos</th>
+                    <th style="background-color: #520917 !important;color: white;" rowspan="2">Brecha</th>
+                    <th style="background-color: #520917 !important;color: white;" colspan="4" style="text-align:center;">Actitudes Criticas</th>
+                    <th style="background-color: #520917 !important;color: white;" ng-repeat-start="estado in dataDomo.estado_tmo" colspan="2">Cant. ({{estado.es_codigo_estado}})</th>
+                    <th style="background-color: #520917 !important;color: white;" ng-repeat-end colspan="2">{{estado.es_descripcion}}</th>
+                </tr>
+                <tr>
+                    <th style="background-color: #520917 !important;color: white;">Actitud</th>
+                    <th style="background-color: #520917 !important;color: white;">Falsificacion</th>
+                    <th style="background-color: #520917 !important;color: white;">Error critico</th>
+                    <th style="background-color: #520917 !important;color: white;">Evaluación</th>
+                    <th style="background-color: #520917 !important;color: white;" ng-repeat-start="estado in dataDomo.estado_tmo">Vibox</th>
+                    <th style="background-color: #520917 !important;color: white;">Vicidial</th>
+                    <th style="background-color: #520917 !important;color: white;">Vibox</th>
+                    <th style="background-color: #520917 !important;color: white;" ng-repeat-end>Vicidial</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="domo in dataDomo.medias.tabla | orderBy: '-media*1'" ng-init="puntaje_nota=(4-(domo.tramo*0.15+domo.tramo_adhe*0.2+domo.tramo_calidad*0.25+domo.tramo_efectividad*0.25+domo.tramo_contactabilidad*0.15)).toFixed(2)">
+                    <td>{{dataDomo.fecha_inicio| date:'dd/MM/yyyy'}} - {{dataDomo.fecha_fin| date:'dd/MM/yyyy'}}</td>
+                    <td style="{{colorPorTramo(domo.tramo)}}">{{domo.user}}</td>
+                    <td>{{dataDomo.fecha_ingreso[domo.user].opc_fec_contrato| date:'yyyy/MM/dd'}}</td>
+                    <td style="{{colorPorTramo(domo.tramo)}}">{{domo.tramo}}</td>
+                    <td style="{{colorPorTramo(domo.tramo_adhe)}}">{{domo.tramo_adhe}}</td>
+                    <td style="{{colorPorTramo(domo.tramo_calidad)}}">{{domo.tramo_calidad}}</td>
+                    <td style="{{colorPorTramo(domo.tramo_efectividad)}}">{{domo.tramo_efectividad}}</td> <!-- cuartil efectivos-->
+                    <td style="{{colorPorTramo(domo.tramo_contactabilidad)}}">{{domo.tramo_contactabilidad}}</td> <!-- cuartil contactabilidad-->
+                    <td style="{{colorPorNota(dataDomo.puntajes[puntaje_nota])}}">{{dataDomo.puntajes[puntaje_nota] |number:2}}</td> <!-- nota-->
+                    <td>{{dataDomo.fecha_ingreso[domo.user].opc_des_rut}}</td>
+                    <td>{{domo.supervisor}}</td>
+                    <td ng-if="mostrarHorarioEntrada">{{dataDomo.hora_ingreso[domo.user].horario_entrada}}</td>
+                    <td>{{domo.efectivos}}</td>
+                    <td>{{domo.llamados}}</td>
+                    <td>{{domo.contactos}}</td>
+                    <td>{{domo.tiempo}}</td>
+                    <td>{{dataDomo.horario_real[domo.user].horario_real}}</td>
+                    <td>{{domo.porc_adherencia | number:2}}%</td>
+                    <td>{{domo.porc_efectividad | number:2}}%</td>
+                    <td>{{domo.porc_contactabilidad | number:2}}%</td>
+                    <td>{{domo.media|number:2}}</td>
+                    <td>{{domo.servicio}}</td>
+                    <td><span ng-if="dataDomo.calidad[domo.user] > 0">{{dataDomo.calidad[domo.user]}}%</span></td>
+                    <td style="{{colorPorBrecha((domo.media*1)-dataDomo.prom_cuart1)}}">{{(domo.media*1)-dataDomo.prom_cuart1 | number:2}}</td>
+
+                    <td class="">{{dataDomo.actitudes[domo.user].q_actitud}}</td>
+                    <td class="">{{dataDomo.actitudes[domo.user].q_falsificacion}}</td>
+                    <td class="">{{dataDomo.actitudes[domo.user].q_error_critico}}</td>
+                    <td class="">{{dataDomo.actitudes[domo.user].q_evaluaciones}}</td>
+
+                    <td class="" ng-repeat-start="estado in dataDomo.estado_tmo">{{dataDomo.tmo.tmoVibox[domo.user][estado.es_codigo_estado].cantidad}}</td>
+                    <td class="">{{dataDomo.tmo.tmoVicidial[domo.user][estado.es_codigo_estado].cantidad}}</td>
+                    <td class="">{{dataDomo.tmo.tmoVibox[domo.user][estado.es_codigo_estado].segundos_format}}</td>
+                    <td class="" ng-repeat-end>{{dataDomo.tmo.tmoVicidial[domo.user][estado.es_codigo_estado].segundos_format}}</td>
+                </tr>
+                <tr>
+                    <td >&nbsp;</td>
+                    <td >&nbsp;</td>
+                    <td >&nbsp;</td>
+                    <td >&nbsp;</td>
+                    <td >&nbsp;</td>
+                    <td >&nbsp;</td>
+                    <td >&nbsp;</td>
+                    <td >&nbsp;</td>
+                    <td >&nbsp;</td>
+                    <td >&nbsp;</td>
+                    <td ng-if="mostrarHorarioEntrada">&nbsp;</td>
+                    <td>{{dataDomo.medias.totales.efectivos | number}}</td>
+                    <td >&nbsp;</td>
+                    <td >&nbsp;</td>
+                    <td>{{dataDomo.medias.totales.tiempo}}</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>Prom: {{dataDomo.medias.totales.media| number:2}}</td>
+                    <td>Mediana: {{dataDomo.tot_mediana | number:2}}</td>
+                    <td colspan="2">&nbsp;</td>
+                    <td class="" ng-repeat-start="estado in dataDomo.estado_tmo">&nbsp;</td>
+                    <td class="">&nbsp;</td>
+                    <td class="">&nbsp;</td>
+                    <td class="" ng-repeat-end>&nbsp;</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<style type="text/css">
+    th, td { white-space: nowrap; }
+    div.dataTables_wrapper {
+        margin: 0 auto;
+    }
+
+    div.container {
+        width: 80%;
+    }
+
+    .table-striped > tbody > tr:nth-of-type(2n+1) {
+        background-color: #E8E8E8;
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function() {
+        // $('#tablaDomo tbody').on( 'click', 'tr', function () {
+        //     $(this).toggleClass('selected');
+        //     var row_index = $(this).index();
+        //     $('table.DTFC_Cloned tr[data-dt-row='+row_index+']').toggleClass('selected');
+        // } );
+
+        // $('table.DTFC_Cloned').on( 'click', 'tr', function () {
+        //     $(this).toggleClass('selected');
+        //     var row_index = $(this).index();
+        //     $('#tablaDomo tbody tr[data-dt-row='+row_index+']').toggleClass('selected');
+        // });
+    });
+</script>

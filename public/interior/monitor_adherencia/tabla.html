@@ -1,0 +1,66 @@
+<table class="table table-striped table-bordered margin-abajo table-custom-adhe">
+	<thead>
+		<tr>
+			<th>&nbsp;</th>
+			<th class="text-center"><i class="glyphicon glyphicon-time"></i></th>
+			<th class="text-center"><i class="glyphicon glyphicon-user"></i></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><b>CONTRATO:</b></td>
+			<td class="text-center"><b>{{data.format_ideal}}</b></td>
+			<td class="text-center"><b>{{data.cantidad_usuario_ideal}}</b></td>
+		</tr>
+		<tr>
+			<td class="text-center">Licencias: </td>
+			<td class="text-center">{{data.format_licencias}}</td>
+			<td class="text-center">{{data.cantidad_licencias}}</td>
+		</tr>
+		<tr>
+			<td class="text-center">Vacaciones: </td>
+			<td class="text-center">{{data.format_vacaciones}}</td>
+			<td class="text-center">{{data.cantidad_vacaciones}}</td>
+		</tr>
+		<tr>
+			<td class="text-center">Recuperos: </td>
+			<td class="text-center">{{data.format_recuperos}}</td>
+			<td class="text-center">{{data.cantidad_recuperos}}</td>
+		</tr>
+		<tr>
+			<td class="text-center">Permisos Esp.: </td>
+			<td class="text-center">{{data.format_permiso_esp}}</td>
+			<td class="text-center">{{data.cantidad_permiso_esp}}</td>
+		</tr>
+		<tr>
+			<td class="text-center">Permisos: </td>
+			<td class="text-center">{{data.format_permiso}}</td>
+			<td class="text-center">{{data.cantidad_permiso}}</td>
+		</tr>
+		<tr>
+			<td><b>IDEAL:</b></td>
+			<td class="text-center"><b>{{data.format_calculado}}</b></td>
+			<td class="text-center"><b>{{data.cantidad_usuario_ideal-data.cantidad_licencias-data.cantidad_vacaciones}}</b></td>
+		</tr>
+		<tr>
+			<td class="text-center">Cant. Ausentes: </td>
+			<td class="text-center"></td>
+			<td class="text-center">{{data.ausentes}}</td>
+		</tr>
+		<tr>
+			<td class="text-center">Incumplimiento: </td>
+			<td class="text-center" style="color:red;">{{data.format_sobra}}</td>
+			<td class="text-center"></td>
+		</tr>
+		<tr>
+			<td class="text-center">SobreTiempo: </td>
+			<td class="text-center" style="color:green;">{{data.format_falta}}</td>
+			<td class="text-center"></td>
+		</tr>
+		<tr>
+			<td><b>REAL:</b></td>
+			<td class="text-center"><b>{{data.format_real}}</b></td>
+			<td class="text-center"><b>{{data.cantidad_usuario_real}}</b></td>
+		</tr>
+	</tbody>
+</table>

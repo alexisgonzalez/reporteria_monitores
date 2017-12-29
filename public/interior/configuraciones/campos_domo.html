@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col-lg-12 row-superior">
+        <accordion close-others="true">
+            <accordion-group class="panel-default" is-open="status.open">
+                <accordion-heading>
+                    Configurar campos domo<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                </accordion-heading>
+                <div class="panel-body">
+                   <div class="form-group col-lg-4" ng-repeat="campo in listCamposDomo">
+                    <div class="col-lg-9">
+                        <label>{{campo.camdo_descripcion}}</label>
+                    </div>
+                    <div class="col-lg-3">
+                        <toggle-switch ng-model="frmCamposDomo.campos[campo.camdo_id]" ></toggle-switch>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <button type="button" class="btn btn-success" id="btnGuardar" style="float:right;" ng-click="guardarCamposDomo()"><li class="fa fa-save"> Guardar</li></button>
+                </div>
+            </div>
+        </accordion-group>
+    </accordion>
+</div>
+</div>
+<div ng-include="'interior/modal_guardando.html'"></div>

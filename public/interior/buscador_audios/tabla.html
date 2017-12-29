@@ -1,0 +1,38 @@
+       <!--- TODO TODO TODO probar el boton de excel -->
+<div class="col-lg-12 loadingGif" style="text-align:center;" ng-show="showLoading">
+    <strong><i>Cargando datos de la tabla espere un momento ...</i></strong><br style="clear:both;" />
+    <img src="/images/loading.gif">
+    <p class="small"><i>Si los datos no se muestran correctamente, filtre nuevamente.</i></p>
+</div>
+<table class="table table-striped table-bordered" id="tablaAudios" cellspacing="0" width="100%" ng-show="busquedaAudio">
+    <thead>
+        <tr>
+            <th class="colorOptimiza">Fecha llamado</th>
+            <th class="colorOptimiza">Ejecutiv@</th>
+            <th class="colorOptimiza">Nombre</th>
+            <th class="colorOptimiza">Rut</th>
+            <th class="colorOptimiza" ng-if="!flagExterno">I.C. cliente</th>
+            <th class="colorOptimiza" ng-if="!flagExterno">C.U. cliente</th>
+            <th class="colorOptimiza" ng-if="!flagExterno">Id ani</th>
+            <th class="colorOptimiza" ng-if="flagExterno">Identificador Cliente</th>
+            <th class="colorOptimiza">Estado</th>
+            <th class="colorOptimiza">Duración</th>
+            <th class="colorOptimiza">Audio</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="audio in dataAudio">
+            <td>{{audio.fecha_llamado| date:'dd/MM/yyyy HH:mm:ss'}}</td>
+            <td>{{audio.operador}}</td>
+            <td>{{audio.nombre}}</td>
+            <td>{{audio.rut_cliente}}</td>
+            <td ng-if="!flagExterno">{{audio.ic_cliente}}</td>
+            <td ng-if="!flagExterno">{{audio.cu_cliente}}</td>
+            <td ng-if="!flagExterno">{{audio.id_ani}}</td>
+            <td ng-if="flagExterno">{{audio.id_cliente}}</td>
+            <td>{{audio.estado}}</td>
+            <td>{{audio.segundos}}</td>
+            <td><a ng-href="{{audio.grabacion}}" target="_blank"><i class="glyphicon glyphicon-download-alt"></i> Descargar</a></td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,70 @@
+<div class="col-lg-6">
+	<table class="table table-striped table-bordered">
+		<thead>
+			<tr>
+				<th>Cliente</th>
+				<th>Servicio</th>
+				<th>Horas Totales</th>
+				<th>Horas Reales</th>
+				<th>Detalles</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="servicio in dataHoras.servicios">
+				<td>{{servicio.cliente}}</td>
+				<td>{{servicio.servicio}}</td>
+				<td>{{servicio.format_segundos}}</td>
+				<td>{{totalesHoraServicios[servicio.id_cliente][servicio.id_servicio].format_tiempo}}</td>
+				<td> <a ng-click="mostrarOperadores(dataHoras.operadores,servicio.id_cliente,servicio.id_servicio)" data-toggle="modal" data-target="#modalOperador" style="cursor:pointer;">Ver detalle</a></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<div class="col-lg-6">
+	<table class="table table-striped table-bordered">
+		<thead>
+			<tr>
+				<th>Categoría</th>
+				<th>Horas</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Vacaciones</td>
+				<td>{{dataHorario.globalesHorario.formatVacaciones}}</td>
+			</tr>
+			<tr>
+				<td>Licencia</td>
+				<td>{{dataHorario.globalesHorario.formatLicencia}}</td>
+			</tr>
+			<tr>
+				<td>Permisos</td>
+				<td>{{dataHorario.globalesHorario.formatPermisos}}</td>
+			</tr>
+			<tr>
+				<td>Recuperos</td>
+				<td>{{dataHorario.globalesHorario.formatRecupero}}</td>
+			</tr>
+			<tr>
+				<td>Ausentes</td>
+				<td>{{dataHorario.globalesHorario.formatAusentes}}</td>
+			</tr>
+			<tr>
+				<td>Permiso Especial</td>
+				<td>{{dataHorario.globalesHorario.formatPermisosEsp}}</td>
+			</tr>
+			<tr>
+				<td>Val. Manual</td>
+				<td>{{dataHorario.globalesHorario.formatValidacionesManual}}</td>
+			</tr>
+			<tr>
+				<td>Sobretiempo</td>
+				<td>{{dataHorario.globalesHorario.formatSobreTiempo}}</td>
+			</tr>
+			<tr>
+				<td>No cumple</td>
+				<td>{{dataHorario.globalesHorario.formatFaltaHorario}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

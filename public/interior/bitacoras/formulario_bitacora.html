@@ -1,0 +1,115 @@
+<div id="modalAgregarBitacora" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <form ng-submit="guardarBitacora()">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Agregar bitácora</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Contacto ejecutiv@</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group col-lg-3" style="margin-top:10px;">
+                                    <img ng-src="{{imagenOperador}}" class="img-circle" width="110" height="110">
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label>Ejecutiv@: </label>
+                                    <p>{{frmBitacora.operador}}</p>
+                                </div>
+                                <div class="form-group col-lg-3">
+                                    <label>Telefono:</label>
+                                    <p>{{frmBitacora.telefono}}</p>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label>Email:</label>
+                                    <p>{{frmBitacora.email}}</p>
+                                </div>
+                                <div class="form-group col-lg-3">
+                                    <label>Anexo:</label>
+                                    <p>{{frmBitacora.extension}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Detalle bitacora</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="form-group col-lg-4">
+                                        <label>Tipo Incidencia: </label>
+                                        <select name="incidencia" ng-model="frmBitacora.inc_id" class="form-control" ng-options="inc.inc_id_incidencia as inc.inc_nom_incidencia for inc in listaIncidencias" required></select>
+                                    </div>
+                                    <div class="form-group col-lg-4">
+                                        <label>Tipo de gestión:</label>
+                                        <select name="gestion" ng-model="frmBitacora.tgs_id" class="form-control" ng-options="tgs.tgs_id as tgs.tgs_descripcion for tgs in listaTgs" required></select>
+                                    </div>
+                                    <div class="form-group col-lg-4">
+                                        <label>Medio de comunicación:</label>
+                                        <select name="canal" ng-model="frmBitacora.tgo_id" class="form-control" ng-options="tgo.tgo_id as tgo.tgo_descripcion_gestion for tgo in listaComunicaciones" required></select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-lg-6">
+                                        <label>Fecha Incidencia:</label>
+                                        <div class="form-inline input-group">
+                                            <input type="text" class="form-control datepicker col-lg-6" ng-model="frmBitacora.bop_fecha_incidencia" name="start" required>
+                                            <span class="input-group-addon panel"><li class="fa fa-calendar" aria-hidden="true"></li></span>
+                                        </div>
+                                    </div>
+                                    <div ng-if="cierre" class="form-group col-lg-4">
+                                        <label>Hora cierre:</label>
+                                        <select name="cierre" ng-model="frmBitacora.cierre" class="form-control text-uppercase" ng-options="cie.hora as cie.name for cie in listCierre">
+                                        </select>
+                                    </div>
+                                    <div ng-if="!cierre" class="form-group col-lg-4">
+                                        <label>Hora Incidencia:</label>
+                                        <div class="form-group">
+                                            <div class="input-group bootstrap-timepicker timepicker">
+                                            <input id="time" type="text" class="form-control timepick" ng-model="frmBitacora.bop_tiempo_incidencia">
+                                                <span class="input-group-addon panel"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-lg-2">
+                                        <label style="float:right; margin-top: 15%;">
+                                        <input type="checkbox" name="is_cierre" ng-model="frmBitacora.is_cierre" ng-change="is_cierre()"> Otro horario
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-lg-7">
+                                        <label>Detalle:</label>
+                                        <textarea class="form-control" rows="6" ng-model="frmBitacora.bop_observacion" required></textarea>
+                                    </div>
+                                    <div class="form-group col-lg-5">
+                                        <label>Resolución:</label>
+                                        <select name="resolucion" ng-model="frmBitacora.res_id" class="form-control" ng-options="res.res_id as res.res_descripcion for res in listaResoluciones" required></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success">Guardar</button>
+                <button type="button" class="btn btn-error" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+    $('.datepicker').datepicker({
+        language:"es",
+        daysOfWeekHighlighted: "0,6",
+        todayHighlight: true
+    });
+</script>

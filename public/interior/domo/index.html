@@ -1,0 +1,24 @@
+<div class="row">
+	<div class="col-lg-12 row-superior">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div ng-include="'interior/domo/filtro.html'"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div ng-if="valido">
+	<div class="col-lg-12 loadingGif" style="text-align:center;" ng-show="showLoading">
+	    <strong><i>Cargando datos de la tabla espere un momento ...</i></strong><br style="clear:both;" />
+	    <img src="/images/loading.gif">
+	    <p class="small"><i>Si los datos no se muestran correctamente, filtre nuevamente.</i></p>
+	</div>
+	<div ng-include src="tablaDomo" ng-if="busquedaHorario"></div>
+	<div ng-include="'interior/bitacoras/modal_bitacora.html'"></div>
+	<div ng-include="'interior/bitacoras/formulario_bitacora.html'"></div>
+</div>
+<div ng-if="!valido">
+	<div class="col-lg-12 loadingGif" style="text-align:center;">
+	    <strong><i>No hay datos disponibles</i></strong>
+	</div>
+</div>

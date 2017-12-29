@@ -1,0 +1,48 @@
+<table class="table table-striped table-bordered" id="tablaHH" cellspacing="0" width="100%" ng-show="busquedaGestiones">
+    <thead>
+        <tr>
+            <th class="colorOptimiza" rowspan="2">Operador</th>
+            <th class="colorOptimiza" rowspan="2">Supervisor</th>
+            <th class="colorOptimiza2" colspan="2"  ng-repeat="cabezera in dataProduccion.cabezeras track by $index" style="text-align:center;">Cierre {{cabezera.mpr_hour+1}}:00:00</th>
+            <th class="colorOptimiza" rowspan="2">Prom. Operador</th>
+        </tr>
+        <tr>
+            <th class="colorOptimiza2" style="text-align:center;" ng-repeat-start="cabezera in dataProduccion.cabezeras track by $index" >Media</th>
+            <th class="colorOptimiza2" style="text-align:center;" ng-repeat-end>Gestiones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="(operador,data) in dataProduccion.data">
+             <td><a ng-click="cargarBitacoraOperador(operador)" data-toggle="modal" data-target="#modalBitacora" style="cursor:pointer;">{{operador}}</a></td>
+             <td>{{dataProduccion.supervisores[operador]}}</td>
+            <td ng-repeat-start="cabezera in dataProduccion.cabezeras track by $index" style="text-align:center;color:{{data[cabezera.mpr_hour].color}};">
+                {{data[cabezera.mpr_hour].media | number:2}}
+                <span ng-if="data[cabezera.mpr_hour].indicador">
+                    <i ng-if="data[cabezera.mpr_hour].indicador == 'bajo'" class="glyphicon glyphicon-arrow-down" style="color:red;"></i>
+                    <i ng-if="data[cabezera.mpr_hour].indicador == 'subio'" class="glyphicon glyphicon-arrow-up" style="color:green;"></i>
+                </span>
+            </td>
+            <td ng-repeat-end style="text-align:center;">
+                <span ng-click="mostrarGestion(dataProduccion.bitacoras[operador][cabezera.mpr_hour],operador,cabezera.mpr_hour)" data-toggle="modal" data-target="#dialogDetalle" style="cursor: pointer;">
+                    <i ng_if="dataProduccion.bitacoras[operador][cabezera.mpr_hour].tgo_id == 2" style="color: #DE2A46" class="fa fa-envelope-o fa-1x" aria-hidden="true"></i>
+                    <i ng_if="dataProduccion.bitacoras[operador][cabezera.mpr_hour].tgo_id == 1" style="color: #DE2A46" class="fa fa-phone fa-1x" aria-hidden="true"></i>
+                    <i ng_if="dataProduccion.bitacoras[operador][cabezera.mpr_hour].tgo_id == 4" style="color: #DE2A46" class="fa fa-user fa-1x" aria-hidden="true"></i>
+                    <i ng_if="dataProduccion.bitacoras[operador][cabezera.mpr_hour].tgo_id == 3" style="color: #DE2A46" class="fa fa-comments fa-1x" aria-hidden="true"></i>
+                    <i ng_if="dataProduccion.bitacoras[operador][cabezera.mpr_hour].tgo_id == 7" style="color: #DE2A46" class="fa fa-video-camera fa-1x" aria-hidden="true"></i>
+                    <i ng_if="dataProduccion.bitacoras[operador][cabezera.mpr_hour].tgo_id == 5" style="color: #DE2A46" class="fa fa-times fa-1x" aria-hidden="true"></i>
+                </span>
+            </td>
+            <td style="text-align:center;">
+                 <span style="color:{{dataProduccion.globalesOperador[operador].color}};">{{dataProduccion.globalesOperador[operador].media | number:2}} </span>
+             </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <th class="colorOptimiza">&nbsp;</th>
+            <th class="colorOptimiza">&nbsp;</th>
+            <th colspan="2" style="text-align: center;" ng-repeat="cabezera in dataProduccion.cabezeras track by $index">{{dataProduccion.globalesColumnas[cabezera.mpr_hour].media}}</th>
+            <th class="colorOptimiza">{{dataProduccion.globalTotal.media}}</th>
+        </tr>
+    </tfoot>
+</table>

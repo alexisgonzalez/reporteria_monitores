@@ -1,0 +1,16 @@
+<table class="table table-striped table-bordered" id="tablaMetasDiarias" cellspacing="0" width="100%">
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Meta</th>
+      <th>Media</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat=" meta in metaDiarias">
+      <td>{{meta.met_dia_fecha}}</td>
+      <td>{{meta.met_dia_meta}}</td>
+      <td>{{meta.met_dia_media}}</td>
+    </tr>
+  </tbody>
+</table>

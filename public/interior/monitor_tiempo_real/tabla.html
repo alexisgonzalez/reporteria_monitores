@@ -1,0 +1,53 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+    <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-3"><label style="color:blue;"><i class="fa fa-clock-o"></i> En espera:</label> <b class="lead">{{dataGlobales.cantidadEspera}}</b></div>
+                <div class="col-lg-3"><label style="color:#EE82EE;"><i class="fa fa-phone"></i> En llamados:</label> <b class="lead">{{dataGlobales.cantidadLlamando}}</b></div>
+                <div class="col-lg-3"><label style="color:#808000;"><i class="fa fa-pause"></i> En pausa:</label> <b class="lead">{{dataGlobales.cantidadPausa}}</b></div>
+                <div class="col-lg-3"><label style=""><i class="fa fa-frown-o"></i> Tiempo muerto:</label> <b class="lead">{{dataGlobales.cantidadMuertos}}</b></div>
+                <div class="col-lg-12"> <label>Ejecutiv@s conectadas:</label> <b class="lead"><b class="lead">{{dataGlobales.cantidadEspera+dataGlobales.cantidadLlamando+dataGlobales.cantidadPausa+dataGlobales.cantidadMuertos}}</b></div>
+            </div>
+            <div class="row">
+                <div class="form-group col-lg-6 col-xs-6 col-sm-6 col-md-6 ">
+                    <label for="">Campañas</label>
+                    <select size="4" id="filtroCampana" class="form-control" ng-multiple="true" ng-model="frmFiltro.campanas" ng-options="cam.campaign_id as cam.campaign_name for cam in campanas" multiple="true" ng-change="getMonitor()" required></select>
+                </div>
+            </div>
+    </div>
+</div>
+
+<table id="tablaMonitor" class="table table-bordered table-hover table-striped">
+    <thead>
+        <tr class="colorOptimiza">
+            <th>Campaña</th>
+            <th>Ejecutiv@</th>
+            <th>Estado</th>
+            <th>Tiempo Estado</th>
+            <th>Llamados</th>
+            <th>Prom. Llam.</th>
+            <th>Efectivos</th>
+            <th>% Efectividad</th>
+            <th>Adhe. Cam.</th>
+            <th>% Adhe. Total</th>
+            <th>Media</th>
+            <th>Extensión</th>
+        </tr>
+    </thead>
+    <tbody style="font-size: 12px;">
+        <tr ng-repeat="tabla in dataMonitor" class="sin_padding" ng-style="tabla.colores" ng-init="porcentaje=(tabla.efectivos != null) ? ((tabla.efectivos*100)/tabla.calls_today).toFixed(2):0">
+            <td>{{tabla.campaign_name}}</td>
+            <td>{{tabla.user}}</td>
+            <td class="text-center" ng-style="colorMonitor(tabla)"><b>{{tabla.estado}}</b> {{tabla.pause_code}}</td>
+            <td class="text-center">{{tabla.tiempo_estado}}</td>
+            <td class="text-center">{{tabla.calls_today}}</td>
+            <td class="text-center">{{(tabla.calls_today/(tabla.tiempo_seg/3600)) | number:0}}</td>
+            <td class="text-center">{{tabla.efectivos}}</td>
+            <td class="text-center">{{porcentaje}} %</td>
+            <td class="text-center">{{tabla.tiempo}}</td>
+            <td class="text-center">{{dataAdhe[tabla.user].porcentaje}} %</td>
+            <td class="text-center">{{tabla.media}}</td>
+            <td class="text-center">{{tabla.extension}}</td>
+        </tr>
+    </tbody>
+</table>

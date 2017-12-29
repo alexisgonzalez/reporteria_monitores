@@ -1,0 +1,22 @@
+<table id='tablaListas' class="table row-border order-column table-bordered table-responsive" cellspacing="0" width="100%">
+	<thead>
+		<tr class="colorOptimiza">
+			<th class="text-center">Lista Vicidial</th>
+			<th class="text-center">Zona</th>
+			<th class="text-center">Límite</th>
+			<th class="text-center">Acciones</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="data in listasEncuestas">
+			<td class="text-center">{{data.id_list}}</td>
+			<td class="text-center">{{data.zona_id}}</td>
+			<td class="text-center">{{data.limite}}</td>
+			<td class="text-center">
+				<button class="btn btn-default btn-circle" type="button" title="Editar" ng-click="editarListaEncuesta(data)">
+					<i class="fa fa-pencil"></i>
+				</button>
+			</td>
+		</tr>
+	</tbody>
+</table>

@@ -1,0 +1,37 @@
+<form name="filtrarCosto" ng-submit="traerCostos()">
+	<div class="col-lg-3">
+		<div class="form-group">
+			<label>Cliente</label>
+			<select id="idCliente" name="idCliente" ng-model="frmFiltroCosto.idCliente" class="form-control" ng-options="cli.id_cliente as cli.cliente for cli in clientesVibox" required ng-change="getServiciosVibox()"></select>
+		</div>
+	</div>
+	<div class="col-lg-3">
+		<div class="form-group">
+			<label>Servicio</label>
+			<select id="idServicio" name="idServicio" ng-model="frmFiltroCosto.idServicio" class="form-control" ng-options ="ser.id_servicio as ser.servicio for ser in serviciosVibox" required ng-change="buscaCampanaViboxSiodial()"></select>
+		</div>
+	</div>
+	<div class="col-lg-6">
+		<div class="col-lg-12">
+			<label>Periodo</label>
+		</div>
+		<div class="col-lg-12">
+			<div class="input-daterange input-group datepicker">
+				<input type="text" class="form-control" ng-model="frmFiltroCosto.date_begin" name="start" required required>
+				<span class="input-group-addon panel"><li class="fa fa-calendar"></li></span>
+				<input type="text" class="form-control" ng-model="frmFiltroCosto.date_end" name="end" required  required>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-12">
+		<button class="btn btn-danger col-lg-4" type="submit" style="margin-left:31%;background:#DE2A46;">Filtrar</button>
+	</div>
+	<script type="text/javascript">
+		$('.datepicker').datepicker({
+			language:"es",
+			daysOfWeekHighlighted: "0,6",
+			todayHighlight: true,
+			endDate: new Date()
+		});
+	</script>
+</form>

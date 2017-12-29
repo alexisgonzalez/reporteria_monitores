@@ -1,0 +1,46 @@
+<button class="btn btn-default" ng-click="volverMeta()">Volver</button>
+<div class="row">
+	<div class="col-lg-4">
+		<div class="table-responsive text-center">
+	        <div class="col-lg-12"><h1>{{datosMetas.global.fecha}}</h1></div>
+	        <div class="col-lg-4" style="font-size: 18px;"><b>Meta:</b>{{datosMetas.global.meta | number}}<br style="clear:both;"/>
+	        <b>Efectivos:</b>{{datosMetas.global.dia  | number}}<br style="clear:both;"/>
+	        <b>Restante:</b> <span ng-style="(datosMetas.global.meta-datosMetas.global.dia)<0 && {'color':'green'}||{'color':'red'}"> {{Math.abs(datosMetas.global.meta-datosMetas.global.dia) | number}}</span> </div>
+	        <div class="col-lg-8" ng-style="datosMetas.global.cumplimiento>=100 && {'color':'green'} || {'color':'red'}"><strong style="font-size: 36px;">{{datosMetas.global.cumplimiento}} %</strong></div>
+	    </div>
+	    <br style="clear:both;"/><br style="clear:both;"/>
+	    <div class="table-responsive">
+	        <table id="tablaMeta" class="table table-bordered table-hover table-striped">
+	            <thead>
+	                <tr class="colorOptimiza">
+	                    <th>Fecha</th>
+	                    <th>Meta</th>
+	                    <th>Efectivos</th>
+	                    <th>Diferencia</th>
+	                    <th>% Cumpl.</th>
+	                </tr>
+	            </thead>
+	            <tbody>
+	                <tr ng-repeat="tabla in datosMetas.tabla">
+	                    <td>{{tabla.fecha}}</td>
+	                    <td>{{tabla.meta | number}}</td>
+	                    <td>{{tabla.dia | number}}</td>
+	                    <td ng-style="(tabla.meta-tabla.dia)<0 && {'color':'green'}||{'color':'red'}">{{Math.abs(tabla.meta-tabla.dia) | number}}</td>
+	                    <td ng-style="tabla.cumplimiento>=100 && {'color':'green'} || {'color':'red'}">{{tabla.cumplimiento}}%</td>
+	                </tr>
+	            </tbody>
+	        </table>
+	    </div>
+	    <!-- /.table-responsive -->
+	</div>
+	<div class="col-lg-7">
+	    <div class="panel panel-default">
+	        <div class="panel-heading">
+	            <h3 class="panel-title">Meta por día: <span style="background: #97bbcd">&nbsp;&nbsp;&nbsp;&nbsp;</span> Meta <span style="background: #BBF4CD">&nbsp;&nbsp;&nbsp;&nbsp;</span> Efectivos</h3>
+	        </div>
+	        <div class="panel-body">
+				<canvas id="line" class="chart chart-line" data="serieData" labels='datosMetas.metas.dataLabels' series="['Meta','Efectivos']" options="options" dataset-override="datasetOverride"></canvas>
+			</div>
+		</div>
+	</div>
+</div>

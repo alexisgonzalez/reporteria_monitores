@@ -1,0 +1,27 @@
+<div class="panel panel-default">
+	<div class="panel-body">
+		<form name="filtrar" ng-submit="listadoIncidencias()">
+			<div class="row">
+				<div class="col-lg-10">
+					<label>Fecha de ingreso</label>
+					<div class="input-daterange input-group datepicker">
+						<input type="text" class="form-control" ng-model="formFiltro.date_begin" name="start" required>
+						<span class="input-group-addon panel"><li class="fa fa-calendar"></li></span>
+						<input type="text" class="form-control" ng-model="formFiltro.date_end" name="end" required>
+					</div>
+				</div>
+				<div class="col-lg-2">
+					<button type="submit" class="btn btn-danger col-lg-12" style="margin-top: 9%">Filtrar</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<script type="text/javascript">
+	$('.datepicker').datepicker({
+		language:"es",
+		daysOfWeekHighlighted: "0,6",
+		todayHighlight: true,
+		endDate: new Date()
+	});
+</script>

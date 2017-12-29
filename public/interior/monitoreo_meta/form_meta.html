@@ -1,0 +1,83 @@
+<form name="filtrar" ng-submit="guardarPreferencia()">
+<div class="col-lg-6">
+	<div class="panel panel-default">
+		<div class="panel-heading text-uppercase">
+			Seleccione:
+		</div>
+		<div class="panel-body">
+			<div class="form-group col-lg-12">
+				<label>Cliente</label>
+				<select name="idCliente" ng-model="frmMetas.id_cliente1" class="form-control" ng-options="cli.id_cliente as cli.cliente for cli in listaClientes" ng-change="getServiciosVibox1()" required>
+				</select>
+			</div>
+			<div class="form-group col-lg-12">
+				<label>Servicio</label>
+				<select name="idServicio" ng-model="frmMetas.id_servicio1" class="form-control" ng-options="ser.id_servicio as ser.servicio for ser in listaServicio1" required>
+				</select>
+			</div>
+		</div>		
+	</div>
+</div>
+<div class="col-lg-6">
+	<div class="panel panel-default">
+		<div class="panel-heading text-uppercase">
+			Seleccione:
+		</div>
+		<div class="panel-body">
+			<div class="form-group col-lg-12">
+				<label>Cliente</label>
+				<select name="idCliente" ng-model="frmMetas.id_cliente2" class="form-control" ng-options="cli.id_cliente as cli.cliente for cli in listaClientes" ng-change="getServiciosVibox2()">
+				</select>
+			</div>
+			<div class="form-group col-lg-12">
+				<label>Servicio</label>
+				<select name="idServicio" ng-model="frmMetas.id_servicio2" class="form-control" ng-options="ser.id_servicio as ser.servicio for ser in listaServicio2">
+				</select>
+			</div>
+		</div>		
+	</div>
+</div>
+<div class="col-lg-6">
+	<div class="panel panel-default">
+		<div class="panel-heading text-uppercase">
+			Seleccione:
+		</div>
+		<div class="panel-body">
+			<div class="form-group col-lg-12">
+				<label>Cliente</label>
+				<select name="idCliente" ng-model="frmMetas.id_cliente3" class="form-control" ng-options="cli.id_cliente as cli.cliente for cli in listaClientes" ng-change="getServiciosVibox3()">
+				</select>
+			</div>
+			<div class="form-group col-lg-12">
+				<label>Servicio</label>
+				<select name="idServicio" ng-model="frmMetas.id_servicio3" class="form-control" ng-options="ser.id_servicio as ser.servicio for ser in listaServicio3">
+				</select>
+			</div>
+		</div>		
+	</div>
+</div>
+<div class="col-lg-6">
+	<div class="panel panel-default">
+		<div class="panel-heading text-uppercase">
+			Seleccione:
+		</div>
+		<div class="panel-body">
+			<div class="form-group col-lg-12">
+				<label>Cliente</label>
+				<select name="idCliente" ng-model="frmMetas.id_cliente4" class="form-control" ng-options="cli.id_cliente as cli.cliente for cli in listaClientes" ng-change="getServiciosVibox4()">
+				</select>
+			</div>
+			<div class="form-group col-lg-12">
+				<label>Servicio</label>
+				<select name="idServicio" ng-model="frmMetas.id_servicio4" class="form-control" ng-options="ser.id_servicio as ser.servicio for ser in listaServicio4">
+				</select>
+			</div>
+		</div>		
+	</div>
+</div>
+<div class="col-lg-12">
+	<div class="form-group col-lg-12">
+		<button type="submit" class="btn btn-success col-lg-12">Cargar</button>
+	</div>
+</div>
+</form>

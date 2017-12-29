@@ -1,0 +1,63 @@
+<div id="detalle" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg modal-drag">
+        <div class="modal-content" ng-if="!seleccionarPostulantes">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-capitalize">Grupo {{form.gr_id_grupo}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <button type="button" class="btn btn-default" ng-click="editarPostulantesGrupo(form)"><i class="fa fa-edit" aria-hidden="true"></i> Editar postulantes</button>
+                    </div>
+                    <div class="col-lg-12">
+                        <div ng-include src="tablaDetalleURL"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-error cerrarModal" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal-content" ng-if="seleccionarPostulantes">
+            <form name="formulario" ng-submit="guardarPostulantes()">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-capitalize">Editar postulantes - grupo {{form.gr_id_grupo}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row" sv-root>
+                        <div class="col-lg-5">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Asignadas <button style="float: right;" class="close" type="button" title="Limpiar grupo" ng-click="limpiarGrupo()">
+                                    <i class="fa fa fa-trash"></i>
+                                </button>
+                                </div>
+                                <div class="panel-body div-overflow">
+                                    <div class="sortable-container list text-capitalize" sv-part="listaPostulantes" ng-model="listaPostulantes" class="postulantes.listaPostulantes">
+                                        <div ng-repeat="pos in listaPostulantes" title="{{pos.pos_nombre_completo}}" class="item text-capitalize" sv-element><i class="fa fa-user" style="color:#FFFFFF;"></i> {{pos.pos_nombre_completo}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-5">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Restantes</div>
+                                <div class="panel-body div-overflow">
+                                    <div class="sortable-container list text-capitalize" sv-part="listaPostulantesSinGrupo" >
+                                        <div ng-repeat="pos in listaPostulantesSinGrupo" title="{{pos.pos_nombre_completo}}" sv-element class="item_no text-capitalize"><i class="fa fa-user" style="color:#000000;"></i> {{pos.pos_nombre_completo}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">Guardar</button>
+                    <button type="button" class="btn btn-error cerrarModal" data-dismiss="modal">Cerrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

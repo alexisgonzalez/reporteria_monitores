@@ -1,0 +1,33 @@
+<div class="row">
+	<div ng-if="loading && !preferencias" class="row loadingGif">
+		<div class="col-lg-12" style="text-align:center; margin-top: 100px">
+			<img src="/images/loading.gif">
+		</div>
+	</div>
+	<div ng-if="preferencias" class="row-superior" ng-include src="formulario"></div>
+	<div ng-if="!preferencias" ng-repeat="(key,data) in dataAdherencia" class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+		<div class="panel panel-default ">
+			<div class="panel-heading panel-custom-h">
+				<h3 class="panel-title text-uppercase"><b class="lead">{{nombre_campana[key]}} {{key}}</b></h3>
+			</div>
+			<div class="panel-body panel-custom">
+				<div class="col-lg-7 col-md-7 col-md-7 col-xs-7">
+					<div ng-include="'interior/monitor_adherencia/tabla.html'"></div>
+				</div>
+				<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 text-center">
+					<br style="clear:both;">
+					<div class="col-lg-12" ng-class="{1:'fondo-azul',2:'fondo-verde',3:'fondo-amarillo',4:'fondo-rojo'}[data.tramo_contrato]" style="border-radius: 10px;">
+						<br style="clear:both;">
+						<div><h4><b>SOBRE TIEMPO DE CONTRATO</b></h4></div>
+						<div style="margin-top:10px;"><h3><b>{{data.porcentaje_contrato}}%</b></h3></div>
+					</div><br style="clear:both;">
+					<div class="col-lg-12" style="margin-top:5px; border-radius: 15px;" ng-class="{1:'fondo-azul',2:'fondo-verde',3:'fondo-amarillo',4:'fondo-rojo'}[data.tramo_ideal]">
+						<br style="clear:both;">
+						<div><h4><b>SOBRE TIEMPO IDEAL</b></h4></div>
+						<div style="margin-top:10px;margin-bottom:10px;"><h3><b>{{data.porcentaje_calculado}}%</b></h3></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

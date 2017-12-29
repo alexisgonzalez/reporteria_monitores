@@ -1,0 +1,19 @@
+<table id='tabla' class="table row-border order-column table-condensed compact table-bordered table-responsive" cellspacing="0" width="100%">
+	<thead>
+		<tr class="colorOptimiza">
+			<th class="text-center">Brecha</th>
+			<th class="text-center">Cliente/Servicio</th>
+			<th class="text-center">Acciones</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="data in listaCosto">
+			<td class="text-center">{{data.brecha_costo_numero}}</td>
+			<td class="text-center">{{data.cliente}}</td>
+			<td class="text-center">
+                <button class="btn btn-default btn-circle" type="button" title="Desactivar Brecha" ng-click="editarBrecha(data);"><i class="fa fa-pencil"></i></button> 
+                <button class="btn btn-default btn-circle" type="button" title="Desactivar Brecha" ng-click="showConfirm(data,'eliminar');"><i class="fa fa-times"></i></button> 
+			</td>
+		</tr>
+	</tbody>
+</table>

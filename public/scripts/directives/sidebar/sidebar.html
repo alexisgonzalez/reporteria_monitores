@@ -1,0 +1,19 @@
+<div id="sidebar-wrapper">
+    <div class="navbar-default sidebar" role="navigation">
+        <div id="menu" class="sidebar-nav navbar-collapse">
+            <ul class="nav in" id="side-menu">
+                <li ng-repeat="mop in modulo_padre | orderBy:'mop_nombre'" ng-class="{active: collapseVar==mop.mop_id_modulo_padre}">{{dropDown}}
+                    <a href="" ng-click="check(mop.mop_id_modulo_padre)" class="text-color"><i class="{{mop.mop_icon}} icon-max-color"></i><span class="masked">{{mop.mop_nombre}}<span class="fa arrow icon-max-color"></span></span></a>
+                    <ul class="nav nav-second-level" collapse="collapseVar!=mop.mop_id_modulo_padre" id="Mod{{mop.mop_id_modulo_padre}}">
+                        <li class="option" ng-repeat="mos in modulo | orderBy:'mos_titulo'" ng-if="mop.mop_id_modulo_padre==mos.mop_id_modulo_padre" ui-sref-active="active" >
+                            <a ui-sref="{{mos.mos_url}}" class="navbar-collapse text-color menu-level2" ng-click="toogleMyClass()"><i class="{{mos.mos_icon}} icon-min-color"></i> {{mos.mos_titulo}}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,144 @@
+<button type="button" id="btnExport" ng-click="exportData()" class="btn btn-default"><i class="glyphicon glyphicon-floppy-save"></i> Exportar Excel</button>
+<table class="table row-border order-column table-condensed compact table-bordered table-responsive tabla" cellspacing="0" width="100%">
+	<thead>
+		<tr class="colorOptimiza">
+			<th class="text-center">Datos Personales</th>
+			<th class="text-center">Experiencia laboral</th>
+			<th class="text-center">Requisitos</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				<div><i class="fa fa-user-o" aria-hidden="true"></i> Nombre</div>
+				<div><i class="fa fa-id-card" aria-hidden="true"></i> RUT - DNI</div>
+				<div><i class="fa fa-calendar" aria-hidden="true"></i> Fecha nacimiento</div>
+				<div><i class="fa fa-transgender" aria-hidden="true"></i> Genero</div>
+				<div><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Fecha postulación</div>
+				<div><i class="fa fa-envelope-o" aria-hidden="true"></i> Email</div>
+				<div><i class="fa fa-phone" aria-hidden="true"></i> Teléfono</div>
+				<div><i class="fa fa-map-marker" aria-hidden="true"></i> Dirección</div>
+				<div><i class="fa fa-graduation-cap" aria-hidden="true"></i> Estudios cursados</div>
+			</td>
+			<td>
+				<div><i class="fa fa-briefcase" aria-hidden="true"></i> Experiencia en Call Center </div>
+				<div><i class="fa fa-certificate" aria-hidden="true"></i> Cargos de preferencia</div>		
+				<div><i class="fa fa-building" aria-hidden="true"></i> Empresa - Cargo</div>
+				<div><i class="fa fa-calendar-o" aria-hidden="true"></i>-<i class="fa fa-calendar-o" aria-hidden="true"></i> Periodo</div>
+				<div><i class="fa fa-list-ul" aria-hidden="true"></i> Funciones</div>			
+			</td>
+			<td>
+				<div><i class="fa fa-desktop" aria-hidden="true"></i> ¿Tiene computador? (Tipo)</div>
+				<div><i class="fa fa-video-camera" aria-hidden="true"></i> ¿Tiene cámara WEB?</div>
+				<div><i class="fa fa-connectdevelop" aria-hidden="true"></i> ¿Tiene banda ancha? (Velocidad MB)</div>
+				<div><i class="fa fa-wifi" aria-hidden="true"></i> Tipo de conexión</div>
+				<div><i class="fa fa-street-view" aria-hidden="true"></i> ¿Tiene un lugar adecuado?</div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<table class="table row-border order-column table-condensed compact table-bordered table-responsive tabla" cellspacing="0" width="100%">
+	<thead>
+		<tr class="colorOptimiza">
+			<th class="text-center">Datos Personales</th>
+			<th class="text-center">Experiencia laboral</th>
+			<th class="text-center">Requisitos</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="postulante in data">
+			<td>
+				<div>
+					<div><b class="text-uppercase"><i class="fa fa-user-o" aria-hidden="true" title="Nombre"></i></b> {{postulante.nombre}} {{postulante.apellido}}</div>
+					<div><b class="text-uppercase"><i class="fa fa-id-card" aria-hidden="true" title="RUT - DNI"></i></b> {{postulante.rut}}</div>
+					<div><b class="text-uppercase"><i class="fa fa-calendar" aria-hidden="true" title="Fecha de nacimiento"></i></b> {{postulante.fecha_nacimiento}} ({{postulante.edad}} años)</div>
+					<div><b class="text-uppercase"><i class="fa fa-transgender" aria-hidden="true"></i></b> {{postulante.genero}}</div>
+					<div><b class="text-uppercase"><i class="fa fa-calendar-check-o" aria-hidden="true" title="Fecha de postulacion"></i></b> {{postulante.fecha_postulacion}}</div>
+					<div><b class="text-uppercase"><i class="fa fa-map-marker" aria-hidden="true" title="Dirección"></i></i></b> {{postulante['antecedentes'].direccion}}, {{postulante['antecedentes'].urbanizacion}} - {{postulante['antecedentes'].comuna}}</div>	
+					<div><b class="text-uppercase"><i class="fa fa-envelope-o" aria-hidden="true" title="Correo electrónico"></i></b> {{postulante['antecedentes'].correo}}</div>	
+					<div><b class="text-uppercase"><i class="fa fa-phone" aria-hidden="true" title="Teléfono"></i></b> {{postulante['antecedentes'].telefono}}</div>	
+					<div><b class="text-uppercase"><i class="fa fa-graduation-cap" aria-hidden="true" title="Estudios Cursados"></i></b> {{postulante['antecedentes'].nivel}} - {{postulante['antecedentes'].situacion}} - {{postulante['antecedentes'].titulo}}</div>		
+				</div>
+			</td>
+			<td>
+				<div><i class="fa fa-briefcase" aria-hidden="true" title="¿Tiene experiencia en Call Center?"></i> {{postulante['antecedentes'].experiencia}}</div>
+				<div>
+					<div ng-repeat="cargo in postulante['cargos']"><i class="fa fa-certificate" aria-hidden="true" title="Cargo de preferencia"></i> {{cargo.nombre}}</div>
+					</div>
+				<div ng-repeat="expe in postulante['experiencia']" style="margin-top: 1%;margin-bottom: 1%;">
+					<div><b class="text-uppercase"><i class="fa fa-building" aria-hidden="true" title="Empresa - Cargo"></i></b> {{expe.empresa}} - {{expe.cargo}}</div>
+					<div><b class="text-uppercase"><i class="fa fa-calendar-o" aria-hidden="true" title="Periodo"></i>-<i class="fa fa-calendar-o" aria-hidden="true"></i></b> {{expe.ingreso}} - {{expe.fin}}</div>
+					<div><b class="text-uppercase"><i class="fa fa-list-ul" aria-hidden="true" title="Funciones del cargo"></i></b> {{expe.funciones}}
+				</div>
+			</td>
+			<td>
+				<div>
+					<div><b class="text-uppercase"><i class="fa fa-desktop" aria-hidden="true" title="¿Posee computador? Tipo de equipo"></i></b> 
+					{{postulante['antecedentes'].computador}} ({{postulante['antecedentes'].tipo_pc}})</div>
+					<div><b class="text-uppercase"><i class="fa fa-video-camera" aria-hidden="true" title="¿Tiene camára WEB?"></i></b> 
+					{{postulante['antecedentes'].web}}</div>
+					<div><b class="text-uppercase"><i class="fa fa-connectdevelop" aria-hidden="true" title="¿Tiene banda ancha? (Velocidad MB)"></i></b> {{postulante['antecedentes'].banda_ancha}} ({{postulante['antecedentes'].velocidad}} MB)</div>
+					<div><b class="text-uppercase"><i class="fa fa-wifi" aria-hidden="true" title="Tipo de conexión"></i></b> 
+					{{postulante['antecedentes'].tipo_conexion}}</div>
+					<div><b class="text-uppercase"><i class="fa fa-street-view" aria-hidden="true" title="¿Tiene un lugar adecuado?"></i></b> 
+					{{postulante['antecedentes'].lugar}}</div>
+
+				</div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<div id="divTabla">
+	<table class="table row-border order-column table-condensed compact table-bordered table-responsive" cellspacing="0" width="100%" ng-show="false">
+		<thead>
+			<tr class="colorOptimiza">
+				<th class="text-center">Fecha postulacion</th>
+				<th class="text-center">Rut</th>
+				<th class="text-center">Nombre</th>
+				<th class="text-center">Fecha Nacimiento</th>
+				<th class="text-center">Edad</th>
+				<th class="text-center">Genero</th>
+				<th class="text-center">Telefono</th>
+				<th class="text-center">Direccion</th>
+				<th class="text-center">Comuna</th>
+				<th class="text-center">Correo</th>
+				<th class="text-center">Nivel educacional</th>
+				<th class="text-center">Estado educacional</th>
+				<th class="text-center">Titulo</th>
+				<th class="text-center">Experiencia Call Center</th>
+				<th class="text-center">¿Tiene computador?</th>
+				<th class="text-center">Tipo equipo</th>
+				<th class="text-center">¿Tiene Camara Web?</th>
+				<th class="text-center">¿Tiene Banda ancha?</th>
+				<th class="text-center">Velocidad</th>
+				<th class="text-center">Tipo conexion</th>
+				<th class="text-center">¿Tiene un lugar adecuado?</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="exp in export">
+				<td>{{exp.pos_id_fecha_postulacion}}</td>
+				<td>{{exp.pos_rut}}</td>
+				<td>{{exp.pos_nombre}}-{{exp.pos_apellido}}</td>
+				<td>{{exp.poa_fecha_nacimiento}}</td>
+				<td>{{postulante.edad}}</td>
+				<td>{{postulante.genero}}</td>
+				<td>{{exp.poa_telefono}}</td>
+				<td>{{exp.poa_direccion}}</td>
+				<td>{{exp.com_nombre}}</td>
+				<td>{{exp.poa_correo}}</td>
+				<td>{{exp.niv_nombre}}</td>
+				<td>{{exp.sit_nombre}}</td>
+				<td>{{exp.poe_titulo}}</td>
+				<td>{{exp.experiencia_en_call}}</td>
+				<td>{{exp.poa_computador}}</td>
+				<td>{{exp.poa_tipo_equipo}}</td>
+				<td>{{exp.poa_web}}</td>
+				<td>{{exp.poa_banda_ancha}}</td>
+				<td>{{exp.poa_velocidad}}</td>
+				<td>{{exp.poa_tipo_conexion}}</td>
+				<td>{{exp.poa_lugar}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

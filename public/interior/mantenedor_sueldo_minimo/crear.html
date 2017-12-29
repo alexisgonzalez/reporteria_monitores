@@ -1,0 +1,48 @@
+<div id="formSueldo" class="modal fade" role="dialog">
+    <form name="filtrar" ng-submit="guardarSueldo()">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Sueldo minimo</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Sueldo</label>
+                                <input type="number" name="sueldo" id="sueldo" min="0" ng-model="formSueldoMinimo.sueldo" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Fecha inicio</label>
+                            <div class="form-inline input-group">
+                            <input type="text" id="date" class="form-control datepicker" ng-model="formSueldoMinimo.date" name="start" required>
+                            <span class="input-group-addon panel"><li class="fa fa-calendar"></li></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>País</label>
+                            <select name="pais" ng-model="formSueldoMinimo.id_pais" class="form-control" ng-options="pais.id_pais as pais.nombre_pais for pais in paises" value="" required>
+                                <option disabled value="" selected> Selecciones País</option>
+                                <option ng-repeat="pais in paises" value="{{pais.id_pais}}">{{pais.nombre_pais}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                    <button id="cerrarModal" type="button" class="btn btn-error" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    $('.datepicker').datepicker({
+        language:"es",
+        daysOfWeekHighlighted: "0,6",
+        todayHighlight: true
+    });
+</script>

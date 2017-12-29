@@ -1,0 +1,30 @@
+<form name="filtrarHorario" ng-submit="getDatosHorario()">
+	<div class="col-lg-7">
+		<div class="col-lg-12" style="padding-top:5px;">
+			<label>Periodo</label>
+		</div>
+		<div class="col-lg-12">
+			<div class="input-daterange input-group datepicker">
+				<input type="text" class="input-sm form-control" ng-model="frmFiltro.date_begin" name="start" required>
+				<span class="input-group-addon panel"><li class="fa fa-calendar"></li></span>
+				<input type="text" class="input-sm form-control" ng-model="frmFiltro.date_end" name="end" required>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-5">
+		<div class="form-group">
+			<label for="">Ejecutiv@s&nbsp;&nbsp;&nbsp;</label> <label><input type="checkbox" ng-model="frmFiltro.selectUser" ng-change="selectAllUser()"> Seleccionar Todos</label>
+		    <select size="4" id="filtroUsers" class="form-control" ng-multiple="true" ng-model="frmFiltro.users" ng-options="u.user as u.user for u in users" multiple="true" required></select>
+		</div>
+	</div>
+	<div class="col-lg-12">
+		<button class="btn btn-danger" type="submit" style="float:right;background:#DE2A46;">Filtrar</button>
+	</div>
+	<script type="text/javascript">
+		$('.datepicker').datepicker({
+			language:"es",
+			daysOfWeekHighlighted: "0,6",
+			todayHighlight: true
+		});
+	</script>
+</form>

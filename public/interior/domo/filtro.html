@@ -1,0 +1,49 @@
+<form name="filtrarHorario" ng-submit="traerDomo()">
+	<div class="col-lg-3">
+		<div class="form-group">
+			<label>Cliente</label>
+			<select id="idCliente" name="idCliente" ng-model="frmFiltroDomo.idCliente" class="form-control" ng-options="cli.id_cliente as cli.cliente for cli in clientesVibox" ng-change="getServiciosVibox()" required></select>
+		</div>
+	</div>
+	<div class="col-lg-3">
+		<div class="form-group">
+			<label>Servicio</label>
+			<select id="idServicio" name="idServicio" ng-model="frmFiltroDomo.idServicio" class="form-control" ng-options ="ser.id_servicio as ser.servicio for ser in serviciosVibox" ng-change="buscaCampanaViboxSiodial()" required></select>
+		</div>
+	</div>
+	<div class="col-lg-3">
+		<div class="col-lg-12">
+			<label>Periodo</label>
+		</div>
+		<div class="col-lg-12">
+			<div class="input-daterange input-group datepicker">
+				<input type="text" class="input-sm form-control" ng-model="frmFiltroDomo.date_begin" name="start" required>
+				<span class="input-group-addon panel"><li class="fa fa-calendar"></li></span>
+				<input type="text" class="input-sm form-control" ng-model="frmFiltroDomo.date_end" name="end" required>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-3">
+		<div class="form-group">
+			<label>Supervisor</label>
+			<select id="idSupervisor" name="idSupervisor" ng-model="frmFiltroDomo.id_supervisor" class="form-control" ng-options ="sup.usuario_codigo as sup.usuario_codigo for sup in listaSupervisores" required></select>
+		</div>
+	</div><br style="clear:both;" />
+	<div class="col-lg-4">
+		<label><input type="checkbox" name="is_tiempo_minimo" ng-model="frmFiltroDomo.is_tiempo_minimo"> Filtrar solo por más de una hora conectado.</label>
+		<input type="hidden" name="tiempo_minimo" ng-model="frmFiltroDomo.tiempo_minimo" ng-value="3600">
+	</div>
+	<div class="col-lg-4">
+		<label><input type="checkbox" name="is_tiempo_minimo" ng-model="frmFiltroDomo.userActive"> Filtrar solo por ejecutiv@s activ@s al día de hoy.</label>
+	</div>
+	<div class="col-lg-4">
+		<button class="btn btn-danger" type="submit" style="float:right;background:#DE2A46;">Filtrar</button>
+	</div>
+	<script type="text/javascript">
+		$('.datepicker').datepicker({
+			language:"es",
+			daysOfWeekHighlighted: "0,6",
+			todayHighlight: true
+		});
+	</script>
+</form>

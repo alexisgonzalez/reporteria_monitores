@@ -1,0 +1,40 @@
+{
+  "name": "angular-flot",
+  "version": "0.0.16",
+  "description": "An Angular directive to wrap Flotcharts.",
+  "main": "angular-flot.js",
+  "author": {
+    "name": "Lorenzo Villani",
+    "email": "lvillani@develer.com"
+  },
+  "license": "MIT",
+  "contributors": [
+    {
+      "name": "Lorenzo Villani",
+      "email": "lvillani@develer.com"
+    }
+  ],
+  "gitHead": "8b762de97d327a14db38a7dea268bb5a159a71d7",
+  "_id": "angular-flot@0.0.16",
+  "scripts": {},
+  "_shasum": "d5f0568c725b3543b869da2cbe3cc8554c29d105",
+  "_from": "angular-flot@latest",
+  "_npmVersion": "3.5.2",
+  "_nodeVersion": "4.2.4",
+  "_npmUser": {
+    "name": "lvillani",
+    "email": "lorenzo@villani.me"
+  },
+  "dist": {
+    "shasum": "d5f0568c725b3543b869da2cbe3cc8554c29d105",
+    "tarball": "https://registry.npmjs.org/angular-flot/-/angular-flot-0.0.16.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "lvillani",
+      "email": "lorenzo@villani.me"
+    }
+  ],
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/angular-flot/-/angular-flot-0.0.16.tgz"
+}

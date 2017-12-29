@@ -1,0 +1,24 @@
+<table id="tabla" class="table row-border order-column table-condensed compact table-bordered table-responsive" cellspacing="0" width="100%">
+	<thead>
+		<tr class="colorOptimiza">
+			<th class="text-center">Días</th>
+			<th class="text-center">Cant. maxima</th>
+			<th class="text-center">Fecha de inicio</th>
+			<th class="text-center">Estado</th>
+			<th class="text-center">Acciones</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="co in listaConfiguracion">
+			<td class="text-center">{{co.coca_dias}}</td>
+			<td class="text-center">{{co.coca_cantidad_postulantes}}</td>
+			<td class="text-center">{{co.coca_fecha_inicio}}</td>
+			<td class="text-center">{{(co.coca_estado==1)?'Activo':'Inactivo'}}</td>
+			<td class="text-center">
+				<button ng-if="co.coca_estado==1" class="btn btn-default btn-circle" type="button" title="Desactivar agendamiento" ng-click="desactivarConfiguracion(co);">
+					<i class="fa fa-times" style="color: #C30606"></i>
+				</button>
+			</td>
+		</tr>
+	</tbody>
+</table>

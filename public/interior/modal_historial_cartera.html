@@ -1,0 +1,29 @@
+<div id="dialogHistorialCartera" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Historial Cartera {{ejecutivo}} </h4>
+      </div>
+      <div class="modal-body">
+        <table class="table row-border order-column table-condensed compact table-bordered table-responsive">
+          <thead>
+            <tr>
+              <th class="colorOptimiza"> Cartera</th>
+              <th class="colorOptimiza"> Fecha asignación</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="cartera in listaCartera">
+              <td>{{cartera.cartera}}</td>
+              <td>{{cartera.fecha_asignacion}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

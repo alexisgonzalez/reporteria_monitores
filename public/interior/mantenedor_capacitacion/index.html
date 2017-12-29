@@ -1,0 +1,15 @@
+<div class="row" ng-if="!detalle">
+	<div class="col-lg-6 row-superior">
+		<div ng-include src="filtroURL"></div>
+	</div>
+	<div class="col-lg-12">
+		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#form" ng-click="levantarModal('agregar',null)"><i class="fa fa-plus" aria-hidden="true"></i> Agregar capacitación</button>
+	</div>
+	<div class="col-lg-12" ng-include src="tablaURL"></div>
+	<div ng-include src="modalURL"></div>
+</div>
+<div ng-if="detalle">
+	<div class="col-lg-12" ng-include src="detalleURL">
+	<div ng-include src="modalDetalleURL"></div>
+</div>
+<div ng-include="'interior/modal_dialog.html'"></div>

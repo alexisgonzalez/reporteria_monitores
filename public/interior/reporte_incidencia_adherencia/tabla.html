@@ -1,0 +1,84 @@
+<button type="button" style="float: left;" id="btnExport" ng-click="exportData()" class="btn btn-default"><i class="fa fa-cloud-download" aria-hidden="true"></i> Exportar Excel</button>
+
+<table id="tabla" class="table row-border order-column table-bordered table-responsive" cellspacing="0" width="100%">
+	<thead>
+		<tr class="colorOptimiza">
+			<th class="text-center">Ejecutiv@</th>
+			<th class="text-center">Tipo</th>
+			<th class="text-center">Observación</th>
+			<th class="text-center">Ingreso</th>
+			<th class="text-center">Desde</th>
+			<th class="text-center">Hasta</th>
+			<th class="text-center">Recupera desde</th>
+			<th class="text-center">Recupera hasta</th>
+			<th class="text-center">Estado</th>
+			<th class="text-center">Revisión</th>
+			<th class="text-center">Responsable</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="inc in incidencia">
+			<td><a ng-click="cargarBitacoraOperador(inc.ejecutivo)" data-toggle="modal" data-target="#modalBitacora" style="cursor:pointer;">{{inc.ejecutivo}}</a></td>
+			<td>{{inc.incidencia}}</td>
+			<td>{{inc.observacion}}</td>
+			<td class="text-center">{{inc.ingreso | date: "dd/MM/yyyy"}}</td>
+			<td class="text-center">{{inc.desde}}</td>
+			<td class="text-center">{{inc.hasta}}</td>
+			<td class="text-center">{{inc.rec_desde}}</td>
+			<td class="text-center">{{inc.rec_hasta}}</td>
+			<td class="text-center">
+				<i ng-if="!guardando && !ok && inc.aprobado==null" title="En revisión" class="fa fa-circle-o fa-2x" aria-hidden="true"></i>
+				<i ng-if="!guardando && inc.aprobado==1" title="Aprobado" style="color: #146E19" class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i>
+				<i ng-if="!guardando && inc.aprobado==0" title="Rechazado" style="color: #C30606" class="fa fa-times-circle-o fa-2x" aria-hidden="true"></i>
+				<button ng-if="!guardando && ok && inc.aprobado==null && inc.desde != null" class="btn btn-default btn-circle" type="button" title="Aprobar incidencia" ng-click="confirmarRevision('aprobar',inc);">
+					<i class="fa fa-check" style="color: #146E19"></i>
+				</button>
+				<button ng-if="!guardando && ok && inc.aprobado==null && inc.desde != null" class="btn btn-default btn-circle" type="button" title="Rechazar incidencia" ng-click="confirmarRevision('rechazar',inc);">
+					<i class="fa fa-times" style="color: #C30606"></i>
+				</button>
+				<img ng-if="guardando" src="/images/loading.gif" width="20" height="20">
+			</td>
+			<td class="text-center">{{inc.revision | date: "dd/MM/yyyy"}}</td>
+			<td class="text-center">{{inc.responsable}}</td>
+		</tr>
+	</tbody>
+</table>
+<div id="divTabla">
+	<table class="table row-border order-column table-condensed compact table-bordered table-responsive" cellspacing="0" width="100%" ng-show="false">
+			<thead>
+		<tr class="colorOptimiza">
+			<th class="text-center">Ejecutiv@</th>
+			<th class="text-center">Tipo</th>
+			<th class="text-center">Observacion</th>
+			<th class="text-center">Ingreso</th>
+			<th class="text-center">Desde</th>
+			<th class="text-center">Hasta</th>
+			<th class="text-center">Recupera desde</th>
+			<th class="text-center">Recupera hasta</th>
+			<th class="text-center">Estado</th>
+			<th class="text-center">Revision</th>
+			<th class="text-center">Responsable</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="inc in incidencia">
+			<td>{{inc.ejecutivo}}</td>
+			<td>{{inc.incidencia}}</td>
+			<td>{{inc.observacion}}</td>
+			<td class="text-center">{{inc.ingreso}}</td>
+			<td class="text-center">{{inc.desde}}</td>
+			<td class="text-center">{{inc.hasta}}</td>
+			<td class="text-center">{{inc.rec_desde}}</td>
+			<td class="text-center">{{inc.rec_hasta}}</td>
+			<td class="text-center">
+				<b ng-if="inc.aprobado==null">En revision</b>
+				<b ng-if="inc.aprobado==1" >Si</b>
+				<b ng-if="inc.aprobado==0" >No</b>
+			</td>
+			<td class="text-center">{{inc.revision}}</td>
+			<td class="text-center">{{inc.responsable}}</td>
+		</tr>
+	</tbody>
+	</table>
+</div>
+<div ng-include="'interior/modal_dialog.html'"></div>

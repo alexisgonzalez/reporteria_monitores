@@ -1,0 +1,107 @@
+<table id="tabla" class="table row-border order-column table-condensed compact table-bordered table-responsive" cellspacing="0" width="100%">
+	<thead>
+		<tr class="colorOptimiza">
+			<th class="text-center" rowspan="3">Operador</th>
+			<th class="text-center" colspan="6" ng-repeat="fecha in fechas">{{fecha.fecha}}</th>	
+		</tr>
+		<tr class="colorOptimiza2">
+			<th ng-repeat-start="fecha in fechas" class="text-center" rowspan="2">Cant Eval.</th>
+			<th class="text-center" colspan="2">Calificación</th>
+			<th class="text-center" colspan="2">Ptos Críticos</th>
+			<th ng-repeat-end class="text-center" rowspan="2">Felicitación</th>
+		</tr>
+		<tr style="background-color: #C8475B; color: #FFFFFF">
+			<th ng-repeat-start="fecha in fechas" class="text-center">Nota</th>
+			<th class="text-center">Gestión</th>
+			<th class="text-center">Cantidad</th>
+			<th ng-repeat-end class="text-center">Gestión</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="(id,periodo) in datos">
+			<td><a ng-click="cargarBitacoraOperador(id)" data-toggle="modal" data-target="#modalBitacora" style="cursor:pointer;">{{id}}</a></td>
+			<td class="text-center" ng-repeat-start="fecha in fechas" ng-init="fecha_filtro=fecha.fecha">{{periodo[fecha_filtro].cantidad_eval}}</td>
+			<td class="text-center">{{periodo[fecha_filtro].promedio | number:2 }}</td>
+			<td class="text-center">
+				<i ng_if="periodo[fecha_filtro].flag_19_mail" style="color: #DE2A46" class="fa fa-envelope-o fa-1x" aria-hidden="true"></i>
+				<i ng_if="periodo[fecha_filtro].flag_19_llamada" style="color: #DE2A46" class="fa fa-phone fa-1x" aria-hidden="true"></i>
+				<i ng_if="periodo[fecha_filtro].flag_19_presencial" style="color: #DE2A46" class="fa fa-user fa-1x" aria-hidden="true"></i>
+				<i ng_if="periodo[fecha_filtro].flag_19_chat" style="color: #DE2A46" class="fa fa-comments fa-1x" aria-hidden="true"></i>
+				<i ng_if="periodo[fecha_filtro].flag_19_videollamada" style="color: #DE2A46" class="fa fa-video-camera fa-1x" aria-hidden="true"></i>
+				<i ng_if="periodo[fecha_filtro].flag_19_sin_gestion" style="color: #DE2A46" class="fa fa-times fa-1x" aria-hidden="true"></i>
+			</td>
+			<td class="text-center">{{periodo[fecha_filtro].criticidad}}</td>
+			<td class="text-center">
+				<i ng_if="periodo[fecha_filtro].flag_27_mail" style="color: #DE2A46" class="fa fa-envelope-o fa-1x" aria-hidden="true"></i>
+				<i ng_if="periodo[fecha_filtro].flag_27_llamada" style="color: #DE2A46" class="fa fa-phone fa-1x" aria-hidden="true"></i>
+				<i ng_if="periodo[fecha_filtro].flag_27_presencial" style="color: #DE2A46" class="fa fa-user fa-1x" aria-hidden="true"></i>
+				<i ng_if="periodo[fecha_filtro].flag_27_chat" style="color: #DE2A46" class="fa fa-comments fa-1x" aria-hidden="true"></i>
+				<i ng_if="periodo[fecha_filtro].flag_27_videollamada" style="color: #DE2A46" class="fa fa-video-camera fa-1x" aria-hidden="true"></i>
+				<i ng_if="periodo[fecha_filtro].flag_27_sin_gestion" style="color: #DE2A46" class="fa fa-times fa-1x" aria-hidden="true"></i>
+			</td>
+			<td ng-repeat-end class="text-center">
+				<i ng_if="periodo[fecha_filtro].flag_30_mail" style="color: #0FA418" class="fa fa-envelope-o fa-1x" aria-hidden="true"></i>
+				<i ng_if="periodo[fecha_filtro].flag_30_llamada" style="color: #0FA418" class="fa fa-phone fa-1x" aria-hidden="true"></i>
+				<i ng_if="periodo[fecha_filtro].flag_30_presencial" style="color: #0FA418" class="fa fa-user fa-1x" aria-hidden="true"></i>
+				<i ng_if="periodo[fecha_filtro].flag_30_chat" style="color: #0FA418" class="fa fa-comments fa-1x" aria-hidden="true"></i>
+				<i ng_if="periodo[fecha_filtro].flag_30_videollamada" style="color: #0FA418" class="fa fa-video-camera fa-1x" aria-hidden="true"></i>
+				<i ng_if="periodo[fecha_filtro].flag_30_sin_gestion" style="color: #0FA418" class="fa fa-times fa-1x" aria-hidden="true"></i>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<div id="divTabla">
+	<table class="table row-border order-column table-condensed compact table-bordered table-responsive" cellspacing="0" width="100%" ng-show="false">
+		<thead>
+			<tr class="colorOptimiza">
+				<th class="text-center" rowspan="3">Operador</th>
+				<th class="text-center" colspan="6" ng-repeat="fecha in fechas">{{fecha.fecha}}</th>	
+			</tr>
+			<tr class="colorOptimiza2">
+				<th ng-repeat-start="fecha in fechas" class="text-center" rowspan="2">Cant Eval.</th>
+				<th class="text-center" colspan="2">Calificacion</th>
+				<th class="text-center" colspan="2">Ptos Criticos</th>
+				<th ng-repeat-end class="text-center" rowspan="2">Felicitacion</th>
+			</tr>
+			<tr style="background-color: #C8475B; color: #FFFFFF">
+				<th ng-repeat-start="fecha in fechas" class="text-center">Nota</th>
+				<th class="text-center">Gestion</th>
+				<th class="text-center">Cantidad</th>
+				<th ng-repeat-end class="text-center">Gestion</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="(id,periodo) in datos">
+				<td><a ng-click="cargarBitacoraOperador(id)" data-toggle="modal" data-target="#modalBitacora" style="cursor:pointer;">{{id}}</a></td>
+				<td class="text-center" ng-repeat-start="fecha in fechas" ng-init="fecha_filtro=fecha.fecha">{{periodo[fecha_filtro].cantidad_eval}}</td>
+				<td class="text-center">{{periodo[fecha_filtro].promedio}}</td>
+				<td class="text-center">
+					<i ng_if="periodo[fecha_filtro].flag_19_mail" style="color: #DE2A46" class="fa fa-envelope-o fa-1x" aria-hidden="true"></i>
+					<i ng_if="periodo[fecha_filtro].flag_19_llamada" style="color: #DE2A46" class="fa fa-phone fa-1x" aria-hidden="true"></i>
+					<i ng_if="periodo[fecha_filtro].flag_19_presencial" style="color: #DE2A46" class="fa fa-user fa-1x" aria-hidden="true"></i>
+					<i ng_if="periodo[fecha_filtro].flag_19_chat" style="color: #DE2A46" class="fa fa-comments fa-1x" aria-hidden="true"></i>
+					<i ng_if="periodo[fecha_filtro].flag_19_videollamada" style="color: #DE2A46" class="fa fa-video-camera fa-1x" aria-hidden="true"></i>
+					<i ng_if="periodo[fecha_filtro].flag_19_sin_gestion" style="color: #DE2A46" class="fa fa-times fa-1x" aria-hidden="true"></i>
+				</td>
+				<td class="text-center">{{periodo[fecha_filtro].criticidad}}</td>
+				<td class="text-center">
+					<i ng_if="periodo[fecha_filtro].flag_27_mail" style="color: #DE2A46" class="fa fa-envelope-o fa-1x" aria-hidden="true"></i>
+					<i ng_if="periodo[fecha_filtro].flag_27_llamada" style="color: #DE2A46" class="fa fa-phone fa-1x" aria-hidden="true"></i>
+					<i ng_if="periodo[fecha_filtro].flag_27_presencial" style="color: #DE2A46" class="fa fa-user fa-1x" aria-hidden="true"></i>
+					<i ng_if="periodo[fecha_filtro].flag_27_chat" style="color: #DE2A46" class="fa fa-comments fa-1x" aria-hidden="true"></i>
+					<i ng_if="periodo[fecha_filtro].flag_27_videollamada" style="color: #DE2A46" class="fa fa-video-camera fa-1x" aria-hidden="true"></i>
+					<i ng_if="periodo[fecha_filtro].flag_27_sin_gestion" style="color: #DE2A46" class="fa fa-times fa-1x" aria-hidden="true"></i>
+				</td>
+				<td ng-repeat-end class="text-center">
+					<i ng_if="periodo[fecha_filtro].flag_30_mail" style="color: #0FA418" class="fa fa-envelope-o fa-1x" aria-hidden="true"></i>
+					<i ng_if="periodo[fecha_filtro].flag_30_llamada" style="color: #0FA418" class="fa fa-phone fa-1x" aria-hidden="true"></i>
+					<i ng_if="periodo[fecha_filtro].flag_30_presencial" style="color: #0FA418" class="fa fa-user fa-1x" aria-hidden="true"></i>
+					<i ng_if="periodo[fecha_filtro].flag_30_chat" style="color: #0FA418" class="fa fa-comments fa-1x" aria-hidden="true"></i>
+					<i ng_if="periodo[fecha_filtro].flag_30_videollamada" style="color: #0FA418" class="fa fa-video-camera fa-1x" aria-hidden="true"></i>
+					<i ng_if="periodo[fecha_filtro].flag_30_sin_gestion" style="color: #0FA418" class="fa fa-times fa-1x" aria-hidden="true"></i>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

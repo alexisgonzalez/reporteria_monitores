@@ -1,0 +1,27 @@
+<table id='tabla' class="table row-border order-column table-condensed compact table-bordered table-responsive" cellspacing="0" width="100%">
+	<thead>
+		<tr class="colorOptimiza">
+			<th class="text-center">Incidencia</th>
+			<th class="text-center">Monitor</th>
+			<th class="text-center">Icono</th>
+			<th class="text-center">Estado</th>
+			<th class="text-center">Acción</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="data in incidencia">
+			<td>{{data.inc_nom_incidencia}}</td>
+			<td>{{data.tin_nombre}}</td>
+			<td class="text-center"><i style="color:#E55630;" class="{{data.inc_icono}}"></i></td>
+			<td class="text-center">
+				<i ng-if="data.inc_estado==1" class="fa fa-check" aria-hidden="true"></i>
+				<i ng-if="data.inc_estado==0" class="fa fa-times" aria-hidden="true"></i>
+			</td>
+			<td class="text-center">
+				<button data-toggle="modal" data-target="#formInc" class="btn btn-default btn-circle" type="button" title="Editar incidencia" ng-click="editarIncidencia('editar', data);">
+					<i class="fa fa-edit"></i>
+				</button>
+			</td>
+		</tr>
+	</tbody>
+</table>

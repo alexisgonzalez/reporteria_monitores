@@ -1,0 +1,71 @@
+<div id="formPerfil" class="modal fade" role="dialog">
+    <form name="filtrar" ng-submit="guardarPerfil()">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Perfil</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="form-group col-lg-4">
+                                    <label>Nombre</label>
+                                    <input type="text" name="per_nombre" id="per_nombre" ng-model="formPerfil.per_nombre" class="form-control" required>
+                                </div>
+                                <div class="form-group col-lg-8">
+                                    <label>Descripción</label>
+                                    <input type="text" name="per_descripcion" id="per_descripcion" ng-model="formPerfil.per_descripcion" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="row text-center"><h4>Modulos de acceso</h4></div>
+                                 <accordion close-others="true">
+                                    <accordion-group class="row" is-open="status.open" sv-root="{{mpp.mop_id_modulo_padre}}" ng-repeat="mpp in menu_padre_perfil">
+                                        <accordion-heading ng-class="colorOptimiza"><i class="{{mpp.mop_icon}}"></i> {{mpp.mop_nombre}}</accordion-heading>
+                                        <div class="col-lg-5">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">Activos</div>
+                                                <div class="panel-body">
+                                                    <ul class="sortable-container list" sv-part="menu_perfil.perfil" ng-model="menu_perfil.perfil" class="menu_perfil.perfil">
+                                                        <li ng-repeat="mep in menu_perfil.perfil" title="{{mep.mos_descripcion}}" ng-if="mpp.mop_id_modulo_padre==mep.mop_id_modulo_padre" class="item" sv-element><i class="{{mep.mos_icon}}" style="color:#FFFFFF;"></i> {{mep.mos_titulo}}</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2"></div>
+                                        <div class="col-lg-5">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">Restantes</div>
+                                                <div class="panel-body">
+                                                    <ul class="sortable-container list" sv-part="menu_perfil.general">
+                                                        <li ng-repeat="mep in menu_perfil.general" title="{{mep.mos_descripcion}}" ng-if="mpp.mop_id_modulo_padre==mep.mop_id_modulo_padre" sv-element class="item_no"><i class="{{mep.mos_icon}}" style="color:#000000;"></i> {{mep.mos_titulo}}
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </accordion-group>
+                                </accordion>
+                            </div>
+                        </div>             
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                    <button id="modalClose" type="button" class="btn btn-error" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+<style>
+.modal-dialog {
+    transform: none !important;
+}
+</style>

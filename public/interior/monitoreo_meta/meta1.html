@@ -1,0 +1,57 @@
+<div class="col-lg-6" ng-repeat="pref in preferencias">
+	<div class="panel panel-default" ng-if="datosMetas.global[pref.monitor].arrGlobal.total_meta!=0" >
+		<div class="panel-heading text-uppercase panel-custom-h text-center">
+		<h3 class="hx"> {{pref.cliente}} {{pref.servicio}}</h3>
+		</div>
+		<div class="panel-body panel-custom">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<div class="row">
+						<div class="col-lg-4">
+							<div class="well well-sm well-custom" style="background-color: #085394;">
+								<div class="icon">
+									<h3 class="hx"><i class="fa fa-check-square-o fa-1x"></i> EFECTIVOS</h3>
+								</div>
+								<div class="text">
+									<h3 class="hx">-</h3>
+									<h3 class="hx"><b>{{datosMetas.global[pref.monitor].arrGlobal.efectivos | number}}</b></h3>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="well well-sm well-custom" style="background-color: {{datosMetas.global[pref.monitor].arrGlobal.cumplimiento_dia_color}}">
+								<div class="icon">
+									<h3 class="hx"><i class="fa fa-flag-checkered"></i> HOY</h3>
+								</div>
+								<div class="text">
+									<h3 class="hx">{{datosMetas.global[pref.monitor].arrGlobal.meta_hoy | number}}</h3>
+									<h3 class="hx"><b>{{datosMetas.global[pref.monitor].arrGlobal.cumplimiento_dia}}%</b></h3>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="well well-sm well-custom" style="background-color: {{datosMetas.global[pref.monitor].arrGlobal.cumplimiento_mes_color}}">
+								<div class="icon">
+									<h3 class="hx"><i class="fa fa-flag-checkered"></i> MES</h3>
+								</div>
+								<div class="text">
+									<h3 class="hx">{{datosMetas.global[pref.monitor].arrGlobal.total_meta | number}}</h3>
+									<h3 class="hx"><b>{{datosMetas.global[pref.monitor].arrGlobal.cumplimiento_mes}}%</b></h3>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel-heading panel-custom-h">
+						<h3 class="panel-title">Meta por día: <i class="fa fa-square" style="color: #97bbcd;" aria-hidden="true"></i> Meta <i class="fa fa-square" style="color: #BBF4CD;" aria-hidden="true"></i> Efectivos</h3>
+					</div>
+					<div class="panel-body panel-custom-h" >
+						<canvas id="line" class="chart chart-line" data="[datosMetas.metas[pref.monitor].format.dataMedia,datosMetas.medias[pref.monitor].format.dataMedia]" labels='datosMetas.metas[pref.monitor].format.dataLabels' series="['Meta','Efectivos']" options="options" dataset-override="datasetOverride"  height="80"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--<div class="panel-body" ng-if="datosMetas.global[pref.monitor].arrGlobal.total_meta==0">
+			No se han generado metas para este periodo.
+		</div>-->
+	</div>
+</div>

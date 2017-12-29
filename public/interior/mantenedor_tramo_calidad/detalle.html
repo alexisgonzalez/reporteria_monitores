@@ -1,0 +1,43 @@
+<div id="detalleHistoria" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-uppercase">Puntaje {{ptje}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <table id='detalle' class="table row-border order-column table-condensed compact table-bordered table-responsive" cellspacing="0" width="100%">
+                        <thead>
+                            <tr class="colorOptimiza2">
+                                <th class="text-center">Bono</th>
+                                <th class="text-center">Fecha Creación</th>
+                                <th class="text-center">Fecha Inicio</th>
+                                <th class="text-center">Activar/Desactivar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="lista in listDetalle">
+                                <td class="text-center">{{lista.trc_bono | currency:"$":0}}</td>
+                                <td class="text-center">{{lista.trc_fecha_creacion}}</td>
+                                <td class="text-center">{{lista.trc_fecha_inicio}}</td>
+                                <td class="text-center">
+                                    <button ng-if="lista.trc_estado==1" class="btn btn-default btn-circle" type="button" title="Desactivar tramo" ng-click="cambiarEstado(lista,'desactivado');">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+                                    <button ng-if="lista.trc_estado==0" class="btn btn-default btn-circle" type="button" title="Activar tramo" ng-click="cambiarEstado(lista,'activado');">
+                                        <i class="fa fa-check"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cerrarModal" type="button" class="btn btn-error" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

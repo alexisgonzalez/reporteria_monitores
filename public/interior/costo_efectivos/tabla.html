@@ -1,0 +1,98 @@
+<button type="button" id="btnExport" ng-click="exportData()" ng-show="showTabla" class="btn btn-default"><i class="glyphicon glyphicon-floppy-save"></i> Exportar Excel</button>
+<br style="clear:both;"/>
+<table class="table table-striped table-bordered" id="tablaHH" cellspacing="0" width="100%" ng-show="showTabla">
+    <thead>
+        <tr>
+            <th class="colorOptimiza" rowspan="3">Ejecutiv@</th>
+            <th  class="colorOptimiza2" colspan="4" ng-repeat="fecha in costoEfectivos.fechas_nombre track by $index" style="text-align:center;">{{fecha}}</th>
+            <th  class="colorOptimiza2" rowspan="2" colspan="4" style="text-align:center;">Total Ejecutivo</th>
+        </tr>
+        <tr>
+            <th  class="colorOptimiza2" colspan="4" ng-repeat="fecha in costoEfectivos.fechas" style="text-align:center;">{{fecha | date:'dd-MM-yyyy'}}</th>
+        </tr>
+        <tr>
+            <th ng-repeat-start="fecha in costoEfectivos.fechas">Produccion</th>
+            <th>Efectivos</th>
+            <th>Tiempo</th>
+            <th ng-repeat-end>Costo</th>
+            <th>Produccion</th>
+            <th>Efectivos</th>
+            <th>Tiempo</th>
+            <th>Costo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="(id,operador) in costoEfectivos.horario">
+            <td><a ng-click="cargarBitacoraOperador(id)" data-toggle="modal" data-target="#modalBitacora" style="cursor:pointer;">{{id}}</a></td>
+            <td ng-repeat-start="fecha in costoEfectivos.fechas">{{costoEfectivos.produccion.data[fecha][id].produccion | currency: "$" : 0 }}</td>
+            <td>{{costoEfectivos.produccion.data[fecha][id].efectivos}}</td>
+            <td >{{operador[fecha].format}}</td>
+            <td  ng-repeat-end ng-style="costoEfectivos.brecha.brecha_costo_numero<costoEfectivos.costo[id][fecha].costo && {'color':'red'} || {'color':'green'}">{{costoEfectivos.costo[id][fecha].costo | currency: "$" : 0 }}</td>
+            <td>{{costoEfectivos.globales[id].produccion | currency: "$" : 0}}</td>
+            <td>{{costoEfectivos.globales[id].efectivos}}</td>
+            <td>{{costoEfectivos.globales[id].tiempo_format}}</td>
+            <td ng-style="costoEfectivos.brecha.brecha_costo_numero<costoEfectivos.globales[id].costo && {'color':'red'} || {'color':'green'}">{{costoEfectivos.globales[id].costo | currency: "$" : 0}}</td>
+        </tr>        
+    </tbody>
+    <tfoot>
+        <tr>
+            <td>Total</td>
+            <td ng-repeat-start="fecha in costoEfectivos.fechas">{{costoEfectivos.globales[fecha].produccion | currency: "$" : 0}}</td>
+            <td>{{costoEfectivos.globales[fecha].efectivos}}</td>
+            <td>{{costoEfectivos.globales[fecha].tiempo_format}}</td>
+            <td ng-repeat-end ng-style="costoEfectivos.brecha.brecha_costo_numero<costoEfectivos.globales[fecha].costo && {'color':'red'} || {'color':'green'}">{{costoEfectivos.globales[fecha].costo | currency: "$" : 0}}</td>
+            <td>{{costoEfectivos.globales['global'].produccion | currency: "$" : 0}}</td>
+            <td>{{costoEfectivos.globales['global'].efectivos}}</td>
+            <td>{{costoEfectivos.globales['global'].tiempo_format}}</td>
+            <td ng-style="costoEfectivos.brecha.brecha_costo_numero<costoEfectivos.globales['global'].costo && {'color':'red'} || {'color':'green'}">{{costoEfectivos.globales['global'].costo | currency: "$" : 0}}</td>
+        </tr>
+    </tfoot>
+</table>
+<div id="divTabla">
+    <table class="table table-striped table-bordered" id="tablaHH2" cellspacing="0" width="100%" ng-show="false">
+        <thead>
+            <tr>
+                <th class="colorOptimiza" rowspan="3">Ejecutiv@</th>
+                <th  class="colorOptimiza2" colspan="4" ng-repeat="fecha in costoEfectivos.fechas_nombre track by $index" style="text-align:center;">{{fecha}}</th>
+                <th  class="colorOptimiza2" rowspan="2" colspan="4" style="text-align:center;">Total Ejecutivo</th>
+            </tr>
+            <tr>
+                <th  class="colorOptimiza2" colspan="4" ng-repeat="fecha in costoEfectivos.fechas" style="text-align:center;">{{fecha | date:'dd-MM-yyyy'}}</th>
+            </tr>
+            <tr>
+                <th ng-repeat-start="fecha in costoEfectivos.fechas">Produccion</th>
+                <th>Efectivos</th>
+                <th>Tiempo</th>
+                <th ng-repeat-end>Costo</th>
+                <th>Produccion</th>
+                <th>Efectivos</th>
+                <th>Tiempo</th>
+                <th>Costo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="(id,operador) in costoEfectivos.horario">
+                <td><a ng-click="cargarBitacoraOperador(id)" data-toggle="modal" data-target="#modalBitacora" style="cursor:pointer;">{{id}}</a></td>
+                <td ng-repeat-start="fecha in costoEfectivos.fechas">{{costoEfectivos.produccion.data[fecha][id].produccion | currency: "$" : 0 }}</td>
+                <td>{{costoEfectivos.produccion.data[fecha][id].efectivos}}</td>
+                <td >{{operador[fecha].format}}</td>
+                <td  ng-repeat-end ng-style="costoEfectivos.brecha.brecha_costo_numero<costoEfectivos.costo[id][fecha].costo && {'color':'red'} || {'color':'green'}">{{costoEfectivos.costo[id][fecha].costo | currency: "$" : 0 }}</td>
+                <td>{{costoEfectivos.globales[id].produccion | currency: "$" : 0}}</td>
+                <td>{{costoEfectivos.globales[id].efectivos}}</td>
+                <td>{{costoEfectivos.globales[id].tiempo_format}}</td>
+                <td ng-style="costoEfectivos.brecha.brecha_costo_numero<costoEfectivos.globales[id].costo && {'color':'red'} || {'color':'green'}">{{costoEfectivos.globales[id].costo | currency: "$" : 0}}</td>
+            </tr>        
+            <tr>
+                <td>Total</td>
+                <td ng-repeat-start="fecha in costoEfectivos.fechas">{{costoEfectivos.globales[fecha].produccion | currency: "$" : 0}}</td>
+                <td>{{costoEfectivos.globales[fecha].efectivos}}</td>
+                <td>{{costoEfectivos.globales[fecha].tiempo_format}}</td>
+                <td ng-repeat-end ng-style="costoEfectivos.brecha.brecha_costo_numero<costoEfectivos.globales[fecha].costo && {'color':'red'} || {'color':'green'}">{{costoEfectivos.globales[fecha].costo | currency: "$" : 0}}</td>
+                <td>{{costoEfectivos.globales['global'].produccion | currency: "$" : 0}}</td>
+                <td>{{costoEfectivos.globales['global'].efectivos}}</td>
+                <td>{{costoEfectivos.globales['global'].tiempo_format}}</td>
+                <td ng-style="costoEfectivos.brecha.brecha_costo_numero<costoEfectivos.globales['global'].costo && {'color':'red'} || {'color':'green'}">{{costoEfectivos.globales['global'].costo | currency: "$" : 0}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

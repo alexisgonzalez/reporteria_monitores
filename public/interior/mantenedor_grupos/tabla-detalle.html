@@ -1,0 +1,16 @@
+<table id='tablaDetalle' class="table row-border order-column table-condensed compact table-bordered table-responsive" cellspacing="0" width="100%">
+    <thead>
+        <tr class="colorOptimiza">
+            <th class="text-center">Código</th>
+            <th class="text-center">Nombre</th>
+            <th class="text-center">Fecha postulación</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="data in listaPostulantes">
+            <td class="text-center">{{data.grpo_codigo}}</td>
+            <td class="text-capitalize">{{data.pos_nombre_completo}}</td>
+            <td class="text-center">{{data.pos_id_fecha_postulacion}}</td>
+        </tr>
+    </tbody>
+</table>

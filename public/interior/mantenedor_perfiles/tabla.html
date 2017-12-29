@@ -1,0 +1,20 @@
+<table class="table table-striped table-bordered" cellspacing="0" width="100%" id="tabla">
+    <thead>
+		<tr class="colorOptimiza">
+			<th class="text-center">Perfil</th>
+			<th class="text-center">Descripcion</th>
+			<th class="text-center">Accion</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="data in list">
+			<td>{{data.per_nombre}}</td>
+			<td>{{data.per_descripcion}}</td>
+			<td class="text-center">
+				<button class="btn btn-default btn-circle" type="button" title="Editar perfil" data-toggle="modal" data-target="#formPerfil" ng-click="editarPerfil(1,data)"><i class="fa fa-edit"></i></button>
+				<button ng-if="data.per_estado==1" class="btn btn-default btn-circle" type="button" title="Desactivar perfil" ng-click="estadoPerfil(0,data)"><i class="fa fa-times"></i></button>
+				<button ng-if="data.per_estado==0" class="btn btn-default btn-circle" type="button" title="Activar perfil" ng-click="estadoPerfil(1,data)"><i class="fa fa-times"></i></button>
+			</td>
+		</tr>
+	</tbody>
+</table>

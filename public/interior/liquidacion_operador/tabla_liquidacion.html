@@ -1,0 +1,36 @@
+<table id="tabla" class="table row-border order-column table-condensed compact table-bordered table-responsive" cellspacing="0" width="100%">
+	<thead>
+		<tr class="colorOptimiza">
+			<th class="text-center">Ejecutiv@</th>
+			<th class="text-center">Fecha ingreso</th>
+			<th class="text-center">HH contrato</th>
+			<th class="text-center">HH ideal</th>
+			<th class="text-center">HH real</th>
+			<th class="text-center">Días ausente</th>
+			<th class="text-center">Horas ausente</th>
+			<th class="text-center">Producción</th>
+			<th class="text-center">Semana corrida</th>
+			<th class="text-center">Evaluaciones Calidad</th>
+			<th class="text-center">Porcentaje Calidad</th>
+			<th class="text-center">% Calidad</th>
+			<th class="text-center">Total</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="data in list ">
+			<td class="text-center">{{data.operador}}</td>
+			<td class="text-center">{{data.fecha_ingreso | date: "dd/MM/yyyy"}}</td>
+			<td class="text-center">{{data.hh_contrato}}</td>
+			<td class="text-center">{{data.hh_ideal}}</td>
+			<td class="text-center">{{data.hh_real}}</td>
+			<td class="text-center">{{data.dias_ausente}}</td>
+			<td class="text-center">{{data.horas_ausente}}</td>
+			<td class="text-center">{{data.produccion | currency: "$" : 0 }}</td>
+			<td class="text-center">{{data.semana_corrida | currency: "$" : 0 }}</td>
+			<td class="text-center">{{data.cant_calidad}}</td>
+			<td class="text-center">{{data.porc_calidad}}%</td>
+			<td class="text-center">{{data.calidad | currency: "$" : 0}}</td>
+			<td class="text-center">{{data.calidad+data.produccion+data.semana_corrida | currency: "$" : 0}}</td>
+		</tr>
+	</tbody>
+</table>

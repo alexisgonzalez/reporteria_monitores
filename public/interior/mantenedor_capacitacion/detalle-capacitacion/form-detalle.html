@@ -1,0 +1,90 @@
+<div id="detalle" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content" ng-if="!detEditar">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h5 class="modal-title text-capitalize">{{formPostulante.postulante.pos_nombre_completo}} | {{formPostulante.info.et_descripcion}} - {{formPostulante.info.tiev_descripcion}}</h5>
+            </div>
+            <div class="modal-body">
+                <table id='tabla' class="table row-border order-column table-condensed compact table-bordered table-responsive" cellspacing="0" width="100%">
+                    <thead>
+                        <tr class="colorOptimiza">
+                            <th class="text-center">Estándar</th>
+                            <th class="text-center">Valor estándar</th>
+                            <th class="text-center">Valor obtenido</th>
+                            <th class="text-center">Valor estándarizado</th>
+                            <th class="text-center">Editar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="list in listaPostulantes">
+                            <td class="text-center">{{list.ties_descripcion}}</td>
+                            <td class="text-center">{{list.es_valor_estandar}}</td>
+                            <td class="text-center">{{list.evpo_valor}}</td>
+                            <td class="text-center">{{list.evpo_valor_estandarizado}}</td>
+                            <td class="text-center"><button ng-click="editarEvaluacion(list)" class="btn btn-default btn-circle" type="button" title="Editar evaluación"><i class="fa fa-edit"></i>
+                            </button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-error cerrarModal" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+        <div class="modal-content" ng-if="detEditar">
+            <form name="formulario" ng-submit="guardarEvaluacionUnica()">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h5 class="modal-title text-capitalize">{{formPostulante.postulante.pos_nombre_completo}} | {{formPostulante.info.et_descripcion}} - {{formPostulante.info.tiev_descripcion}}</h5>
+                </div>
+                <div class="modal-body">
+                    <table id='tabla' class="table row-border order-column table-condensed compact table-bordered table-responsive" cellspacing="0" width="100%" style="table-layout: fixed;">
+                        <thead>
+                            <tr class="colorOptimiza">
+                                <th class="text-center">Estándar</th>
+                                <th class="text-center">Valor estándar</th>
+                                <th class="text-center">Valor obtenido</th>
+                                <th class="text-center">Valor estándarizado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center">{{formDetalleEditar.ties_descripcion}}</td>
+                                <td class="text-center">{{formDetalleEditar.es_valor_estandar}}</td>
+                                <td class="text-center">
+                                    <input ng-if="formDetalleEditar.ties_id_tipo_estandar == 2 || formDetalleEditar.ties_id_tipo_estandar == 5" type="number" class="form-control" min="0" max="100" ng-model="formDetalleEditar.evpo_valor" ng-change="verCumplimiento('editar',formDetalleEditar.ties_id_tipo_estandar,formDetalleEditar.evpo_valor,formDetalleEditar.es_valor_estandar,formDetalleEditar.pos_id_postulante)" step="any" required>
+                                    <div ng-if="formDetalleEditar.ties_id_tipo_estandar == 1" class="input-group bootstrap-timepicker timepicker">
+                                        <input type="text" class="form-control timepick" ng-model="formDetalleEditar.evpo_valor" ng-change="verCumplimiento('editar',formDetalleEditar.ties_id_tipo_estandar,formDetalleEditar.evpo_valor,formDetalleEditar.es_valor_estandar,formDetalleEditar.pos_id_postulante)" required>
+                                        <span class="input-group-addon panel"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+                                        <script type="text/javascript">
+                                           $('.timepick').timepicker({
+                                            minuteStep: 1,
+                                            showInputs: false,
+                                            disableFocus: true,
+                                            showMeridian: false,
+                                            defaultTime: '01:00'
+                                        });
+                                    </script>
+                                </div>
+                                <select ng-if="formDetalleEditar.ties_id_tipo_estandar == 3" ng-model="formDetalleEditar.evpo_valor" class="form-control" ng-change="verCumplimiento('editar',formDetalleEditar.ties_id_tipo_estandar,formDetalleEditar.evpo_valor,'Sí',formDetalleEditar.pos_id_postulante)" required>
+                                    <option value="" disabled>Seleccione</option>
+                                    <option value="Sí">Sí</option>
+                                    <option value="No">No</option>
+                                </select>
+                                <input ng-if="formDetalleEditar.ties_id_tipo_estandar == 4" type="number" class="form-control" min="0.00" max="5" step="any" ng-model="formDetalleEditar.evpo_valor" ng-change="verCumplimiento('editar',formDetalleEditar.ties_id_tipo_estandar,formDetalleEditar.evpo_valor,5,formDetalleEditar.pos_id_postulante)" required>
+                            </td>
+                            <td class="text-center">{{formDetalleEditar.evpo_valor_estandarizado}}</td>
+                        </tr>
+                    </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button ng-if="detEditar" type="submit" class="btn btn-danger">Guardar</button>
+                    <button type="button" class="btn btn-error cerrarModal" data-dismiss="modal">Cerrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

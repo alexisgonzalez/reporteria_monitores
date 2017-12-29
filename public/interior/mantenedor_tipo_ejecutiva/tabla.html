@@ -1,0 +1,27 @@
+<table id='tabla' class="table row-border order-column table-condensed compact table-bordered table-responsive" cellspacing="0" width="100%">
+	<thead>
+		<tr class="colorOptimiza">
+			<th class="text-center">Id</th>
+			<th class="text-center">Nombre</th>
+			<th class="text-center">Descripción</th>
+			<th class="text-center">Antigüedad</th>
+			<th class="text-center">Acciones</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="data in listaTipoEjecutiva">
+			<td class="text-center">{{data.tiej_id_tipo_ejecutiva}}</td>
+			<td class="text-center">{{data.tiej_nombre}}</td>
+			<td class="text-center">{{data.tiej_descripcion}}</td>
+			<td class="text-center">{{data.tiej_antiguedad_valor}} meses</td>
+			<td class="text-center">
+				<button data-toggle="modal" data-target="#form" ng-click="levantarModal('editar',data)" class="btn btn-default btn-circle" type="button" title="Editar tipo">
+					<i class="fa fa-edit"></i>
+				</button>
+				<button class="btn btn-default btn-circle" type="button" title="Eliminar tipo" ng-click="confirmEliminarTipo(data)">
+					<i class="fa fa fa-trash"></i>
+				</button>
+			</td>
+		</tr>
+	</tbody>
+</table>

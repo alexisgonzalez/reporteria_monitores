@@ -1,0 +1,31 @@
+<table id='tabla' class="table row-border order-column table-condensed compact table-bordered table-responsive" cellspacing="0" width="100%">
+	<thead>
+		<tr class="colorOptimiza">
+			<th class="text-center">Id</th>
+			<th class="text-center">Capacitación</th>
+			<th class="text-center">Fecha de inicio</th>
+			<th class="text-center">Fecha de termino</th>
+			<th class="text-center">Acciones</th>
+
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="list in listaCapacitaciones">
+			<td class="text-center">{{list.ca_id_capacitacion}}</td>
+			<td class="text-center">{{list.ca_descripcion}}</td>
+			<td class="text-center">{{list.ca_fecha_inicio}}</td>
+			<td class="text-center">{{list.ca_fecha_fin}}</td>
+			<td class="text-center">
+				<button class="btn btn-default btn-circle" type="button" title="Detalle capacitación" ng-click="detalleCapacitacion(list)">
+					<i class="fa fa-eye"></i>
+				</button>
+				<button data-toggle="modal" data-target="#form" ng-click="levantarModal('editar',list)" class="btn btn-default btn-circle" type="button" title="Editar capacitación">
+					<i class="fa fa-edit"></i>
+				</button>
+				<button class="btn btn-default btn-circle" type="button" title="Eliminar capacitación" ng-click="eliminarGrupo(list)">
+					<i class="fa fa-times"></i>
+				</button>
+			</td>
+		</tr>
+	</tbody>
+</table>

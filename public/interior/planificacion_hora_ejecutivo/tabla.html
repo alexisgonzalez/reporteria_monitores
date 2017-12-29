@@ -1,0 +1,49 @@
+<button type="button" id="btnExport" ng-click="exportData()" ng-show="busqueda" class="btn btn-default"><i class="glyphicon glyphicon-floppy-save"></i> Exportar Excel</button> <br style="clear: both;">
+
+<table id="tabla" class="table row-border order-column table-bordered table-responsive" cellspacing="0" width="100%" ng-show="busqueda">
+	<thead>
+		<tr class="colorOptimiza">
+			<th rowspan="3" class="text-center">Horas</th>
+			<th class="text-center" colspan="2" ng-repeat="fecha in fechas.fechas">{{nombreFechas[$index]}}</th>
+		</tr>
+		<tr class="colorOptimiza2">
+			<th class="text-center" colspan="2" ng-repeat="fecha in fechas.fechas">{{fecha}}</th>
+		</tr>
+		<tr class="colorOptimiza2">
+			<th class="text-center" ng-repeat-start="fecha in fechas.fechas">Cant. Ejec</th>
+			<th class="text-center" ng-repeat-end>Tiempo</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="hora in fechas.horas">
+			<td class="text-center">{{ hora}}</td>
+			<td class="text-center" ng-repeat-start="fecha in fechas.fechas">{{dataTabla[fecha][hora].cantidad_usuarios}} </td>
+			<td class="text-center" ng-repeat-end>{{dataTabla[fecha][hora].tiempo_format}}</td>
+		</tr>
+	</tbody>
+</table>
+
+<div id="DivTabla" ng-show="false">
+	<table id="tabla2" class="table row-border order-column table-bordered table-responsive" cellspacing="0" width="100%" ng-show="busqueda">
+	<thead>
+		<tr class="colorOptimiza">
+			<th rowspan="3" class="text-center">Horas</th>
+			<th class="text-center" colspan="2" ng-repeat="fecha in fechas.fechas">{{nombreFechas[$index]}}</th>
+		</tr>
+		<tr class="colorOptimiza2">
+			<th class="text-center" colspan="2" ng-repeat="fecha in fechas.fechas">{{fecha}}</th>
+		</tr>
+		<tr class="colorOptimiza2">
+			<th class="text-center" ng-repeat-start="fecha in fechas.fechas">Cant. Ejec</th>
+			<th class="text-center" ng-repeat-end>Tiempo</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="hora in fechas.horas">
+			<td class="text-center">{{ hora}}</td>
+			<td class="text-center" ng-repeat-start="fecha in fechas.fechas">{{dataTabla[fecha][hora].cantidad_usuarios}} </td>
+			<td class="text-center" ng-repeat-end>{{dataTabla[fecha][hora].tiempo_format}}</td>
+		</tr>
+	</tbody>
+</table>
+</div>

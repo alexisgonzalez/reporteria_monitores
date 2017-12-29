@@ -1,0 +1,50 @@
+<div id="formTramos" class="modal fade" role="dialog">
+    <form name="filtrar" ng-submit="guardarTramo()">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Valor por efectivo</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group col-lg-3">
+                            <label>Ptje</label>
+                            <input type="number" name="tramo" id="tramo" min="0" max="100" ng-model="formTramoCalidad.tramo" class="form-control" step="any" required>
+                        </div>
+                        <div class="form-group col-lg-3">
+                            <label>Bono</label>
+                            <input type="number" name="bono" id="bono" min="0" ng-model="formTramoCalidad.bono" class="form-control" step="any" required>
+                        </div>
+                        <div class="col-lg-3">
+                            <label>Fecha inicio</label>
+                            <div class="form-inline input-group">
+                            <input type="text" id="date" class="form-control datepicker" ng-model="formTramoCalidad.date" name="start" required>
+                            <span class="input-group-addon panel"><li class="fa fa-calendar"></li></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-3">
+                            <label>País</label>
+                            <select name="pais" ng-model="formTramoCalidad.id_pais" class="form-control" value="" required>
+                                <option disabled value="" selected> Selecciones País</option>
+                                <option ng-repeat="pais in paises" value="{{pais.id_pais}}">{{pais.nombre_pais}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                    <button id="cerrarModal" type="button" class="btn btn-error" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    $('.datepicker').datepicker({
+        language:"es",
+        daysOfWeekHighlighted: "0,6",
+        todayHighlight: true,
+    });
+</script>

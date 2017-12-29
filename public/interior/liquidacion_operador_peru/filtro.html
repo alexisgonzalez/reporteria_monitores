@@ -1,0 +1,43 @@
+<div class="panel panel-default">
+
+	<div class="panel-body">
+		<form name="filtrar" ng-submit="buscarDatos()">
+			<div class="col-lg-4">
+				<div class="form-group">
+					<label>Periodo</label>
+					<div class="input-daterange input-group datepicker">
+						<input type="text" class="form-control" ng-model="formLiquidacion.date_begin" name="start" required>
+						<span class="input-group-addon panel"><li class="fa fa-calendar"></li></span>
+						<input type="text" class="form-control" ng-model="formLiquidacion.date_end" name="end" required>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="row form-group">
+					<div class="col-lg-4">
+						<label>Ejecutiv@ </label>
+					</div>
+					<div class="col-lg-4">
+						<label style="float:right;"><input type="checkbox" name="filterOp" id="filterOp" ng-model="formLiquidacion.filterOp" ng-change="cargarOperadores()">  Activ@s </label>
+					</div>
+					<div class="col-lg-4">
+						<label style="float:right;"><input type="checkbox" name="selectAll" id="selectAll" ng-model="formLiquidacion.selectAll" ng-change="selectAllOp()"> Tod@s</label>
+					</div>
+					<select name="selectOperador" id="selectOperador" ng-model="formLiquidacion.selectOperador" class=" form-control input-lg" required multiple size="4" style="width: 100%" ng-options="op.us_sup_user_id as op.us_sup_user for op in operadores | orderBy:'us_sup_user'">
+					</select>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<button type="submit" class="btn btn-danger col-lg-4" style="margin-top: 28px; margin-left: 200px;">Filtrar</button>
+			</div>
+		</form>
+	</div>
+</div>
+<script type="text/javascript">
+$('.datepicker').datepicker({
+	language:"es",
+	daysOfWeekHighlighted: "0,6",
+	todayHighlight: true,
+	endDate: new Date()
+});
+</script>

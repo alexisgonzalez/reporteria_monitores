@@ -1,0 +1,18 @@
+<table id="tabla" class="table row-border order-column table-condensed compact table-bordered table-responsive" cellspacing="0" width="100%">
+	<thead>
+		<tr class="colorOptimiza">
+			<th class="text-center">Sueldo</th>
+			<th class="text-center">Fecha creación</th>
+			<th class="text-center">Fecha inicio</th>
+			<th class="text-center">País</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="data in list">
+			<td class="text-center">{{data.simbolo_moneda}}{{data.sum_sueldo | number:0}}</td>
+			<td class="text-center">{{data.sum_fecha_creacion}}</td>
+			<td class="text-center">{{data.sum_fecha_inicio}}</td>
+			<td class="text-center">{{data.nombre_pais}}</td>
+		</tr>
+	</tbody>
+</table>

@@ -1,0 +1,37 @@
+<div id="formPais" class="modal fade" role="dialog">
+    <form ng-submit="guardarPais()">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{tipo_modal}} País</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group col-lg-3">
+                            <label>País</label>
+                            <input type="text" name="nombre" id="nombre_pais" ng-model="frmPais.nombre_pais" class="form-control" required>
+                        </div>
+                        <div class="form-group col-lg-3">
+                            <label>Código País</label>
+                            <input type="text" name="codigo_pais" id="codigo_pais" ng-model="frmPais.codigo_pais" class="form-control" required>
+                        </div>
+                        <div class="form-group col-lg-3">
+                            <label>Código Moneda</label>
+                            <input type="text" name="codigo_moneda" id="codigo_moneda" min="0" max="100" ng-model="frmPais.codigo_moneda" class="form-control" maxlength="5" required>
+                        </div>
+                        <div class="form-group col-lg-3">
+                            <label>Simbolo Moneda</label>
+                            <input type="text" name="simbolo" id="simbolo_moneda" ng-model="frmPais.simbolo_moneda" class="form-control" maxlength="4" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                    <button id="cerrarModal" type="button" class="btn btn-error" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

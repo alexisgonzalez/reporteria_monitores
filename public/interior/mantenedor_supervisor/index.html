@@ -1,0 +1,17 @@
+<div class="row">
+	<div class="col-lg-12 row-superior">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="col-lg-4">
+					<label><input type="checkbox" name="filtroActivo" ng-model="filtroListaSupervisores.filtroActivo" ng-change="traerListaSupervisores()"> Filtrar por activos</label>
+				</div>
+				<div class="col-lg-4" style="float:right;">
+					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#formSupervisor" ng-click="mostrarFormSupervisor('agregar',null)" style="float:right;"><i class="fa fa-plus"></i> Agregar supervisor</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div ng-include src="tablaSUP"></div>
+<div ng-include="'interior/mantenedor_supervisor/formulario_supervisor/formulario.html'"></div>
+<div ng-include="'interior/modal_dialog.html'"></div>

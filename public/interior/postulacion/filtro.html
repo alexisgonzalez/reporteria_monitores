@@ -1,0 +1,41 @@
+<div class="panel panel-default">
+	<div class="panel-body">
+		<form name="filtrar" ng-submit="buscarPostulaciones()">
+			<div class="col-lg-2">
+				<div class="row form-group">
+					<label>País</label>
+					<select name="pais" id="pais" ng-model="formFiltro.pais" class="form-control" required style="width: 100%" ng-options="pai.pai_id_pais as pai.pai_nombre for pai in paises | orderBy:'pai_nombre'">
+					</select>
+				</div>
+			</div>
+			<div class="col-lg-5">
+				<div class="form-group">
+					<label>Periodo</label>
+					<div class="input-daterange input-group datepicker">
+						<input type="text" class="form-control" ng-model="formFiltro.date_begin" name="start" required>
+						<span class="input-group-addon panel"><li class="fa fa-calendar"></li></span>
+						<input type="text" class="form-control" ng-model="formFiltro.date_end" name="end" required>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3">
+				<div class="row form-group">
+					<label>Estado postulación</label>
+					<select name="estado" id="estado" ng-model="formFiltro.es_id_estado" class="form-control" required style="width: 100%" ng-options="es.es_id_estado as es.es_nombre for es in estados">
+					</select>
+				</div>
+			</div>
+			<div class="col-lg-2">
+				<button type="submit" class="btn btn-danger btn-block" style="margin-top: 28px;">Filtrar</button>
+			</div>
+		</form>
+	</div>
+</div>
+<script type="text/javascript">
+	$('.datepicker').datepicker({
+		language:"es",
+		daysOfWeekHighlighted: "0,6",
+		todayHighlight: true,
+		endDate: new Date()
+	});
+</script>

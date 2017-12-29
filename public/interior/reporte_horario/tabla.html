@@ -1,0 +1,204 @@
+        <!--- TODO TODO TODO probar el boton de excel -->
+<div class="col-lg-12 loadingGif" style="text-align:center;" ng-show="showLoading">
+    <strong><i>Cargando datos de la tabla espere un momento ...</i></strong><br style="clear:both;" />
+    <img src="/images/loading.gif">
+    <p class="small"><i>Si los datos no se muestran correctamente, filtre nuevamente.</i></p>
+</div>
+<div class="col-lg-12" ng-show="busquedaHorario && !isOpe">
+    <p><strong> Totales: (Cant. operadores)</strong></p>
+    <p style="color:{{colorVacaciones}}" class="col-lg-2"> Vacaciones: <span style="color:black;">{{dataHorario.globalesHorario.formatVacaciones}} (<a ng-click="mostrarOperadorasExcepcion(dataHorario.operadoresExcepciones.operadorVacaciones,'vacaciones')" data-toggle="modal" data-target="#dialogExcepciones" style="cursor:pointer;">{{dataHorario.cantidadExcepciones.acumVacaciones}}</a>)</span></p>
+    <p style="color:{{colorLicencias}}" class="col-lg-2"> Licencia: <span style="color:black;">{{dataHorario.globalesHorario.formatLicencia}} (<a ng-click="mostrarOperadorasExcepcion(dataHorario.operadoresExcepciones.operadorLicencias, 'licencias')" data-toggle="modal" data-target="#dialogExcepciones" style="cursor:pointer;">{{dataHorario.cantidadExcepciones.acumLicencias}}</a>)</span> </p>
+    <p style="color:{{colorPermisos}}" class="col-lg-2"> Permisos: <span style="color:black;">{{dataHorario.globalesHorario.formatPermisos}} (<a ng-click="mostrarOperadorasExcepcion(dataHorario.operadoresExcepciones.operadorPermisos,'permisos')" data-toggle="modal" data-target="#dialogExcepciones" style="cursor:pointer;">{{dataHorario.cantidadExcepciones.acumPermisos}}</a>)</span> </p>
+    <p style="color:{{colorRecupero}}" class="col-lg-2"> Recuperos: <span style="color:black;">{{dataHorario.globalesHorario.formatRecupero}} (<a ng-click="mostrarOperadorasExcepcion(dataHorario.operadoresExcepciones.operadorRecupero,'recupero')" data-toggle="modal" data-target="#dialogExcepciones" style="cursor:pointer;">{{dataHorario.cantidadExcepciones.acumRecupero}}</a>)</span> </p>
+    <p style="color:{{colorAusentes}}" class="col-lg-2"> Ausentes: <span style="color:black;">{{dataHorario.globalesHorario.formatAusentes}} (<a ng-click="mostrarOperadorasExcepcion(dataHorario.operadoresExcepciones.operadorAusentes,'ausentismo')" data-toggle="modal" data-target="#dialogExcepciones" style="cursor:pointer;">{{dataHorario.cantidadExcepciones.acumAusentes}}</a>)</span> </p>
+    <p style="color:{{colorPermisosEsp}}" class="col-lg-2"> Permiso Especial: <span style="color:black;">{{dataHorario.globalesHorario.formatPermisosEsp}} (<a ng-click="mostrarOperadorasExcepcion(dataHorario.operadoresExcepciones.operadorPermisosEsp,'Permisos Especiales')" data-toggle="modal" data-target="#dialogExcepciones" style="cursor:pointer;">{{dataHorario.cantidadExcepciones.acumPermisosEsp}}</a>)</span> </p>
+    <p style="color:{{colorValidacionesManual}}" class="col-lg-2"> Val. Manual: <span style="color:black;">{{dataHorario.globalesHorario.formatValidacionesManual}} (<a ng-click="mostrarOperadorasExcepcion(dataHorario.operadoresExcepciones.operadorValidacionesManual,'Validaciones Manual')" data-toggle="modal" data-target="#dialogExcepciones" style="cursor:pointer;">{{dataHorario.cantidadExcepciones.acumValidacionesManual}}</a>)</span> </p>
+    <p style="color:{{colorSobreTiempo}}" class="col-lg-2"> Sobretiempo: <span style="color:black;">{{dataHorario.globalesHorario.formatSobreTiempo}} (<a ng-click="mostrarOperadorasExcepcion(dataHorario.operadoresExcepciones.operadorSobreTiempo,'Sobretiempo')" data-toggle="modal" data-target="#dialogExcepciones" style="cursor:pointer;">{{dataHorario.cantidadExcepciones.acumSobreTiempo}}</a>)</span> </p>
+    <p style="color:{{colorFaltaHorario}}" class="col-lg-2"> No cumple: <span style="color:black;">{{dataHorario.globalesHorario.formatFaltaHorario}} (<a ng-click="mostrarOperadorasExcepcion(dataHorario.operadoresExcepciones.operadorFaltaHorario,'No cumple horario')" data-toggle="modal" data-target="#dialogExcepciones" style="cursor:pointer;">{{dataHorario.cantidadExcepciones.acumFaltaHorario}}</a>)</span> </p>
+</div><br style="clear:both;">
+<button type="button" id="btnExport" ng-click="exportData()" ng-show="busquedaHorario" class="btn btn-default"><i class="glyphicon glyphicon-floppy-save"></i> Exportar Excel</button>
+        <table class="table table-striped table-bordered" id="tablaHH" cellspacing="0" width="100%" ng-show="busquedaHorario">
+            <thead>
+                <tr>
+                    <th class="colorOptimiza" rowspan="3">Ejecutiv@</th>
+                    <th class="colorOptimiza" rowspan="3">Cliente/Servicio</th>
+                    <th ng-if="flagDia" class="colorOptimiza2" colspan="{{widthColumns}}" ng-repeat="fecha in dataHorario.fechas_nombre track by $index" style="text-align:center;">{{fecha}}</th>
+                    <th ng-if="!flagDia" class="colorOptimiza2" colspan="4" ng-repeat="fecha in dataHorario.fechas_nombre track by $index" style="text-align:center;">{{fecha}}</th>
+                    <th class="colorOptimiza" colspan="5" rowspan="2">Totales Ejecutiv@</th>
+                </tr>
+                <tr>
+                    <th ng-if="flagDia" class="colorOptimiza2" colspan="{{widthColumns}}" ng-repeat="fecha in dataHorario.fechas" style="text-align:center;">{{fecha | date:'dd-MM-yyyy'}}</th>
+                    <th ng-if="!flagDia" class="colorOptimiza2" colspan="4" ng-repeat="fecha in dataHorario.fechas" style="text-align:center;">{{fecha | date:'dd-MM-yyyy'}}</th>
+                </tr>
+                <tr>
+                    <th class="colorOptimiza2" ng-repeat-start="fecha in dataHorario.fechas">Ideal</th>
+                    <th class="colorOptimiza2">Real</th>
+                    <th class="colorOptimiza2">Dif.</th>
+                    <th class="colorOptimiza2" ng-if="flagDia" title="Hora Entrada">Entrada</th>
+                    <th class="colorOptimiza2" ng-if="flagDia" title="Hora Salida">Salida</th>
+                    <th class="colorOptimiza2" ng-if="flagDia && dataHorario.showEstado">Turno</th>
+                    <th class="colorOptimiza2" ng-repeat-end>% Cump.</th>
+                    <th class="colorOptimiza">Contrato</th>
+                    <th class="colorOptimiza">Ideal</th>
+                    <th class="colorOptimiza">Real</th>
+                    <th class="colorOptimiza">% Cont.</th>
+                    <th class="colorOptimiza">% Ideal.</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="(id,operador) in dataHorario.horarios">
+                    <td ng-if="!isOpe"><a ng-click="cargarBitacoraOperador(id)" data-toggle="modal" data-target="#modalBitacora" style="cursor:pointer;">{{id}}</a></td>
+                    <td ng-if="isOpe">{{id}}</td>
+                    <td >{{dataHorario.arrUsuarioCampana[id].cliente}} / {{dataHorario.arrUsuarioCampana[id].corto}}</td>
+
+                    <td ng-repeat-start="fecha in dataHorario.fechas" ng-init="flag=operador[fecha].flag_excepciones" title="{{operador[fecha].texto}}">
+                        <!-- ng-class="{'domoCuartil1':domo.tramo_calidad=='1','domoCuartil2':domo.tramo_calidad=='2','domoCuartil3':domo.tramo_calidad=='3','domoCuartil4':domo.tramo_calidad=='4'}" -->
+                        <p ng-if="!isUndefined(operador[fecha])" ng-class="{'colorAusencia':flag=='6','colorNoCumplen':flag=='7'}" ng-style="(flag == 1) && {'color':colorVacaciones} || (flag == 2) && {'color':colorLicencias} || (flag == 3) && {'color':colorPermisos} || (flag == 4) && {'color':colorRecupero}">
+                            {{operador[fecha].ideal}}
+                        </p>
+                        <p ng-if="isUndefined(operador[fecha])">--</p>
+                    </td>
+                    <td>
+                        <p ng-if="!isUndefined(operador[fecha])">{{operador[fecha].real}}</p>
+                        <p ng-if="isUndefined(operador[fecha])">--</p>
+                    </td>
+                    <td>
+                        <p ng-if="!isUndefined(operador[fecha])">{{operador[fecha].diferencia}}</p>
+                        <p ng-if="isUndefined(operador[fecha])">--</p>
+                    </td>
+                    <td class="" ng-if="flagDia">{{dataHorario.horarioEntrada[id].horario_entrada}}</td>
+                    <td class="" ng-if="flagDia">{{dataHorario.horarioEntrada[id].horario_salida}}</td>
+                    <td class="" ng-if="flagDia && dataHorario.showEstado">{{operador[fecha].estado_adherencia}}</td>
+                    <td ng-repeat-end>
+                        <p ng-if="!isUndefined(operador[fecha].porcentaje)"><strong>{{operador[fecha].porcentaje}}%</strong></p>
+                        <p ng-if="isUndefined(operador[fecha].porcentaje)">--</p>
+                    </td>
+                    <td>{{dataHorario.globalesOperador[id].formatIdeal}}</td>
+                    <td>{{dataHorario.globalesOperador[id].formatIdealExce}}</td>
+                    <td>{{dataHorario.globalesOperador[id].formatAdhe}}</td>
+                    <td>{{dataHorario.globalesOperador[id].totalPorc}}%</td>
+                    <td>{{dataHorario.globalesOperador[id].totalPorcExce}}%</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th class="colorOptimiza" colspan="2"> Totales día</th>
+                    <th class="colorOptimiza2" ng-repeat-start="dia in dataHorario.globalesDia">{{dia.formatIdeal}}</th>
+                    <th class="colorOptimiza2">{{dia.formatAdhe}}</th>
+                    <th class="colorOptimiza2">{{dia.formatDif}}</th>
+                    <th class="colorOptimiza2" rowspan="2" ng-if="flagDia"></th>
+                    <th class="colorOptimiza2" rowspan="2" ng-if="flagDia"></th>
+                    <th class="colorOptimiza2" rowspan="2" ng-if="flagDia && dataHorario.showEstado"></th>
+                    <th class="colorOptimiza2" ng-repeat-end>{{dia.totalPorc}}%</th>
+                    <th class="colorOptimiza" rowspan="2" align="center">{{dataHorario.globalesHorario.formatIdeal}}</th>
+                    <th class="colorOptimiza" rowspan="2" align="center">{{dataHorario.globalesHorario.formatIdealExce}}</th>
+                    <th class="colorOptimiza" rowspan="2" align="center">{{dataHorario.globalesHorario.formatAdhe}}</th>
+                    <th class="colorOptimiza" rowspan="2" align="center">{{dataHorario.globalesHorario.totalPorc}}%</th>
+                    <th class="colorOptimiza" rowspan="2" align="center">{{dataHorario.globalesHorario.totalPorcExce}}%</th>
+                </tr>
+                <tr>
+                    <th class="colorOptimiza" colspan="2"> Total sin excepciones</th>
+                    <th class="colorOptimiza2" ng-repeat-start="dia in dataHorario.globalesDia">{{dia.formatIdealExce}}</th>
+                    <th class="colorOptimiza2">{{dia.formatAdhe}}</th>
+                    <th class="colorOptimiza2">{{dia.formatDifExce}}</th>
+                    <th class="colorOptimiza2" ng-repeat-end>{{dia.totalPorcExce}}%</th>
+                </tr>
+            </tfoot>
+        </table>
+
+    <div id="divTabla">
+        <table class="table table-striped table-bordered" id="tablaHH2" cellspacing="0" width="100%" ng-show="false">
+            <thead>
+                <tr>
+                    <th class="colorOptimiza" rowspan="3">Operador</th>
+                    <th class="colorOptimiza" rowspan="3">Cliente/Servicio</th>
+                    <th ng-if="flagDia" class="colorOptimiza2" colspan="{{widthColumns}}" ng-repeat="fecha in dataHorario.fechas_nombre track by $index" style="text-align:center;">{{fecha}}</th>
+                    <th ng-if="!flagDia" class="colorOptimiza2" colspan="4" ng-repeat="fecha in dataHorario.fechas_nombre track by $index" style="text-align:center;">{{fecha}}</th>
+                    <th class="colorOptimiza" colspan="5" rowspan="2">Totales Operador</th>
+                </tr>
+                <tr>
+                    <th ng-if="flagDia" class="colorOptimiza2" colspan="{{widthColumns}}" ng-repeat="fecha in dataHorario.fechas" style="text-align:center;">{{fecha | date:'dd-MM-yyyy'}}</th>
+                    <th ng-if="!flagDia" class="colorOptimiza2" colspan="4" ng-repeat="fecha in dataHorario.fechas" style="text-align:center;">{{fecha | date:'dd-MM-yyyy'}}</th>
+                </tr>
+                <tr>
+                    <th class="colorOptimiza2" ng-repeat-start="fecha in dataHorario.fechas">Ideal</th>
+                    <th class="colorOptimiza2">Real</th>
+                    <th class="colorOptimiza2">Dif.</th>
+                    <th class="colorOptimiza2" ng-if="flagDia" title="Hora Entrada">Entrada</th>
+                    <th class="colorOptimiza2" ng-if="flagDia" title="Hora Salida">Salida</th>
+                    <th class="colorOptimiza2" ng-if="flagDia && dataHorario.showEstado">Turno</th>
+                    <th class="colorOptimiza2" ng-repeat-end>% Cump.</th>
+                    <th class="colorOptimiza">Contrato</th>
+                    <th class="colorOptimiza">Ideal</th>
+                    <th class="colorOptimiza">Real</th>
+                    <th class="colorOptimiza">% Cont.</th>
+                    <th class="colorOptimiza">% Ideal.</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="(id,operador) in dataHorario.horarios">
+                    <td ng-if="!isOpe"><a ng-click="cargarBitacoraOperador(id)" data-toggle="modal" data-target="#modalBitacora" style="cursor:pointer;">{{id}}</a></td>
+                    <td ng-if="isOpe">{{id}}</td>
+                    <td >{{dataHorario.arrUsuarioCampana[id].cliente}}/{{dataHorario.arrUsuarioCampana[id].corto}}</td>
+                    <td ng-repeat-start="fecha in dataHorario.fechas" ng-init="flag=operador[fecha].flag_excepciones" title="{{operador[fecha].texto}}" ng-style="(flag == 6) && {'background-color': '#B4000B','color':'white','font-weight': 'bold'} || (flag == 7) && {'background-color': '#e1cc2a','color':'#B4000B','font-weight': 'bold'}">
+                        <p ng-if="!isUndefined(operador[fecha])" ng-style="(flag == 1) && {'color':colorVacaciones} || (flag == 2) && {'color':colorLicencias} || (flag == 3) && {'color':colorPermisos} || (flag == 4) && {'color':colorRecupero}">
+                            {{operador[fecha].ideal}}
+                        </p>
+                        <p ng-if="isUndefined(operador[fecha])">--</p>
+                    </td>
+                    <td>
+                        <p ng-if="!isUndefined(operador[fecha])">{{operador[fecha].real}}</p>
+                        <p ng-if="isUndefined(operador[fecha])">--</p>
+                    </td>
+                    <td>
+                        <p ng-if="!isUndefined(operador[fecha])">{{operador[fecha].diferencia}}</p>
+                        <p ng-if="isUndefined(operador[fecha])">--</p>
+                    </td>
+                    <td class="" ng-if="flagDia">{{dataHorario.horarioEntrada[id].horario_entrada}}</td>
+                    <td class="" ng-if="flagDia">{{dataHorario.horarioEntrada[id].horario_salida}}</td>
+                    <td class="" ng-if="flagDia && dataHorario.showEstado">{{operador[fecha].estado_adherencia}}</td>
+                    <td ng-repeat-end>
+                        <p ng-if="!isUndefined(operador[fecha].porcentaje)"><strong>{{operador[fecha].porcentaje}}%</strong></p>
+                        <p ng-if="isUndefined(operador[fecha].porcentaje)">--</p>
+                    </td>
+                    <td>{{dataHorario.globalesOperador[id].formatIdeal}}</td>
+                    <td>{{dataHorario.globalesOperador[id].formatIdealExce}}</td>
+                    <td>{{dataHorario.globalesOperador[id].formatAdhe}}</td>
+                    <td>{{dataHorario.globalesOperador[id].totalPorc}}%</td>
+                    <td>{{dataHorario.globalesOperador[id].totalPorcExce}}%</td>
+                </tr>
+                <tr>
+                    <td class="colorOptimiza" colspan="2"> Totales día</td>
+                    <td class="colorOptimiza2" ng-repeat-start="dia in dataHorario.globalesDia">{{dia.formatIdeal}}</td>
+                    <td class="colorOptimiza2">{{dia.formatAdhe}}</td>
+                    <td class="colorOptimiza2">{{dia.formatDif}}</td>
+                    <td class="colorOptimiza2" rowspan="2" ng-if="flagDia"></td>
+                    <td class="colorOptimiza2" rowspan="2" ng-if="flagDia"></td>
+                    <td class="colorOptimiza2" rowspan="2" ng-if="flagDia && dataHorario.showEstado"></td>
+                    <td class="colorOptimiza2" ng-repeat-end>{{dia.totalPorc}}%</td>
+                    <td class="colorOptimiza" rowspan="2" align="center">{{dataHorario.globalesHorario.formatIdeal}}</td>
+                    <td class="colorOptimiza" rowspan="2" align="center">{{dataHorario.globalesHorario.formatIdealExce}}</td>
+                    <td class="colorOptimiza" rowspan="2" align="center">{{dataHorario.globalesHorario.formatAdhe}}</td>
+                    <td class="colorOptimiza" rowspan="2" align="center">{{dataHorario.globalesHorario.totalPorc}}%</td>
+                    <td class="colorOptimiza" rowspan="2" align="center">{{dataHorario.globalesHorario.totalPorcExce}}%</td>
+                </tr>
+                <tr>
+                    <td class="colorOptimiza" colspan="2"> Total sin excepciones</td>
+                    <td class="colorOptimiza2" ng-repeat-start="dia in dataHorario.globalesDia">{{dia.formatIdealExce}}</td>
+                    <td class="colorOptimiza2">{{dia.formatAdhe}}</td>
+                    <td class="colorOptimiza2">{{dia.formatDifExce}}</td>
+                    <td class="colorOptimiza2" ng-repeat-end>{{dia.totalPorcExce}}%</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<style type="text/css">
+    th, td { white-space: nowrap; }
+    div.dataTables_wrapper {
+        margin: 0 auto;
+    }
+ 
+    div.container {
+        width: 80%;
+    }
+</style>

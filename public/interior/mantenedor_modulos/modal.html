@@ -1,0 +1,39 @@
+<div id="formMod" class="modal fade" role="dialog">
+    <form name="filtrar" ng-submit="guardarModulo()">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modulo : {{formMod.mos_titulo}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Titulo Menu</label>
+                                <input type="text" name="mos_titulo" id="mos_titulo" ng-model="formMod.mos_titulo" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Titulo Pagina</label>
+                                <input type="text" name="mos_titulo_pagina" id="mos_titulo_pagina" ng-model="formMod.mos_titulo_pagina" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label>Descripcion</label>
+                                <input type="text" name="mos_descripcion" id="mos_descripcion" ng-model="formMod.mos_descripcion" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">Guardar</button>
+                    <button id="cerrarModal" type="button" class="btn btn-error" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

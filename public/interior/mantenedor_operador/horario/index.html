@@ -1,0 +1,99 @@
+<div class="row">
+	<div class="col-lg-12">
+		<h4 class="page-header"> Horario de {{opeName}}  
+			<div class="btn-group pull-right" ng-if="rangoCalendar==15">
+				<button type="button" class="btn btn-primary disabled">15 min</button>
+				<button type="button" class="btn btn-default" ng-click="cambioRango()">5 min</button>
+			</div>
+			<div class="btn-group pull-right" ng-if="rangoCalendar==5">
+				<button type="button" class="btn btn-default" ng-click="cambioRango()">15 min</button>
+				<button type="button" class="btn btn-primary disabled">5 min</button>
+			</div>
+  		</h4>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<nav class="navbar navbar-default">
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-3">
+					<p id="maxDuration" class="navbar-text"><strong>Contrato de {{maxDuration}} Horas</strong></p>
+					<div class="divider-vertical">
+						<p class="navbar-text"><strong>Total Horario: <span id="totalDurationText" ng-bind="totalDurationText" class="text-danger"></span></strong></p>
+
+					</div>
+					<button type="button" id="btnCambio" ng-click="mostrarCambios(operador)" class="btn btn-default navbar-btn pull-left"><i class="fa fa-file-text-o"></i> Cambios de horario </button>
+					<button type="button" id="btnPermitirEditar" ng-click="showConfirm('allowEdit')" class="btn btn-warning navbar-btn pull-right" style="display:none;"><i class="glyphicon glyphicon-edit"></i> Editar horario</button>
+					<button type="button" id="btnGuardar" ng-click="showConfirm('create')" class="btn btn-success navbar-btn pull-right" style="display:none;"><i class="glyphicon glyphicon-save"></i> Guardar horario</button>
+					<div class="navbar-form navbar-right" style="display:none;" id="divEditar">
+						<div class="form-group">
+							<span>Fecha inicio del cambio de horario: </span>
+							<input type="text" class="input-sm form-control datepicker" ng-model="dateBegin" ng-change="changeDate()" name="start" required>
+						</div>
+						<button type="button" id="btnEditar" ng-click="showConfirm('update')" class="btn btn-success" disabled="true"><i class="glyphicon glyphicon-save"></i> Guardar cambios horario</button>
+						<button type="button" id="btnCancelarEditar" ng-click="cancelUpdate()" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Cancelar </button>
+					</div>
+				</div>
+			</nav>
+			<div class="panel-body" style="max-height: 700px;overflow-y: scroll;">
+				<!-- horas por dia -->
+				<div>
+					<div style="position: relative; zoom: 1;">
+						<div style="float: left; width: 45px;">
+
+						</div>
+						<div style="margin-left: 45px; position: relative; overflow: hidden; height: 20px;">
+							<div style="position: relative; width: 100%;">
+								<table cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;">
+									<tbody>
+										<tr>
+											<td style="overflow: hidden; padding: 0px; border: 0px none; height: 20px;">
+												<div unselectable="on" class="calendar_default_colheader" style="-webkit-user-select: none; position: relative; height: 20px;">
+													<div class="calendar_default_colheader_inner"><span id="mondayText"></div>
+												</div>
+											</td>
+											<td style="overflow: hidden; padding: 0px; border: 0px none; height: 20px;">
+												<div unselectable="on" class="calendar_default_colheader" style="-webkit-user-select: none; position: relative; height: 20px;">
+													<div class="calendar_default_colheader_inner"><span id="tuesdayText"></span></div>
+												</div>
+											</td>
+											<td style="overflow: hidden; padding: 0px; border: 0px none; height: 20px;">
+												<div unselectable="on" class="calendar_default_colheader" style="-webkit-user-select: none; position: relative; height: 20px;">
+													<div class="calendar_default_colheader_inner"><span id="wednesdayText"></span></div>
+												</div>
+											</td>
+											<td style="overflow: hidden; padding: 0px; border: 0px none; height: 20px;">
+												<div unselectable="on" class="calendar_default_colheader" style="-webkit-user-select: none; position: relative; height: 20px;">
+													<div class="calendar_default_colheader_inner"><span id="thursdayText"></span></div>
+												</div>
+											</td>
+											<td style="overflow: hidden; padding: 0px; border: 0px none; height: 20px;">
+												<div unselectable="on" class="calendar_default_colheader" style="-webkit-user-select: none; position: relative; height: 20px;">
+													<div class="calendar_default_colheader_inner"><span id="fridayText"></span></div>
+												</div>
+											</td>
+											<td style="overflow: hidden; padding: 0px; border: 0px none; height: 20px;">
+												<div unselectable="on" class="calendar_default_colheader" style="-webkit-user-select: none; position: relative; height: 20px;">
+													<div class="calendar_default_colheader_inner"><span id="saturdayText"></span></div>
+												</div>
+											</td>
+											<td rowspan="1" style="width: 0px;">
+												<div unselectable="on" class="calendar_default_cornerright" style="overflow: hidden; height: 20px; position: relative;">
+													<div class="calendar_default_cornerright_inner"></div>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- fin horas por dia  -->
+				<daypilot-calendar id="dp" daypilot-config="config" daypilot-events="events"></daypilot-calendar>
+			</div>
+		</div>
+	</div>
+</div>
+<div ng-include="'interior/modal_dialog.html'"></div>
+<div ng-include="'interior/mantenedor_operador/horario/modal_cambios.html'"></div>

@@ -1,0 +1,34 @@
+<div class="navbar navbar-fixed-top text-center barras"  style="background-color:slategray">
+   <span style="color:white"> <h1>INGRESA</h1> </span>
+</div>
+<br>
+<br>
+<br>
+<div class="container-fluid">
+    <div class="row text-center">
+        <div class="col-md-4"></div>
+        <div class="col-md-4" style="margin-top: 13px;">
+            <IMG SRC="images/calling.jpg">
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+    <div class="row text-center">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            
+            <form role="form" action="/login_verified2" method="POST">
+                <fieldset>
+                    <div class="form-group">
+                        <input class="form-control" ng-model="frmLogin.user" placeholder="Usuario vicidial" name="user" type="text" autofocus>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" ng-model="frmLogin.password" placeholder="Contraseña" name="password" type="password" value="">
+                    </div><br style="clear:both;">
+                    <!-- Change this to a button or input when using this as a form -->
+                    <button type="submit" class="btn btn-lg btn-success btn-block" style="background:#DE2A46;">Acceder</button>
+                </fieldset>
+            </form>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>

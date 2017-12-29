@@ -1,0 +1,16 @@
+<div class="panel panel-default">
+	<div class="panel-body">
+		<form name="filtrar" ng-submit="cargarFeriados()">
+			<div class="col-lg-8">
+				<div class="form-group">
+					<label>Periodo</label>
+					<select name="selectYear" id="selectYear" ng-model="formFiltrarFeriado.selectYear" class="form-control" required ng-options="year.year as year.year for year in listYear"></select>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<button type="submit" class="btn btn-danger col-lg-4" style="margin-top: 28px; float: right;">Filtrar</button>
+			</div>
+		</form>
+		<p style="float: right;margin-top: 10px;">*Al cargar son visibles los feriados del año actual</p>
+	</div>
+</div>

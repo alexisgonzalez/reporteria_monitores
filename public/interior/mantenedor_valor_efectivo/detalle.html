@@ -1,0 +1,45 @@
+<div id="detalleHistoria" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-uppercase">Detalle valor por efectivo {{cliente}} - {{servicio}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <table id='detalle' class="table row-border order-column table-condensed compact table-bordered table-responsive" cellspacing="0" width="100%">
+                        <thead>
+                            <tr class="colorOptimiza2">
+                                <th class="text-center">Creación</th>
+                                <th class="text-center">Descripcion</th>
+                                <th class="text-center">Valor</th>
+                                <th class="text-center">Velocidad</th>
+                                <th class="text-center">Activar/Desactivar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="lista in listaDetalle">
+                                <td class="text-center">{{lista.cvr_fec_crea}}</td>
+                                <td>{{lista.cvr_descripcion}}</td>
+                                <td class="text-center">{{lista.cvr_valorRegistro}}</td>
+                                <td class="text-center">{{lista.cvr_velocidad}}</td>
+                                <td class="text-center">
+                                    <button ng-if="lista.cvr_estado==1" class="btn btn-default btn-circle" type="button" title="Desactivar tramo" ng-click="cambiarEstado(lista,'desactivado');">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+                                    <button ng-if="lista.cvr_estado==0" class="btn btn-default btn-circle" type="button" title="Activar tramo" ng-click="cambiarEstado(lista,'activado');">
+                                        <i class="fa fa-check"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cerrarModal" type="button" class="btn btn-error" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

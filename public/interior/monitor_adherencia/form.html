@@ -1,0 +1,133 @@
+<form ng-submit="guardarPreferenciaAdherencia()">
+	<div class="col-lg-4">
+		<div class="panel panel-default">
+			<div class="panel-heading text-uppercase">
+				Seleccione:
+			</div>
+			<div class="panel-body">
+				<div class="form-group col-lg-12">
+					<label>Cliente</label>
+					<select name="idCliente" ng-model="formPreferencias[1].id_cliente" class="form-control" ng-options="cli.id_cliente as cli.cliente for cli in listaClientes" ng-change="getServiciosVibox(1)">
+					</select>
+				</div>
+				<div class="form-group col-lg-12">
+					<label>Servicio</label>
+					<select name="idServicio" ng-model="formPreferencias[1].id_servicio" class="form-control" ng-required="formPreferencias[1].id_cliente!=null">
+						<option value="">Seleccione</option>
+						<option ng-repeat="ser in serviciosMonitor[1]" value="{{ser.id_servicio}}">{{ser.servicio}}</option>
+					</select>
+				</div>
+			</div>		
+		</div>
+	</div>
+	<div class="col-lg-4">
+		<div class="panel panel-default">
+			<div class="panel-heading text-uppercase">
+				Seleccione:
+			</div>
+			<div class="panel-body">
+				<div class="form-group col-lg-12">
+					<label>Cliente</label>
+					<select name="idCliente" ng-model="formPreferencias[2].id_cliente" class="form-control" ng-options="cli.id_cliente as cli.cliente for cli in listaClientes" ng-change="getServiciosVibox(2)">
+					</select>
+				</div>
+				<div class="form-group col-lg-12">
+					<label>Servicio</label>
+					<select name="idServicio" ng-model="formPreferencias[2].id_servicio" class="form-control" ng-required="formPreferencias[2].id_cliente!=null">
+						<option value="">Seleccione</option>
+						<option ng-repeat="ser in serviciosMonitor[2]" value="{{ser.id_servicio}}">{{ser.servicio}}</option>
+					</select>
+				</div>
+			</div>		
+		</div>
+	</div>
+	<div class="col-lg-4">
+		<div class="panel panel-default">
+			<div class="panel-heading text-uppercase">
+				Seleccione:
+			</div>
+			<div class="panel-body">
+				<div class="form-group col-lg-12">
+					<label>Cliente</label>
+					<select name="idCliente" ng-model="formPreferencias[3].id_cliente" class="form-control" ng-options="cli.id_cliente as cli.cliente for cli in listaClientes" ng-change="getServiciosVibox(3)">
+					</select>
+				</div>
+				<div class="form-group col-lg-12">
+					<label>Servicio</label>
+					<select name="idServicio" ng-model="formPreferencias[3].id_servicio" class="form-control" ng-required="formPreferencias[3].id_cliente!=null">
+						<option value="">Seleccione</option>
+						<option ng-repeat="ser in serviciosMonitor[3]" value="{{ser.id_servicio}}">{{ser.servicio}}</option>
+					</select>
+				</div>
+			</div>		
+		</div>
+	</div>
+	<div class="col-lg-4">
+		<div class="panel panel-default">
+			<div class="panel-heading text-uppercase">
+				Seleccione:
+			</div>
+			<div class="panel-body">
+				<div class="form-group col-lg-12">
+					<label>Cliente</label>
+					<select name="idCliente" ng-model="formPreferencias[4].id_cliente" class="form-control" ng-options="cli.id_cliente as cli.cliente for cli in listaClientes" ng-change="getServiciosVibox(4)">
+					</select>
+				</div>
+				<div class="form-group col-lg-12">
+					<label>Servicio</label>
+					<select name="idServicio" ng-model="formPreferencias[4].id_servicio" class="form-control" ng-required="formPreferencias[4].id_cliente!=null">
+						<option value="">Seleccione</option>
+						<option ng-repeat="ser in serviciosMonitor[4]" value="{{ser.id_servicio}}">{{ser.servicio}}</option>
+					</select>
+				</div>
+			</div>		
+		</div>
+	</div>
+	<div class="col-lg-4">
+		<div class="panel panel-default">
+			<div class="panel-heading text-uppercase">
+				Seleccione:
+			</div>
+			<div class="panel-body">
+				<div class="form-group col-lg-12">
+					<label>Cliente</label>
+					<select name="idCliente" ng-model="formPreferencias[5].id_cliente" class="form-control" ng-options="cli.id_cliente as cli.cliente for cli in listaClientes" ng-change="getServiciosVibox(5)">
+					</select>
+				</div>
+				<div class="form-group col-lg-12">
+					<label>Servicio</label>
+					<select name="idServicio" ng-model="formPreferencias[5].id_servicio" class="form-control" ng-required="formPreferencias[5].id_cliente!=null">
+						<option value="">Seleccione</option>
+						<option ng-repeat="ser in serviciosMonitor[5]" value="{{ser.id_servicio}}">{{ser.servicio}}</option>
+					</select>
+				</div>
+			</div>		
+		</div>
+	</div>
+	<div class="col-lg-4">
+		<div class="panel panel-default">
+			<div class="panel-heading text-uppercase">
+				Seleccione:
+			</div>
+			<div class="panel-body">
+				<div class="form-group col-lg-12">
+					<label>Cliente</label>
+					<select name="idCliente" ng-model="formPreferencias[6].id_cliente" class="form-control" ng-options="cli.id_cliente as cli.cliente for cli in listaClientes" ng-change="getServiciosVibox(6)">
+					</select>
+				</div>
+				<div class="form-group col-lg-12">
+					<label>Servicio</label>
+					<select name="idServicio" ng-model="formPreferencias[6].id_servicio" class="form-control" ng-required="formPreferencias[6].id_cliente!=null">
+						<option value="">Seleccione</option>
+						<option ng-repeat="ser in serviciosMonitor[6]" value="{{ser.id_servicio}}">{{ser.servicio}}</option>
+					</select>
+				</div>
+			</div>		
+		</div>
+	</div>
+	<div class="col-lg-12" >
+		<div class="form-group col-lg-12">
+			<button type="submit" class="btn btn-success col-lg-12">Cargar</button>
+		</div>
+	</div>
+</form>

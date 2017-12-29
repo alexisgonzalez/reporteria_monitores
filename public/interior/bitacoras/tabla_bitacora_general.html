@@ -1,0 +1,46 @@
+<table class="table table-striped table-bordered display" id="tablaBitacora" cellspacing="0">
+    <thead>
+        <tr>
+            <th class="colorOptimiza">Ejecutiv@</th>
+            <th class="colorOptimiza">Ingreso Incidencia</th>
+            <th class="colorOptimiza">Fecha Incidencia</th>
+            <th class="colorOptimiza">Incidencia</th>
+            <th class="colorOptimiza">Tipo Incidencia</th>
+            <th class="colorOptimiza">Medio Gestión</th>
+            <th class="colorOptimiza">Resolución</th>
+            <th class="colorOptimiza">Informante</th>
+            <th class="colorOptimiza" style="width:150px;">Observación</th>
+            <th class="colorOptimiza">Editar</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th class="colorOptimiza">Ejecutiv@</th>
+            <th class="colorOptimiza">&nbsp;</th>
+            <th class="colorOptimiza">&nbsp;</th>
+            <th class="colorOptimiza">Incidencia</th>
+            <th class="colorOptimiza">Tipo Incidencia</th>
+            <th class="colorOptimiza">Medio Gestión</th>
+            <th class="colorOptimiza">Resolución</th>
+            <th class="colorOptimiza">Informante</th>
+            <th class="colorOptimiza">&nbsp;</th>
+            <th class="colorOptimiza">&nbsp;</th>
+        </tr>
+    </tfoot>
+    <tbody>
+        <tr ng-repeat="bit in bitacoras">
+            <td>{{bit.usuario_codigo}}</td>
+            <td>{{bit.bop_fecha_ingreso}}</td>
+            <td>{{bit.bop_fecha_incidencia}}</td>
+            <td>{{bit.inc_nom_incidencia}}</td>
+            <td>{{bit.tgs_descripcion}}</td>
+            <td>{{bit.tgo_descripcion_gestion}}</td>
+            <td>{{bit.res_descripcion}}</td>
+            <td>{{bit.usu_nom_usuario}}</td>
+            <td>{{bit.bop_observacion}}</td>
+            <td>
+                <button class="btn btn-default btn-circle" type="button" title="Editar meta" data-toggle="modal" data-target="#modalEditarBitacora" ng-click="editarBitacora(bit)"><i class="fa fa-pencil"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>

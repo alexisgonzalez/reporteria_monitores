@@ -1,0 +1,30 @@
+<table id='tabla' class="table row-border order-column table-condensed compact table-bordered table-responsive" cellspacing="0" width="100%">
+	<thead>
+		<tr class="colorOptimiza">
+			<th class="text-center">Cliente</th>
+			<th class="text-center">País</th>
+			<th class="text-center">Servicio</th>
+			<th class="text-center">Creación</th>
+			<th class="text-center">Inicio</th>
+			<th class="text-center">Descripción</th>
+			<th class="text-center">Velocidad</th>
+			<th class="text-center">Valor</th>
+			<th class="text-center">Accion</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="data in list">
+			<td class="text-uppercase">{{data.nom_cliente}}</td>
+			<td class="text-uppercase">{{data.nombre_pais}}</td>
+			<td class="text-uppercase">{{data.nom_servicio}}</td>
+			<td class="text-uppercase">{{data.fecha}}</td>
+			<td class="text-uppercase">{{data.fecha_inicio}}</td>
+			<td>{{data.descripcion}}</td>
+			<td class="text-center">{{data.velocidad}}</td>
+			<td class="text-center">{{data.simbolo_moneda}} {{data.valor_registro | number:2}}</td>
+			<td class="text-center">
+				<button class="btn btn-default btn-circle" type="button" title="Ver historial de valores" data-toggle="modal" data-target="#detalleHistoria" ng-click="verDetalle(data);"><i class="fa fa-search-plus"></i></button> 
+			</td>
+		</tr>
+	</tbody>
+</table>

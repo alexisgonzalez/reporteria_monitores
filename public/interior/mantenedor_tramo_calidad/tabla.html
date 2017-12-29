@@ -1,0 +1,24 @@
+<table id='tabla' class="table row-border order-column table-condensed compact table-bordered table-responsive" cellspacing="0" width="100%">
+	<thead>
+		<tr class="colorOptimiza">
+			<th class="text-center">Puntaje</th>
+			<th class="text-center">Bono</th>
+			<th class="text-center">Fecha creación</th>
+			<th class="text-center">Fecha inicio</th>
+			<th class="text-center">País</th>
+			<th class="text-center">Acciones</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="data in list">
+			<td class="text-center">{{data.trc_tramo}}</td>
+			<td class="text-center">{{data.simbolo_moneda}}{{data.trc_bono | number:0}}</td>
+			<td class="text-center">{{data.trc_fecha_creacion}}</td>
+			<td class="text-center">{{data.trc_fecha_inicio}}</td>
+			<td class="text-center">{{data.nombre_pais}}</td>
+			<td class="text-center">
+				<button class="btn btn-default btn-circle" type="button" title="Ver historial tramo" data-toggle="modal" data-target="#detalleHistoria" ng-click="verDetalle(data);"><i class="fa fa-search-plus"></i></button>
+			</td>
+		</tr>
+	</tbody>
+</table>

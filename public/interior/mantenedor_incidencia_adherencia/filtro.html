@@ -1,0 +1,113 @@
+<div class="panel panel-default">
+	<div class="panel-body">
+		<form name="filtrar" ng-submit="guardarIncidencia()">
+			<div class="row">
+				<div class="col-lg-3">
+					<div class="form-group">
+						<label>Tipo</label>
+						<select ng-model="formIncidencia.tipo" ng-change="cambioTipo()" class="form-control" ng-options="inc.inc_id_incidencia as inc.inc_nom_incidencia for inc in tipo | orderBy:'inc_nom_incidencia'" required></select>
+					</div>
+				</div>
+				<div class="col-lg-3">
+					<div class="form-group">
+						<label>Ejecutiv@s</label><p ng-if="masivo" style="float: right;"><input type="checkbox" ng-model="formIncidencia.masiva" ng-change="cambioMasivo()"> MASIVA</p>
+						<select ng-if="multiple" ng-model="formIncidencia.operador" id="operador_multiple" class=" form-control" multiple size="4" ng-options="op.id_usuario as op.usuario_codigo for op in ejecutivos | orderBy:'usuario_codigo'" ng-required="formIncidencia.tipo == 35 || formIncidencia.tipo == 33 || formIncidencia.tipo == 34 || !formIncidencia.masiva">
+						</select>
+						<select ng-if="only" ng-model="formIncidencia.operador" id="operador_only" class=" form-control" ng-options="op.id_usuario as op.usuario_codigo for op in ejecutivos | orderBy:'usuario_codigo'">
+						</select>
+					</div>
+				</div>
+
+				<div class="col-lg-6 periodo">
+					<label>Periodo</label>
+					<div class="input-daterange input-group datepicker">
+						<input type="text" class="form-control" ng-model="formIncidencia.date_begin" name="start" ng-required="formIncidencia.tipo == 3 || formIncidencia.tipo == 4">
+						<span class="input-group-addon panel"><li class="fa fa-calendar"></li></span>
+						<input type="text" class="form-control" ng-model="formIncidencia.date_end" name="end" ng-required="formIncidencia.tipo == 3 || formIncidencia.tipo == 4">
+					</div>
+				</div>
+				<div class="col-lg-6 hora">
+					<label>Fecha</label>  
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="form-inline input-group">
+								<input type="text" id="date" class="form-control datepicker" ng-model="formIncidencia.date_begin" name="start" ng-required="formIncidencia.tipo == 33 || formIncidencia.tipo == 34 || formIncidencia.tipo == 35 ||formIncidencia.tipo == 32">
+								<span class="input-group-addon panel"><li class="fa fa-calendar" aria-hidden="true"></li></span>
+							</div>   
+						</div>
+						<div class="col-lg-3">
+							<div class="input-group bootstrap-timepicker timepicker">
+								<input id="" type="text" class="form-control timepick" ng-model="formIncidencia.h_begin" ng-required="formIncidencia.tipo == 35 || formIncidencia.tipo == 33 || formIncidencia.tipo == 34 || formIncidencia.tipo == 32">
+								<span class="input-group-addon panel"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+							</div>
+						</div>
+						<div class="col-lg-3">
+							<div class="input-group bootstrap-timepicker timepicker">
+								<input id="" type="text" class="form-control timepick" ng-model="formIncidencia.h_end" ng-required="formIncidencia.tipo == 35 || formIncidencia.tipo == 33 || formIncidencia.tipo == 34 || formIncidencia.tipo == 32">
+								<span class="input-group-addon panel"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="{{class_desc}}">
+					<div class="form-group">
+						<label>Observación</label> 
+						<textarea rows="2" name="obs" value="obs" maxlength="2000" ng-model="formIncidencia.obs" class="form-control" required></textarea> 
+					</div>
+				</div>
+				<div  class="permiso {{class_desc}}">
+					<div class="form-group">
+						<label>Permiso</label>
+						<select name="permiso" id="permiso" ng-model="formIncidencia.permiso" class="form-control" ng-options="permiso.tip_id_tipo_permiso as permiso.tip_descripcion for permiso in permisos" ng-change="cambioPermiso()"></select>
+					</div>
+				</div>
+				<div class="recupero col-lg-4">
+					<label>Fecha recupero</label>  
+					<div class="row">
+						<div class="col-lg-4">
+							<div class="form-inline input-group">
+								<input type="text" id="date" class="form-control datepicker" ng-model="formIncidencia.rec_date_begin" name="start" ng-required="formIncidencia.permiso == 1">
+								<span class="input-group-addon panel"><li class="fa fa-calendar"></li></span>
+							</div>   
+						</div>
+						<div class="col-lg-4">
+							<div class="input-group bootstrap-timepicker timepicker">
+								<input id="" type="text" class="form-control timepick" ng-model="formIncidencia.rec_h_begin" ng-required="formIncidencia.permiso == 1">
+								<span class="input-group-addon panel"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="input-group bootstrap-timepicker timepicker">
+								<input id="" type="text" class="form-control timepick" ng-model="formIncidencia.rec_h_end" ng-required="formIncidencia.permiso == 1">
+								<span class="input-group-addon panel"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 guardar">
+					<button type="submit" class="btn btn-success col-lg-2" style="float: right; margin-bottom: 5px; margin-right: 5px;"> <i class="fa fa-plus" aria-hidden="true"></i> Solicitar</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<script type="text/javascript">
+	$('.hora').hide();
+	$('.permiso').hide();
+	$('.recupero').hide();
+	$('.datepicker').datepicker({
+		language:"es",
+		daysOfWeekHighlighted: "0,6",
+		todayHighlight: true,
+	});
+	$('.timepick').timepicker({
+		minuteStep: 15,
+		showInputs: false,
+		disableFocus: true,
+		showMeridian: false
+	});
+</script>

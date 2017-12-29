@@ -1,0 +1,39 @@
+<div id="form" class="modal fade" role="dialog">
+    <form name="formulario" ng-submit="guardarTipo()">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-capitalize">{{form.modo}} tipo</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Nombre</label>
+                                <input type="text" name="tiej_nombre" maxlength="100" ng-model="form.tiej_nombre" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Descripción</label>
+                                <input type="text" name="tiej_descripcion" maxlength="100" ng-model="form.tiej_descripcion" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <label>Antigüedad</label>
+                            <div class="form-group">
+                                <input type="number" class="form-control" name="tiej_antiguedad_valor" ng-model="form.tiej_antiguedad_valor" min='1' max='99' placeholder="Meses"> (Desde fecha de contrato)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger">Guardar</button>
+                        <button type="button" class="btn btn-error cerrarModal" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

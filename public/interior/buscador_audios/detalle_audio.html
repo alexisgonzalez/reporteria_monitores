@@ -1,0 +1,55 @@
+<div class="panel panel-default">
+    <div class="panel-heading" style="background:none;">
+        <h3 class="panel-title"><strong>Detalle audio</strong></h3>
+    </div>
+    <div class="panel-body">
+        <div class="col-lg-4" ng-if="!flagExterno">
+			<div class="form-group">
+				<label>Id ani</label>
+				<input type="text" class="input-sm form-control" ng-model="frmFiltroAudios.id_ani" name="id_ani">
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="form-group">
+				<label>Telefono</label>
+				<input type="text" class="input-sm form-control" ng-model="frmFiltroAudios.telefono" name="telefono">
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="form-group">
+				<label>Rut</label>
+				<input type="text" class="input-sm form-control" ng-model="frmFiltroAudios.rut" name="rut">
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="form-group">
+				<label>Nombre habiente</label>
+				<input type="text" class="input-sm form-control" ng-model="frmFiltroAudios.nombre" name="nombre">
+			</div>
+		</div>
+		<div class="col-lg-4" ng-if="!flagExterno">
+			<div class="form-group">
+				<label>I.C. cliente</label>
+				<input type="text" class="input-sm form-control" ng-model="frmFiltroAudios.ic_cliente" name="ic_cliente">
+			</div>
+		</div>
+		<div class="col-lg-4" ng-if="!flagExterno">
+			<div class="form-group">
+				<label>C.U. cliente</label>
+				<input type="text" class="input-sm form-control" ng-model="frmFiltroAudios.cu_cliente" name="cu_cliente">
+			</div>
+		</div>
+		<div class="col-lg-6" ng-if="flagExterno">
+			<div class="form-group">
+				<label>Identificador Cliente</label>
+				<input type="text" class="input-sm form-control" ng-model="frmFiltroAudios.id_cliente" name="id_cliente">
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="form-group">
+				<label>Estados</label>
+				<select id="filtroEstado" name="estado" ng-model="frmFiltroAudios.estado" class="form-control" ng-options ="es.status as es.status for es in listaEstados"></select>
+			</div>
+		</div>
+    </div>
+</div>

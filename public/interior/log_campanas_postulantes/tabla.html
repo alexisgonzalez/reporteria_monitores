@@ -1,0 +1,20 @@
+<table id='tabla' class="table row-border order-column table-condensed compact table-bordered table-responsive tabla" cellspacing="0" width="100%">
+	<thead>
+		<tr class="colorOptimiza">
+			<th class="text-center">ID</th>
+			<th class="text-center">Fecha creación</th>
+			<th class="text-center">ID Campana</th>
+			<th class="text-center">Detalle</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="data in lista">
+			<td class="text-center">{{data.locr_id_log_creacion_campana}}</td>
+			<td class="text-center">{{data.locr_id_fecha_creacion}}</td>
+			<td class="text-center">{{data.id_campana}}</td>
+			<td class="text-center">
+                <button class="btn btn-default btn-circle" data-toggle="modal" data-target="#detalle" type="button" title="Ver detalle" ng-click="verDetalle(data);"><i class="fa fa-search"></i></button> 
+			</td>
+		</tr>
+	</tbody>
+</table>

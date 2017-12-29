@@ -1,0 +1,49 @@
+<table class="table row-border order-column table-condensed compact table-bordered table-responsive" cellspacing="0" width="100%">
+	<thead>
+	<tr class="colorOptimiza">
+			<th class="text-center" rowspan="2">Ejecutiv@</th>
+			<th class="text-center" rowspan="2">Cant Eval.</th>
+			<th class="text-center" colspan="2">Calificación</th>
+			<th class="text-center" colspan="2">Ptos Críticos</th>
+			<th class="text-center" rowspan="2">Felicitación</th>
+		</tr>
+		<tr class="colorOptimiza2">
+			<th class="text-center">Nota</th>
+			<th class="text-center">Gestión</th>
+			<th class="text-center">Cantidad</th>
+			<th class="text-center">Gestión</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="ejec in ejecutivos[0] | orderBy:'promedio'">
+			<td><a ng-click="cargarBitacoraOperador(ejec.operador)" data-toggle="modal" data-target="#modalBitacora" style="cursor:pointer;">{{ejec.operador}}</a></td>
+			<td class="text-center">{{ejec.cantidad_eval}}</td>
+			<td class="text-center">{{ejec.promedio | number:1}}</td>
+			<td class="text-center">
+				<i ng_if="ejec.flag_19_mail" style="color: #DE2A46" class="fa fa-envelope-o fa-1x" aria-hidden="true"></i>
+				<i ng_if="ejec.flag_19_llamada" style="color: #DE2A46" class="fa fa-phone fa-1x" aria-hidden="true"></i>
+				<i ng_if="ejec.flag_19_presencial" style="color: #DE2A46" class="fa fa-user fa-1x" aria-hidden="true"></i>
+				<i ng_if="ejec.flag_19_chat" style="color: #DE2A46" class="fa fa-comments fa-1x" aria-hidden="true"></i>
+				<i ng_if="ejec.flag_19_videollamada" style="color: #DE2A46" class="fa fa-video-camera fa-1x" aria-hidden="true"></i>
+				<i ng_if="ejec.flag_19_sin_gestion" style="color: #DE2A46" class="fa fa-times fa-1x" aria-hidden="true"></i>
+			</td>
+			<td class="text-center">{{ejec.criticidad}}</td>
+			<td class="text-center">
+				<i ng_if="ejec.flag_27_mail" style="color: #DE2A46" class="fa fa-envelope-o fa-1x" aria-hidden="true"></i>
+				<i ng_if="ejec.flag_27_llamada" style="color: #DE2A46" class="fa fa-phone fa-1x" aria-hidden="true"></i>
+				<i ng_if="ejec.flag_27_presencial" style="color: #DE2A46" class="fa fa-user fa-1x" aria-hidden="true"></i>
+				<i ng_if="ejec.flag_27_chat" style="color: #DE2A46" class="fa fa-comments fa-1x" aria-hidden="true"></i>
+				<i ng_if="ejec.flag_27_videollamada" style="color: #DE2A46" class="fa fa-video-camera fa-1x" aria-hidden="true"></i>
+				<i ng_if="ejec.flag_27_sin_gestion" style="color: #DE2A46" class="fa fa-times fa-1x" aria-hidden="true"></i>
+			</td>
+			<td class="text-center">
+				<i ng_if="ejec.flag_30_mail" style="color: #0FA418" class="fa fa-envelope-o fa-1x" aria-hidden="true"></i>
+				<i ng_if="ejec.flag_30_llamada" style="color: #0FA418" class="fa fa-phone fa-1x" aria-hidden="true"></i>
+				<i ng_if="ejec.flag_30_presencial" style="color: #0FA418" class="fa fa-user fa-1x" aria-hidden="true"></i>
+				<i ng_if="ejec.flag_30_chat" style="color: #0FA418" class="fa fa-comments fa-1x" aria-hidden="true"></i>
+				<i ng_if="ejec.flag_30_videollamada" style="color: #0FA418" class="fa fa-video-camera fa-1x" aria-hidden="true"></i>
+				<i ng_if="ejec.flag_30_sin_gestion" style="color: #0FA418" class="fa fa-times fa-1x" aria-hidden="true"></i>
+			</td>
+		</tr>
+	</tbody>
+</table>

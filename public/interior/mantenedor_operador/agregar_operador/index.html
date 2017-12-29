@@ -1,0 +1,248 @@
+<div id="formOperador" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+    <form name="frm" ng-submit="guardarOperador()">
+        <div class="modal-dialog modal-lg modal-drag" >
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Formulario Ejecutiv@</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="form-group col-lg-12" style="margin-top:10px;">
+                                                <img check-image ng-src="{{imagenOperador}}" class="img-circle" width="150" height="150">
+                                            </div>
+                                            <div class="form-group col-lg-12">
+                                                <b>Tipo ejecutiva     </b>   
+                                                <label>{{frmOperador.tipo_ejecutiva}}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="form-group col-lg-4">
+                                                <label>Usuario</label>
+                                                <input type="text" name="user" ng-model="frmOperador.user" class="form-control" disabled>
+                                            </div>
+                                            <div class="form-group col-lg-4">
+                                                <label>Supervisor</label>
+                                                <select name="supervisor" ng-model="frmOperador.id_vici" class="form-control" ng-options="sup.id_vici as sup.usuario_codigo for sup in listaSupervisores"></select>
+                                            </div>
+                                            <div class="form-group col-lg-4">
+                                                <label>Activo</label>
+                                                <select name="active" ng-model="frmOperador.active" class="form-control">
+                                                    <option value="Y">Si</option>
+                                                    <option value="N">No</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-lg-12">
+                                                <label>Subir foto</label>   
+                                                <input class="button" ngf-select ng-model="frmOperador.file" name="file" ngf-pattern="'image/*'"
+                                                ngf-accept="'image/*'" ngf-max-size="2MB" ngf-min-height="100" type="file">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <nav class="navbar">
+                                            <div class="container-fluid">
+                                                <ul class="nav nav-tabs nav-justified">
+                                                <li><a data-target="#personal" data-toggle="tab">Datos Personales</a></li>
+                                                    <li><a data-target="#tecnico" data-toggle="tab">Datos Técnicos</a></li>
+                                                    <li><a data-target="#contrato" data-toggle="tab">Contrato</a></li>
+                                                    <li><a data-target="#campanas" data-toggle="tab">Campanas</a></li>
+                                                </ul>
+                                            </div>
+                                        </nav>
+                                        <div class="tab-content" id="tabs">
+                                            <div id="personal" class="panel-custom tab-pane">
+                                                <div class="form-group col-lg-4">
+                                                    <label>País *</label>
+                                                    <select name="pais" ng-model="frmOperador.id_pais" class="form-control" ng-options="pais.id_pais as pais.nombre_pais for pais in paises" ng-change="listarComunas()" required>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-lg-4">
+                                                    <label>Rut *</label>
+                                                    <input type="text" name="rut" ng-model="frmOperador.usde_rut" class="form-control" required>
+                                                </div>
+                                                <div class="form-group col-lg-4">
+                                                    <label>Fecha Nacimiento</label>
+                                                    <input type="text" class="form-control datepicker" ng-model="frmOperador.usde_fec_nacimiento" name="start">
+                                                </div>
+                                                <div class="form-group col-lg-8">
+                                                    <label>Nombre completo *</label>
+                                                    <input type="text" name="full_name" ng-model="frmOperador.full_name" class="form-control" required>
+                                                </div>
+                                                <div class="form-group col-lg-4">
+                                                    <label>Genero</label>
+                                                    <select name="active" ng-model="frmOperador.usde_genero" class="form-control">
+                                                        <option disabled value="" disabled> Seleccione </option>
+                                                        <option value="F">Femenino</option>
+                                                        <option value="M">Masculino</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-lg-8">
+                                                    <label>Dirección</label>
+                                                    <input type="text" name="direccion" ng-model="frmOperador.usde_direccion" class="form-control">
+                                                </div>
+                                                <div class="form-group col-lg-4">
+                                                    <label>Comuna</label>
+                                                    <select name="active" ng-model="frmOperador.com_id_comuna" class="form-control">
+                                                        <option disabled value="" disabled> Seleccione </option>
+                                                        <option ng-repeat="value in comunas" value="{{value.com_id_comuna}}">{{value.com_nombre}}</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-lg-3">
+                                                    <label>Estado Civil</label>
+                                                    <select name="active" ng-model="frmOperador.est_id_estado_civil" class="form-control">
+                                                        <option disabled value="" disabled> Seleccione </option>
+                                                        <option ng-repeat="value in estadoCivil" value="{{value.est_id_estado_civil}}">{{value.est_nombre}}</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-lg-3">
+                                                    <label>Nivel de estudios</label>
+                                                    <select name="active" ng-model="frmOperador.niv_id_nivel_educacional" class="form-control">
+                                                        <option disabled value="" disabled> Seleccione </option>
+                                                        <option ng-repeat="value in nivelEstudios" value="{{value.niv_id_nivel_educacional}}">{{value.niv_nombre}}</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-lg-3">
+                                                    <label>Salud</label>
+                                                    <select name="salud" ng-model="frmOperador.is_id_isapre" class="form-control" ng-options="is.is_id_isapre as is.is_nombre for is in isapres"></select>
+                                                </div>
+                                                <div class="form-group col-lg-3">
+                                                    <label>AFP</label>
+                                                    <select name="afp" ng-model="frmOperador.afp_id_afp" class="form-control" ng-options="afp.afp_id_afp as afp.afp_nombre for afp in afps"></select>
+                                                </div>
+                                                <div class="form-group col-lg-8">
+                                                    <label>Correo *</label>
+                                                    <input type="email" name="correo" ng-model="frmOperador.usde_correo" class="form-control" required>
+                                                </div>
+                                                <div class="form-group col-lg-4">
+                                                    <label>Telefono *</label>
+                                                    <input type="text" name="telefono" ng-model="frmOperador.usde_telefono" class="form-control" required>
+                                                </div>
+                                                <div class="form-group col-lg-3">
+                                                    <label>¿Tiene hijos?</label><br>
+                                                    <label>Sí</label><input type="radio" ng-model="frmOperador.usde_hijos" value="1">&#160;&#160;&#160;<label>NO</label><input type="radio" ng-model="frmOperador.usde_hijos" value="0">
+                                                </div>
+                                                <div ng-if="frmOperador.usde_hijos==1" class="form-group col-lg-3">
+                                                    <label>Cantidad hijos *</label>
+                                                    <input type="number" ng-model="frmOperador.cant_hijos" class="form-control" min="1" max="10" ng-change="arrHijos(frmOperador.cant_hijos)" required>
+                                                </div>
+                                                <div ng-if="frmOperador.usde_hijos==1 && frmOperador.cant_hijos>0" class="col-lg-6">
+                                                    <label>Fecha de Nacimiento de Hijos *</label><br>
+                                                    <div ng-repeat="(key,c) in frmOperador.listaHijos" class="form-group col-lg-6">
+                                                        <input type="text" class="form-control datepicker2" ng-model="frmOperador.listaHijos[key].ushi_fecha_nacimiento" required>
+                                                        <script type="text/javascript">
+                                                            $('.datepicker2').datepicker({language:"es",daysOfWeekHighlighted: "0,6",todayHighlight: true,endDate: new Date()});
+                                                        </script>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="tecnico" class="panel-custom tab-pane">
+                                                <div class="form-group col-lg-3">
+                                                    <label>Tipo de computador</label><br>
+                                                    <select name="active" ng-model="frmOperador.tico_id_tipo_computador" class="form-control">
+                                                        <option disabled value="" disabled> Seleccione </option>
+                                                        <option ng-repeat="value in tipoComputador" value="{{value.tico_id_tipo_computador}}">{{value.tico_descripcion_computador}}</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-lg-3">
+                                                    <label>¿Tiene camara WEB?</label><br>
+                                                    <label>Sí</label><input type="radio" ng-model="frmOperador.usde_camara_web" value="1">&#160;&#160;&#160;
+                                                    <label>NO</label><input type="radio" ng-model="frmOperador.usde_camara_web" value="0">
+                                                </div>
+                                                <div class="form-group col-lg-3">
+                                                    <label>Velocidad banda ancha</label><br>
+                                                    <input type="number" ng-model="frmOperador.usde_velocidad" min="1" max="2000"><label>&#160;&#160;MB</label>
+                                                </div>
+                                                <div class="form-group col-lg-3">
+                                                    <label>Tipo de conexión</label><br>
+                                                    <select name="active" ng-model="frmOperador.tico_id_tipo_conexion" class="form-control">
+                                                        <option disabled value="" disabled> Seleccione </option>
+                                                        <option ng-repeat="value in tipoConexion" value="{{value.tico_id_tipo_conexion}}">{{value.tico_descripcion_conexion}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div id="contrato" class="panel-custom tab-pane">
+                                                <div class="form-group col-lg-3">
+                                                    <label>Contrato semanal</label>
+                                                    <select name="contrato" ng-model="frmOperador.con_id_contrato" class="form-control" ng-options="con.id_contrato as con.contrato_nombre for con in contratos"></select>
+                                                </div>
+                                                <div class="form-group col-lg-3">
+                                                    <label>Tipo contrato</label>
+                                                    <select name="active" ng-model="frmOperador.usde_contrato_indef" class="form-control">
+                                                        <option value="0">Plazo Fijo</option>
+                                                        <option value="1">Indefinido</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-lg-3">
+                                                    <label>Fecha Ingreso *</label>
+                                                    <input type="text" class="form-control datepicker" ng-model="frmOperador.usde_fec_ingreso" name="start" required>
+                                                </div>
+                                                <div class="form-group col-lg-3">
+                                                    <label>Fecha Vencimiento</label>
+                                                    <input type="text" class="form-control datepicker" ng-model="frmOperador.usde_fec_vencimiento" name="vencimiento">
+                                                </div>
+                                                <div class="form-group col-lg-3">
+                                                    <label>Fecha Finiquito</label>
+                                                    <input type="text" class="form-control datepicker" ng-model="frmOperador.usde_fec_despido" name="despido">
+                                                </div>
+                                            </div>
+                                            <div id="campanas" class="panel-custom tab-pane">
+                                                <div class="col-lg-12">
+                                                    <h5>Capacitada para las siguientes campañas:</h5>
+                                                </div>
+                                                <div class="col-lg-12" style="border-color: #eee #eee -moz-use-text-color;border-style: solid none none;border-width: 2px 0 2px;">
+                                                </div>
+                                                <div class="form-group col-lg-12">
+                                                    <label>Campañas:</label>
+                                                    <select name="idCampaing" ng-model="frmOperador.campanas" class="form-control text-uppercase" ng-options="cam.campaign_id as cam.campaing_name for cam in listaCampanas" multiple="">
+                                                    </select>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <h5>Campaña asignada:</h5>
+                                                </div>
+                                                <div class="col-lg-12" style="border-color: #eee #eee -moz-use-text-color;border-style: solid none none;border-width: 2px 0 2px;">
+                                                </div>
+                                                <div class="form-group col-lg-12">
+                                                    <label style="float:right;"><input type="checkbox" name="is_lm" ng-model="frmOperador.is_lm" ng-change="sinCampana()">Sin campaña por licencia medica</label>
+                                                </div>
+                                                <div ng-if="!is_lm" class="form-group col-lg-6">
+                                                    <label>Cliente</label>
+                                                    <select name="idCliente" ng-model="frmOperador.id_cliente" class="form-control" ng-options="cli.id_cliente as cli.cliente for cli in listaClientes" ng-change="getServiciosVibox()">
+                                                    </select>
+                                                </div>
+                                                <div ng-if="!is_lm" class="form-group col-lg-6">
+                                                    <label>Servicio</label>
+                                                    <select name="idServicio" ng-model="frmOperador.id_servicio" class="form-control" ng-options="ser.id_servicio as ser.servicio for ser in listaServicio">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">Guardar</button>
+                    <button type="button" class="btn btn-error" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    $('.datepicker').datepicker({
+        language:"es",
+        daysOfWeekHighlighted: "0,6",
+        todayHighlight: true
+    });
+</script>

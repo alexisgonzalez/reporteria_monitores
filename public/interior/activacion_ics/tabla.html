@@ -1,0 +1,20 @@
+<table class="table table-bordered" id="tabla">
+    <thead>
+        <tr>
+            <th class="colorOptimiza">Resultado</th>
+            <th class="colorOptimiza">Cantidad</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="data in resumen">
+            <td>{{data.estado}}</td>
+            <td class="text-center">{{data.cantidad}}</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <th class="colorOptimiza">Total</th>
+            <th class="colorOptimiza text-center">{{total.total}}</th>
+        </tr>
+    </tfoot>
+</table>

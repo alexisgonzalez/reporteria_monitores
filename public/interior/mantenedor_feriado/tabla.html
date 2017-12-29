@@ -1,0 +1,25 @@
+<table id='tabla' class="table row-border order-column table-condensed compact table-bordered table-responsive" cellspacing="0" width="100%">
+	<thead>
+		<tr class="colorOptimiza">
+			<th class="text-center">Fecha</th>
+			<th class="text-center">Descripcion</th>
+			<th class="text-center">Irrenunciable</th>
+			<th class="text-center">Desactivar</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="data in list">
+			<td class="text-center">{{data.hfe_fecha_feriado}}</td>
+			<td>{{data.hfe_descripcion}}</td>
+			<td>{{data.hfe_irrenunciable}}</td>
+			<td class="text-center">
+			<button ng-if="data.hfe_estado==1" class="btn btn-default btn-circle" type="button" title="Desactivar feriado" ng-click="cambiarEstado(data,'desactivado');">
+					<i class="fa fa-times"></i>
+				</button>
+				<button ng-if="data.hfe_estado==0" class="btn btn-default btn-circle" type="button" title="Activar feriado" ng-click="cambiarEstado(data,'activado');">
+					<i class="fa fa-check"></i>
+				</button>
+			</td>
+		</tr>
+	</tbody>
+</table>

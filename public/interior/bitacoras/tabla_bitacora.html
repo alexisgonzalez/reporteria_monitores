@@ -1,0 +1,26 @@
+<table class="table table-striped table-bordered" id="tablaBitacora" cellspacing="0">
+    <thead>
+        <tr>
+            <th class="colorOptimiza">Ingreso Incidencia</th>
+            <th class="colorOptimiza">Fecha Incidencia</th>
+            <th class="colorOptimiza">Incidencia</th>
+            <th class="colorOptimiza">Tipo Incidencia</th>
+            <th class="colorOptimiza">Medio Gestión</th>
+            <th class="colorOptimiza">Resolución</th>
+            <th class="colorOptimiza">Informante</th>
+            <th class="colorOptimiza" style="width:150px;">Observación</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="bit in bitacoras">
+            <td>{{bit.bop_fecha_ingreso}}</td>
+            <td>{{bit.bop_fecha_incidencia}}</td>
+            <td>{{bit.inc_nom_incidencia}}</td>
+            <td>{{bit.tgs_descripcion}}</td>
+            <td>{{bit.tgo_descripcion_gestion}}</td>
+            <td>{{bit.res_descripcion}}</td>
+            <td>{{bit.usu_nom_usuario}}</td>
+            <td>{{bit.bop_observacion}}</td>
+        </tr>
+    </tbody>
+</table>

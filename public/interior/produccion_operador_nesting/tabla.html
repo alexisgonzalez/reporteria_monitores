@@ -1,0 +1,77 @@
+<div class="panel panel-default">
+	<div class="panel-body">
+		<div class="col-lg-8">
+			<b class="text-uppercase">Efectivos total periodo: {{totalFinal.efectivos}}</b>
+		</div>
+		<div class="col-lg-4">
+			<button type="button" style="float: right;" id="btnExport" ng-click="exportData()" class="btn btn-default"><i class="fa fa-cloud-download" aria-hidden="true"></i> Exportar Excel</button>
+		</div>
+	</div>
+</div>
+
+<table id="tabla" class="table row-border order-column table-condensed compact table-bordered table-responsive" cellspacing="0" width="100%">
+	<thead>
+		<tr class="colorOptimiza">
+			<th class="text-center" rowspan="2">Cliente Servicio</th>
+			<th class="text-center" ng-repeat="fecha in fechas">{{fecha | date: "dd-MM-yyyy"}}</th>	
+			<th rowspan="2" class="text-center">Total</th>
+		</tr>
+		<tr class="colorOptimiza2">
+			<th ng-repeat="fecha in fechas" class="text-center">Efectivos</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="(id,list) in vibox">
+			<td class="text-uppercase">{{id}}</td>
+			<td class="text-center" ng-repeat="fecha in fechas" ng-init="fecha_filtro=fecha">{{list['data'][fecha_filtro].efectivos}}</td>
+			<td class="text-uppercase text-center">{{list['totales'].efectivos}}</td>
+		</tr>
+		<tr ng-repeat="(id,list) in vicidial">
+			<td class="text-uppercase">{{id}}</td>
+			<td class="text-center" ng-repeat="fecha in fechas" ng-init="fecha_filtro=fecha">{{list['data'][fecha_filtro].efectivos}}</td>
+			<td class="text-uppercase text-center">{{list['totales'].efectivos}}</td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr class="colorOptimiza2">
+			<th class="text-center">Total</th>
+			<th ng-repeat="fecha in fechas" class="text-center" ng-init="fecha_filtro=fecha">{{totalDia[fecha_filtro].efectivos}}</th>
+			<th class="text-center">{{totalFinal.efectivos}}</th>
+		</tr>
+	</tfoot>
+</table>
+
+<div id="divTabla">
+	<table id="tabla" class="table row-border order-column table-condensed compact table-bordered table-responsive" cellspacing="0" width="100%" ng-show="false">
+		<thead>
+			<tr class="colorOptimiza">
+				<th class="text-center" rowspan="2">Cliente Servicio</th>
+				<th class="text-center" ng-repeat="fecha in fechas">{{fecha}}</th>	
+				<th rowspan="2" class="text-center">Total</th>
+			</tr>
+			<tr class="colorOptimiza2">
+				<th ng-repeat="fecha in fechas" class="text-center">Efectivos</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="(id,list) in vibox">
+				<td class="text-uppercase">{{id}}</td>
+				<td class="text-center" ng-repeat="fecha in fechas" ng-init="fecha_filtro=fecha">{{list['data'][fecha_filtro].efectivos}}</td>
+				<td class="text-uppercase text-center">{{list['totales'].efectivos}}</td>
+			</tr>
+			<tr ng-repeat="(id,list) in vicidial">
+				<td class="text-uppercase">{{id}}</td>
+				<td class="text-center" ng-repeat="fecha in fechas" ng-init="fecha_filtro=fecha">{{list['data'][fecha_filtro].efectivos}}</td>
+				<td class="text-uppercase text-center">{{list['totales'].efectivos}}</td>
+
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr class="colorOptimiza2">
+				<th class="text-center">Total</th>
+				<th ng-repeat="fecha in fechas" class="text-center" ng-init="fecha_filtro=fecha">{{totalDia[fecha_filtro].efectivos}}</th>
+				<th class="text-center">{{totalFinal.efectivos}}</th>
+			</tr>
+		</tfoot>
+	</table>
+</div>

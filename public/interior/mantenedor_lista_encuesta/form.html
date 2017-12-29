@@ -1,0 +1,45 @@
+<div id="formListaEncuesta" class="modal fade" role="dialog">
+    <form name="filtrar" ng-submit="agregarListaEncuesta()">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Límites</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-4" ng-style="edit && {'display':'none'}">
+                            <div class="form-group">
+                                <label>Lista</label>
+                                <select class="form-control" name="lista" ng-model="frmListaEncuesta.list_id" ng-change="getZonaPorLista()" required>
+                                    <option value="">Seleccione</option>
+                                    <option ng-repeat="list in listas" value="{{list.list_id}}">{{list.list_id}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4" ng-style="edit && {'display':'none'}">
+                            <div class="form-group">
+                                <label>Zona</label>
+                                <select class="form-control" name="zona" ng-model="frmListaEncuesta.zona_id" required> 
+                                    <option value="">Seleccione</option>
+                                    <option ng-repeat="zon in zonas" value="{{zon.country_code}}">{{zon.country_code}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Límite</label>
+                                <input type="text" name="limite" id="limite" min="0" ng-model="frmListaEncuesta.limite" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                    <button id="cerrarModal" type="button" class="btn btn-error" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

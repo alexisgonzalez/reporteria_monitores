@@ -1,0 +1,60 @@
+<div id="formSupervisor" class="modal fade" role="dialog">
+    <form name="filtrar" ng-submit="guardarSupervisores()">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Formulario Supervisor</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-lg-4">
+                        <label>Usuario</label>
+                        <input ng-if="!modo_agregar" type="text" name="user" ng-model="frmSupervisor.user" class="form-control" disabled>
+                        <input ng-if="modo_agregar" type="text" name="user" ng-model="frmSupervisor.user" class="form-control" required>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label>Contraseña</label>
+                        <input type="password" name="password" ng-model="frmSupervisor.pass" class="form-control" required>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label>Nombre supervisor</label>
+                        <input type="text" name="full_name" ng-model="frmSupervisor.full_name" class="form-control" required>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label>Correo</label>
+                        <input type="text" name="correo" ng-model="frmSupervisor.correo" class="form-control" required>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label>Anexo</label>
+                        <input type="text" name="anexo" ng-model="frmSupervisor.anexo" class="form-control" required>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label>Activo</label>
+                        <select name="active" ng-model="frmSupervisor.active" class="form-control" required>
+                            <option value="">Seleccione</option>
+                            <option value="Y">Sí</option>
+                            <option value="N">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label>Subir foto</label>
+                        <input class="button" ngf-select ng-model="frmSupervisor.file" name="file" ngf-pattern="'image/*'"
+                            ngf-accept="'image/*'" ngf-max-size="2MB" ngf-min-height="100" 
+                            ngf-resize="{width: 100, height: 100}" type="file">
+                        <div ngf-thumbnail="frmSupervisor.file" ngf-size="{width: 20, height: 20, quality: 0.9}" ngf-as-background="boolean"></div>
+                    </div>
+                    <div class="form-group col-lg-3 col-lg-offset-1" style="margin-top:10px;">
+                        <img ng-src="images/supervisores/{{frmSupervisor.user}}" width="50">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success">Guardar</button>
+                <button type="button" class="btn btn-error" id='cerrarModal' data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>

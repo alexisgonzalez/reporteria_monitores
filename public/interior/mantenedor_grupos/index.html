@@ -1,0 +1,15 @@
+<div class="row">
+	<div class="col-lg-12 row-superior">
+		<div ng-include src="filtroURL"></div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-12">
+		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#form" ng-click="levantarModal('agregar',null)"><i class="fa fa-plus" aria-hidden="true"></i> Agregar grupo</button>
+	</div>
+</div>
+<div ng-include src="tablaURL"></div>
+<div ng-include src="modalAgregarURL"></div>
+<div ng-include src="modalEditarURL"></div>
+<div ng-include src="modalDetalleURL"></div>
+<div ng-include="'interior/modal_dialog.html'"></div>

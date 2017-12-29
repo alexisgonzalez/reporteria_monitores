@@ -1,0 +1,42 @@
+<table id="tablaAgendamiento" class="table row-border order-column table-condensed compact table-bordered table-responsive" cellspacing="0" width="100%">
+	<thead>
+	<tr class="colorOptimiza">
+			<th class="text-center">Ejecutiv@</th>
+			<th class="text-center">Rut</th>
+			<th class="text-center">Telefono</th>
+			<th class="text-center">Nombre</th>
+			<th class="text-center">Dirección</th>
+			<th class="text-center">Observación</th>
+			<th class="text-center">Fecha creación</th>
+			<th class="text-center">Fecha Agendamiento</th>
+			<th class="text-center">Hora Agendamiento</th>
+			<th class="text-center">Link</th>
+			<th class="text-center">Otro telefono</th>
+			<th class="text-center">¿Llamado?</th> 
+			<th class="text-center">Fecha llamado</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="agenda in agendas">
+			<td>{{agenda.operador}}</td>
+			<td class="text-center">{{agenda.rut_cliente}}</td>
+			<td class="text-center">{{agenda.ani}} <a style="color:blue;cursor:pointer;" ng-click="mandarLlamado(agenda,true)"><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i></a></td>
+			<td>{{agenda.nombre}}</td>
+			<td>{{agenda.direccion}}, {{agenda.comuna}}</td>
+			<td>{{agenda.observacion}}</td>
+			<td class="text-center">{{agenda.fecha_creacion}}</td>
+			<td class="text-center">{{agenda.fecha}}</td>
+			<td class="text-center">{{agenda.hora}}</td>
+			<td class="text-center"><a href="http://190.196.18.131:8200/CTI/camExecJF.php?id_ani={{agenda.id_ani}}&user={{agenda.operador}}"><i class="fa fa-link" aria-hidden="true"></i></a></td>
+			<td class="text-center">
+				{{agenda.telefono_recuperado}} 
+				<a style="color:blue;cursor:pointer;" ng-click="mandarLlamado(agenda,false)" ng-if="!agenda.telefono_recuperado==''"><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i></a>
+			</td>
+			<td class="text-center">
+				<i ng-if="agenda.estado==1" class="glyphicon glyphicon-ok" style="color:green;"></i>
+				<i ng-if="agenda.estado==0" class="glyphicon glyphicon-remove" style="color:red;"></i>
+			</td> 
+			<td class="text-center">{{agenda.fecha_llamado}}</td>
+		</tr>
+	</tbody>
+</table>

@@ -1,0 +1,60 @@
+<div class="col-lg-12">
+    <table id="tablaOp" class="table table-bordered table-hover table-striped" width="100%">
+        <thead>
+            <tr class="colorOptimiza">
+                <th>Ejecutiv@</th>
+                <th>Supervisor</th>
+                <th>Media</th>
+                <th>Efectivos</th>
+                <th>Llamados</th>
+                <th>Recorridos</th>
+                <th>% Efectividad</th>
+                <th>% Contact.</th>
+                <th>Tiempo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="efectivo in datosMedias.tabla | orderBy:'-media*1'">
+                <td><a ng-click="cargarBitacoraOperador(efectivo.user)" data-toggle="modal" data-target="#modalBitacora" style="cursor:pointer;">{{efectivo.user}}</a></td>
+                <td>{{efectivo.supervisor}}</td>
+                <td class="text-center">{{efectivo.media|number:2}}</td>
+                <td class="text-center">{{efectivo.efectivos}}</td>
+                <td class="text-center">{{efectivo.llamados}}</td>
+                <td class="text-center">{{efectivo.recorridos}}</td>
+                <td class="text-center">{{efectivo.porc_efectividad}}%</td>
+                <td class="text-center">{{efectivo.porc_recorridos}}%</td>
+                <td class="text-center">{{efectivo.tiempo}}</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <th colspan="2">Totales</th>
+            <th class="text-center">{{datosMedias.totales.media|number:2}}</th>
+            <th class="text-center">{{datosMedias.totales.efectivos}}</th>
+            <th class="text-center">{{datosMedias.totales.total_llamado}}</th>
+            <th class="text-center">{{datosMedias.totales.total_recorridos}}</th>
+            <th class="text-center">{{datosMedias.totales.promedio_efectividad}}%</th>
+            <th class="text-center">{{datosMedias.totales.promedio_recorridos}}%</th>
+            <th class="text-center">{{datosMedias.totales.tiempo}}</th>
+        </tfoot>
+    </table>
+</div>
+<div class="col-lg-6">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Medias por ejecutiv@</h3>
+        </div>
+        <div class="panel-body">
+            <canvas id="bar" class="chart chart-bar" data="[datosMedias.graficoMedia.media]" labels='datosMedias.graficoMedia.user' series="['Media']"></canvas>
+        </div>
+    </div>
+</div>
+<div class="col-lg-6">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Efectividad por ejecutiv@</h3>
+        </div>
+        <div class="panel-body">
+            <canvas id="bar" class="chart chart-bar" data="[datosMedias.graficoEfectividad.efectividad]" labels='datosMedias.graficoEfectividad.user' series="['% Efectividad']"></canvas>
+        </div>
+    </div>
+</div>
